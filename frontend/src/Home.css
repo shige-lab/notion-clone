@@ -1,0 +1,40 @@
+.Home {
+  display: flex;
+  align-items: stretch;
+  height: 100vh;
+  max-height: 100%;
+  /* height: 100%; */
+  /* flex-grow: 0; */
+  /* text-align: center; */
+}
+
+
+@media (prefers-reduced-motion: no-preference) {
+  .Home-logo {
+    animation: Home-logo-spin infinite 20s linear;
+  }
+}
+
+.list {
+  width: 240px;
+  flex-shrink: 0;
+  background: rgb(247, 246, 243);
+  height: 100%;
+}
+
+
+.contents {
+  width: 100%;
+  height: 100%;
+  
+}
+
+
+@keyframes Home-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
