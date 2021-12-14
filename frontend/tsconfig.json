@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-  ]
+, "src/Login.tsx", "firebase.tsx", "node_modules/firebase.tsx"  ]
 }

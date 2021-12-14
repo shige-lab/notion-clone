@@ -1,5 +1,12 @@
 .Home {
   display: flex;
+  flex-wrap: wrap;
+  flex-direction:column;
+}
+
+.Home_main {
+  display: flex;
+  /* flex-direction:column;s */
   align-items: stretch;
   height: 100vh;
   max-height: 100%;
@@ -7,7 +14,15 @@
   /* flex-grow: 0; */
   /* text-align: center; */
 }
-
+.Home_header {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+.Heme_logout {
+  /* margin-left: auto; */
+  margin-right: auto;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .Home-logo {
@@ -26,7 +41,13 @@
 .contents {
   width: 100%;
   height: 100%;
-  
+}
+
+.Home_newpage {
+  background: rgb(247, 246, 243);
+  width: 240px;
+  padding-left: 30px;
+  text-align: left;
 }
 
 
