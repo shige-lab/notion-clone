@@ -39,8 +39,15 @@
 
 
 .contents {
+  display: block;
+  /* flex-direction:column; */
   width: 100%;
   height: 100%;
+  padding-left: 20%;
+}
+
+.header{
+  font-size: 10px;
 }
 
 .Home_newpage {
