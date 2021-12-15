@@ -15,7 +15,7 @@ function List(props: any) {
 	};
 
 	const newNote = () => {
-		// props.newNote(title);
+		props.newNote(title);
 		setTitle("");
 		setAddingNote(false);
 	};
