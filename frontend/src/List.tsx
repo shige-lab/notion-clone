@@ -14,6 +14,12 @@ function List(props: any) {
 		setTitle(txt);
 	};
 
+	const newNote = () => {
+		// props.newNote(title);
+		setTitle("");
+		setAddingNote(false);
+	};
+
 	return (
 		<div>
 			{addingNote ? (
@@ -30,8 +36,8 @@ function List(props: any) {
 						}}
 					/>
 					<button
-					// className={classes.newNoteSubmitBtn}
-					// onClick={this.newNote}
+						// className={classes.newNoteSubmitBtn}
+						onClick={newNote}
 					>
 						ノートを作成する
 					</button>
