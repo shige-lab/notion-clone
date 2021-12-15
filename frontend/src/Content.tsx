@@ -8,25 +8,17 @@ import {
 	Typography,
 } from "@material-ui/core";
 
-const Content = () => {
-	return (
-		<div>
-			<TextField
-				className="header"
-				fullWidth
-				// style={{ marginTop: "0.5em", marginBottom: "0.5em" }}
-				margin="normal"
-				name="header"
-				label="Header"
-				size="medium"
-				// fullWidth
-				// value={email}
-				// onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-				//   setEmail(event.target.value);
-				// }}
-			/>
-		</div>
-	);
+const Content = (props: any) => {
+	const note = props.note;
+	const index = props.index;
+	// console.log(index);
+
+	const Handle_test = () => {
+		// console.log(note.id);
+		props.selectNote(note);
+	};
+
+	return <div onClick={Handle_test}>{note.title}</div>;
 };
 
 export default Content;

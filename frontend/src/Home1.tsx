@@ -9,12 +9,15 @@ import List from "./List";
 const Home = (props: any) => {
 	const [currentUser, setCurrentUser] = useState<null | object>(null);
 	const [new_page, setNew_page] = useState(false);
+	const [notes, setNotes] = useState([{ id: "", title: "", body: "" }]);
+	const [note, setNote] = useState([{ id: "", title: "", body: "" }]);
 
-	const [notes, setNotes] = useState<firebase.firestore.DocumentData[]>([]);
+	// const [notes, setNotes] = useState<firebase.firestore.DocumentData[]>([]);
 	const [selectedNoteIndex, setSelectedNoteIndex] = useState(Number);
-	const [selectedNote, setSelectedNote] = useState<
-		firebase.firestore.DocumentData[]
-	>([]);
+	const [selectedNote, setSelectedNote] = useState([
+		{ id: "", title: "", body: "" },
+	]);
+
 	const HandleOnclick = () => {
 		setNew_page(true);
 		console.log(new_page);
@@ -24,28 +27,31 @@ const Home = (props: any) => {
 		auth.onAuthStateChanged((user) => {
 			user ? setCurrentUser(user) : props.history.push("/login");
 
-			db.collection("notes").onSnapshot((serverUpdate) => {
-				const notes = serverUpdate.docs.map((doc) => {
-					const data = doc.data();
+			const unSub = db.collection("notes").onSnapshot((serverUpdate) => {
+				setNotes(
+					serverUpdate.docs.map((doc) => ({
+						id: doc.id,
+						title: doc.data().title,
+						body: "",
+					}))
+				);
 
-					data["id"] = doc.id;
-
-					return data;
-				});
-
-				setNotes(notes);
-				console.log(notes);
+				return () => unSub();
 			});
+
+			setNotes(notes);
+			console.log(notes);
 		});
 	}, []);
 
-	// const selectNote = (note, index) => {
-	// 	setSelectedNote(note);
-	// 	setSelectedNoteIndex(index);
-	// };
+	const selectNote = (note: any) => {
+		// console.log(note.title);
+		setNote(note);
+	};
 
-	const newNote = async (title: string) => {
+	const newNote = async (title: string, id: string) => {
 		const note = {
+			id,
 			title,
 			body: "",
 		};
@@ -57,10 +63,10 @@ const Home = (props: any) => {
 
 		const newID = newFromDB.id;
 
-		// await setNotes(note);
-		const newNoteIndex = notes.indexOf(
-			notes.filter((_note) => _note.id === newID)[0]
-		);
+		await setNotes([{ id: note.id, title: note.title, body: note.body }]);
+		// const newNoteIndex = notes.indexOf(
+		// 	notes.filter((_note) => _note.id === newID)[0]
+		// );
 
 		// setSelectedNote(notes[newNoteIndex]);
 		// setSelectedNoteIndex(newNoteIndex);
@@ -87,15 +93,23 @@ const Home = (props: any) => {
 				<div className="Home_main">
 					<div className="list">
 						list
-						{notes.map((note) => (
-							<h3>{note.title}</h3>
+						{notes.map((note, index) => (
+							<div>
+								{" "}
+								{
+									<Content
+										note={note}
+										index={index}
+										selectNote={selectNote}
+									/>
+								}
+							</div>
 						))}
-						{<List newNote={newNote} />}
 						{<List newNote={newNote} />}
 					</div>
 					<div className="contents">
 						{new_page && <Content />}
-						{new_page && <EditorApp />}
+						{<EditorApp note={note} />}
 					</div>
 				</div>
 				<button className="Home_newpage" onClick={HandleOnclick}>
