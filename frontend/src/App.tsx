@@ -14,7 +14,6 @@ const App: React.FC = () => {
     <Router>
       <Switch>
         <AuthProvider>
-          {/* // ここでラップしている */}
           <Route exact path="/" component={Home1} />
             {/* <Route exact path="/" component={Home} /> */}
           <Route exact path="/signup" component={SignUp} />

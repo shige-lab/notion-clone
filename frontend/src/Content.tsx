@@ -1,4 +1,3 @@
-
 import {
 	Button,
 	Container,
@@ -6,9 +5,8 @@ import {
 	Grid,
 	Link,
 	TextField,
-	Typography
-  } from "@material-ui/core";
-  
+	Typography,
+} from "@material-ui/core";
 
 const Content = () => {
 	return (
@@ -16,19 +14,19 @@ const Content = () => {
 			<TextField
 				className="header"
 				fullWidth
-                // style={{ marginTop: "0.5em", marginBottom: "0.5em" }}
+				// style={{ marginTop: "0.5em", marginBottom: "0.5em" }}
 				margin="normal"
-                name="header"
-                label="Header"
-				size ="medium"
-                // fullWidth
-                // value={email}
-                // onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                //   setEmail(event.target.value);
-                // }}
-				/>
+				name="header"
+				label="Header"
+				size="medium"
+				// fullWidth
+				// value={email}
+				// onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+				//   setEmail(event.target.value);
+				// }}
+			/>
 		</div>
-	)
-}
+	);
+};
 
 export default Content;
