@@ -19,8 +19,9 @@ const Home = (props: any) => {
 	// ]);
 
 	const HandleOnclick = () => {
-		setNew_page(true);
-		console.log(new_page);
+		// setNew_page(true);
+		// console.log(new_page);
+		newNote("Untitled");
 	};
 	useEffect(() => {
 		// if not logged in, redirect to login page
@@ -46,16 +47,17 @@ const Home = (props: any) => {
 
 	const selectNote = (SelectedNote: any) => {
 		// console.log(note.title);
-		setNote([
-			{
-				id: SelectedNote.id,
-				title: SelectedNote.title,
-				body: SelectedNote.body,
-			},
-		]);
-		// console.log(SelectedNote.body);
-		// console.log(SelectedNote.title);
-		// console.log(SelectedNote.id);
+		setNote(SelectedNote);
+		// setNote([
+		// 	{
+		// 		id: SelectedNote.id,
+		// 		title: SelectedNote.title,
+		// 		body: SelectedNote.body,
+		// 	},
+		// ]);
+		console.log(SelectedNote.body);
+		console.log(SelectedNote.title);
+		console.log(SelectedNote.id);
 		// console.log(note.body);
 		// console.log(note.title);
 		// console.log(note.id);

@@ -21,8 +21,10 @@ function EditorApp(props: any) {
 	const body: string = props.note.body;
 	const title: string = props.note.title;
 	const id: string = props.note.id;
-	const [text, setText] = useState(body);
+	const [text, setText] = useState<string>(body);
+	const [title_, setTitle_] = useState<string>(title);
 	console.log(title);
+	console.log(title_);
 	console.log(body);
 	console.log(text);
 
@@ -30,7 +32,11 @@ function EditorApp(props: any) {
 	// 	setText(body);
 	// 	console.log(text);
 	// }, []);
-
+	const updateTitle = (t: string) => {
+		setTitle_(t);
+		console.log(title_);
+		// update();
+	};
 	const updateBody = (content: string) => {
 		setText(content);
 		console.log(text);
@@ -46,7 +52,7 @@ function EditorApp(props: any) {
 	const update = _.debounce(() => {
 		noteUpdate(id, {
 			id,
-			title,
+			title: title_,
 			body: text,
 		});
 	}, 1500);
@@ -56,8 +62,8 @@ function EditorApp(props: any) {
 			<input
 				// className={classes.titleInput}
 				placeholder="Untitled"
-				value={title ? title : ""}
-				// onChange={(e) => this.updateTitle(e.target.value)}
+				value={title_ ? title_ : ""}
+				onChange={(e) => updateTitle(e.target.value)}
 			/>
 			{/* <ReactQuill
 				value={text}
