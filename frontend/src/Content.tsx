@@ -23,9 +23,13 @@ const Content = (props: any) => {
 	};
 
 	return (
-		<div>
-			<div onClick={Handle_test}>{note.title}</div>
-			<button onClick={deleteNote}>delete</button>
+		<div className="List_Block">
+			<div className="list" onClick={Handle_test}>
+				{note.title}
+			</div>
+			<button className="button" onClick={deleteNote}>
+				delete
+			</button>
 		</div>
 	);
 };

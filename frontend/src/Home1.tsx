@@ -133,7 +133,7 @@ const Home = (props: any) => {
 					Logout
 				</button>
 				<div className="Home_main">
-					<div className="list">
+					<div className="List">
 						list
 						{notes.map((note, index) => (
 							<div>

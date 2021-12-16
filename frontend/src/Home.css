@@ -30,11 +30,22 @@
   }
 }
 
-.list {
+.List {
   width: 240px;
   flex-shrink: 0;
   background: rgb(247, 246, 243);
   height: 100%;
+}
+
+.List_Block {
+  display: flex;
+  
+}
+
+.button {
+  /* padding-left: 50px; */
+  margin-left: auto;
+  /* width: 30px; */
 }
 
 
