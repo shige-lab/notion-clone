@@ -10,7 +10,7 @@ const Home = (props: any) => {
 	const [currentUser, setCurrentUser] = useState<null | object>(null);
 	const [new_page, setNew_page] = useState(false);
 	const [notes, setNotes] = useState([{ id: "", title: "", body: "" }]);
-	const [note, setNote] = useState([{ id: "", title: "", body: "" }]);
+	const [note, setNote] = useState({ id: "", title: "", body: "" });
 
 	// const [notes, setNotes] = useState<firebase.firestore.DocumentData[]>([]);
 	// const [selectedNoteIndex, setSelectedNoteIndex] = useState(Number);
@@ -55,11 +55,11 @@ const Home = (props: any) => {
 		// 		body: SelectedNote.body,
 		// 	},
 		// ]);
-		console.log(SelectedNote.body);
-		console.log(SelectedNote.title);
-		console.log(SelectedNote.id);
-		// console.log(note.body);
-		// console.log(note.title);
+		// console.log(SelectedNote.body);
+		// console.log(SelectedNote.title);
+		// console.log(SelectedNote.id);
+		// console.log(note["body"]);
+		// console.log(note["title"]);
 		// console.log(note.id);
 	};
 
