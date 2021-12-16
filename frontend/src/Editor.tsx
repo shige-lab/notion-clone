@@ -13,17 +13,19 @@ import {
 	Typography,
 } from "@material-ui/core";
 
-function EditorApp(props: any) {
+const EditorApp = (props: any) => {
 	// const [title, setTitle] = useState("");
 	// const [id, setId] = useState("");
 	// const note = props.note;
 	const noteUpdate = props.noteUpdate;
-	// const { id, title, body } = note;
-	const body: string = props.note.body;
-	const title: string = props.note.title;
-	const id: string = props.note.id;
-	const [text, setText] = useState<string>(body);
-	const [title_, setTitle_] = useState<string>(title);
+	const { id, title, body } = props.note;
+	// const body: string = props.note.body;
+	// const title: string = props.note.title;
+	// const id: string = props.note.id;
+	const [text, setText] = useState(body);
+	const [title_, setTitle_] = useState(title);
+	// setText(body);
+	// setTitle_(title);
 	console.log(title);
 	console.log(title_);
 	console.log(body);
@@ -33,28 +35,31 @@ function EditorApp(props: any) {
 		setText(body);
 		setTitle_(title);
 		console.log(text);
-	}, []);
-	const updateTitle = (t: string) => {
-		setTitle_(t);
-		console.log(title_);
-		// update();
+	}, [body, title]);
+
+	const updateTitle = async (t: string) => {
+		await setTitle_(t);
+		update(t, text);
+		// console.log(title_);
+		console.log(t);
 	};
-	const updateBody = (content: string) => {
-		setText(content);
-		console.log(text);
-		// update();
+	const updateBody = async (content: string) => {
+		await setText(content);
+		// console.log(text);
+		update(title, content);
 	};
 	// const update = () => {
 	// 	noteUpdate(id, {
-	//     id,
-	//     title,
+	// 		id,
+	// 		title,
 	// 		body: text,
 	// 	});
 	// };
-	const update = _.debounce(() => {
+
+	const update = _.debounce((title, text) => {
 		noteUpdate(id, {
 			id,
-			title: title_,
+			title: title,
 			body: text,
 		});
 	}, 1500);
@@ -82,6 +87,6 @@ function EditorApp(props: any) {
 			/>
 		</div>
 	);
-}
+};
 
 export default EditorApp;

@@ -153,7 +153,7 @@ const Home = (props: any) => {
 						{<List newNote={newNote} />}
 					</div>
 					<div className="contents">
-						{note && (
+						{note.id && (
 							<EditorApp note={note} noteUpdate={noteUpdate} />
 						)}
 					</div>
