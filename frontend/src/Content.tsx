@@ -18,7 +18,16 @@ const Content = (props: any) => {
 		props.selectNote(note);
 	};
 
-	return <div onClick={Handle_test}>{note.title}</div>;
+	const deleteNote = () => {
+		props.deleteNote(note);
+	};
+
+	return (
+		<div>
+			<div onClick={Handle_test}>{note.title}</div>
+			<button onClick={deleteNote}>delete</button>
+		</div>
+	);
 };
 
 export default Content;

@@ -13,10 +13,10 @@ const Home = (props: any) => {
 	const [note, setNote] = useState([{ id: "", title: "", body: "" }]);
 
 	// const [notes, setNotes] = useState<firebase.firestore.DocumentData[]>([]);
-	const [selectedNoteIndex, setSelectedNoteIndex] = useState(Number);
-	const [selectedNote, setSelectedNote] = useState([
-		{ id: "", title: "", body: "" },
-	]);
+	// const [selectedNoteIndex, setSelectedNoteIndex] = useState(Number);
+	// const [selectedNote, setSelectedNote] = useState([
+	// 	{ id: "", title: "", body: "" },
+	// ]);
 
 	const HandleOnclick = () => {
 		setNew_page(true);
@@ -32,26 +32,37 @@ const Home = (props: any) => {
 					serverUpdate.docs.map((doc) => ({
 						id: doc.id,
 						title: doc.data().title,
-						body: "",
+						body: doc.data().body,
 					}))
 				);
 
 				return () => unSub();
 			});
 
-			setNotes(notes);
-			console.log(notes);
+			// setNotes(notes);
+			// console.log(notes);
 		});
 	}, []);
 
-	const selectNote = (note: any) => {
+	const selectNote = (SelectedNote: any) => {
 		// console.log(note.title);
-		setNote(note);
+		setNote([
+			{
+				id: SelectedNote.id,
+				title: SelectedNote.title,
+				body: SelectedNote.body,
+			},
+		]);
+		// console.log(SelectedNote.body);
+		// console.log(SelectedNote.title);
+		// console.log(SelectedNote.id);
+		// console.log(note.body);
+		// console.log(note.title);
+		// console.log(note.id);
 	};
 
-	const newNote = async (title: string, id: string) => {
+	const newNote = async (title: string) => {
 		const note = {
-			id,
 			title,
 			body: "",
 		};
@@ -62,14 +73,45 @@ const Home = (props: any) => {
 		});
 
 		const newID = newFromDB.id;
+		// console.log(newID);
 
-		await setNotes([{ id: note.id, title: note.title, body: note.body }]);
+		await setNotes([{ id: newID, title: note.title, body: note.body }]);
 		// const newNoteIndex = notes.indexOf(
 		// 	notes.filter((_note) => _note.id === newID)[0]
 		// );
 
 		// setSelectedNote(notes[newNoteIndex]);
 		// setSelectedNoteIndex(newNoteIndex);
+	};
+	const noteUpdate = (id: string, noteObj: any) => {
+		console.log(noteObj.body);
+		db.collection("notes").doc(id).update({
+			title: noteObj.title,
+			body: noteObj.body,
+			// id: noteObj.id,
+			// timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+		});
+	};
+
+	const deleteNote = async (note: any) => {
+		// await this.setState({
+		// 	notes: this.state.notes.filter((_note) => _note !== note),
+		// });
+
+		// // const noteIndex = notes.indexOf(note);
+
+		// if (selectedNoteIndex === noteIndex) {
+		// 	this.deselectNote();
+		// } else {
+		// 	notes.length > 0
+		// 		? this.selectNote(
+		// 				notes[selectedNoteIndex - 1],
+		// 				selectedNoteIndex - 1
+		// 		  )
+		// 		: this.deselectNote();
+		// }
+
+		db.collection("notes").doc(note.id).delete();
 	};
 
 	return (
@@ -101,6 +143,7 @@ const Home = (props: any) => {
 										note={note}
 										index={index}
 										selectNote={selectNote}
+										deleteNote={deleteNote}
 									/>
 								}
 							</div>
@@ -108,8 +151,7 @@ const Home = (props: any) => {
 						{<List newNote={newNote} />}
 					</div>
 					<div className="contents">
-						{new_page && <Content />}
-						{<EditorApp note={note} />}
+						{<EditorApp note={note} noteUpdate={noteUpdate} />}
 					</div>
 				</div>
 				<button className="Home_newpage" onClick={HandleOnclick}>
