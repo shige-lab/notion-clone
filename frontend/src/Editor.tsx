@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
 import ReactQuill from "react-quill";
 import _ from "lodash";
-import {
-	Editor,
-	EditorState,
-	RichUtils,
-	convertToRaw,
-	ContentState,
-} from "draft-js";
-import "draft-js/dist/Draft.css";
-import { stateToHTML } from "draft-js-export-html";
+// import BorderColorIcon from "@material-ui/icons/BorderColor";
 import { render } from "@testing-library/react";
+import {
+	Button,
+	Container,
+	FormControl,
+	Grid,
+	Link,
+	TextField,
+	Typography,
+} from "@material-ui/core";
 
 function EditorApp(props: any) {
 	// const [title, setTitle] = useState("");
@@ -28,10 +29,11 @@ function EditorApp(props: any) {
 	console.log(body);
 	console.log(text);
 
-	// useEffect(() => {
-	// 	setText(body);
-	// 	console.log(text);
-	// }, []);
+	useEffect(() => {
+		setText(body);
+		setTitle_(title);
+		console.log(text);
+	}, []);
 	const updateTitle = (t: string) => {
 		setTitle_(t);
 		console.log(title_);
@@ -60,7 +62,7 @@ function EditorApp(props: any) {
 	return (
 		<div>
 			<input
-				// className={classes.titleInput}
+				className="titleInput"
 				placeholder="Untitled"
 				value={title_ ? title_ : ""}
 				onChange={(e) => updateTitle(e.target.value)}
@@ -69,13 +71,14 @@ function EditorApp(props: any) {
 				value={text}
 				onChange={props.noteUpdate(note.id, note)}
 			></ReactQuill> */}
-			<input
-				// className={classes.titleInput}
+			<ReactQuill
+				className="textInput"
 				placeholder="content"
 				value={text ? text : ""}
-				onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-					updateBody(event.target.value);
-				}}
+				onChange={updateBody}
+				// onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+				// 	updateBody(event.target.value);
+				// }}
 			/>
 		</div>
 	);

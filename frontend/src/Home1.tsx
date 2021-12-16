@@ -153,7 +153,9 @@ const Home = (props: any) => {
 						{<List newNote={newNote} />}
 					</div>
 					<div className="contents">
-						{<EditorApp note={note} noteUpdate={noteUpdate} />}
+						{note && (
+							<EditorApp note={note} noteUpdate={noteUpdate} />
+						)}
 					</div>
 				</div>
 				<button className="Home_newpage" onClick={HandleOnclick}>
