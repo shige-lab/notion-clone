@@ -55,7 +55,7 @@ const Home = (props: any) => {
 		// 		body: SelectedNote.body,
 		// 	},
 		// ]);
-		// console.log(SelectedNote.body);
+		console.log(SelectedNote.body);
 		// console.log(SelectedNote.title);
 		// console.log(SelectedNote.id);
 		// console.log(note["body"]);
@@ -78,6 +78,7 @@ const Home = (props: any) => {
 		// console.log(newID);
 
 		await setNotes([{ id: newID, title: note.title, body: note.body }]);
+		setNote({ id: newID, title: note.title, body: note.body });
 		// const newNoteIndex = notes.indexOf(
 		// 	notes.filter((_note) => _note.id === newID)[0]
 		// );
@@ -114,6 +115,7 @@ const Home = (props: any) => {
 		// }
 
 		db.collection("notes").doc(note.id).delete();
+		setNote({ id: "", title: "", body: "" });
 	};
 
 	return (

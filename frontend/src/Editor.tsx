@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useRef, useCallback } from "react";
 import ReactQuill from "react-quill";
 import _ from "lodash";
+import ContentEditable from "./ContentEditable";
 // import BorderColorIcon from "@material-ui/icons/BorderColor";
 import { render } from "@testing-library/react";
 import {
@@ -24,24 +26,29 @@ const EditorApp = (props: any) => {
 	// const id: string = props.note.id;
 	const [text, setText] = useState(body);
 	const [title_, setTitle_] = useState(title);
-	// setText(body);
-	// setTitle_(title);
-	console.log(title);
-	console.log(title_);
-	console.log(body);
-	console.log(text);
+	const [tex, setTex] = useState("この文章は書き換えることができます。");
+
+	const ref = useRef(body);
+	// const setRef = useCallback((body: string) => {
+	// 	ref.current = body;
+	// }, []);
 
 	useEffect(() => {
 		setText(body);
 		setTitle_(title);
-		console.log(text);
-	}, [body, title]);
+		ref.current = body;
+		// console.log(title);
+		// console.log(title_);
+		// console.log(body);
+		// console.log(text);
+		// console.log(id);
+	}, [id]);
 
 	const updateTitle = async (t: string) => {
 		await setTitle_(t);
 		update(t, text);
 		// console.log(title_);
-		console.log(t);
+		// console.log(t);
 	};
 	const updateBody = async (content: string) => {
 		await setText(content);
@@ -63,7 +70,7 @@ const EditorApp = (props: any) => {
 			body: text,
 		});
 	}, 1500);
-
+	console.log(text);
 	return (
 		<div>
 			<input
@@ -76,15 +83,18 @@ const EditorApp = (props: any) => {
 				value={text}
 				onChange={props.noteUpdate(note.id, note)}
 			></ReactQuill> */}
-			<ReactQuill
+			<ContentEditable
 				className="textInput"
 				placeholder="content"
-				value={text ? text : ""}
+				// value={text ? text : ""}
+				value={ref.current}
 				onChange={updateBody}
+				id={id}
 				// onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
 				// 	updateBody(event.target.value);
 				// }}
 			/>
+			{/* <ContentEditable value={tex} onChange={updateBody} /> */}
 		</div>
 	);
 };

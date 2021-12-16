@@ -69,6 +69,12 @@
   /* width: 30px; */
 }
 
+.test {
+  outline: none;
+  border: none;
+  
+}
+
 
 .contents {
   display: block;
