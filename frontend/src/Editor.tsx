@@ -5,6 +5,7 @@ import _ from "lodash";
 import ContentEditable from "./ContentEditable";
 // import BorderColorIcon from "@material-ui/icons/BorderColor";
 import { render } from "@testing-library/react";
+import ReactDOM from 'react-dom';
 import {
 	Button,
 	Container,
@@ -37,6 +38,8 @@ const EditorApp = (props: any) => {
 		setText(body);
 		setTitle_(title);
 		ref.current = body;
+		// refs["ref2"].focus();
+		// document.getElementById("test").focus();
 		// console.log(title);
 		// console.log(title_);
 		// console.log(body);
@@ -76,6 +79,7 @@ const EditorApp = (props: any) => {
 			<input
 				className="titleInput"
 				placeholder="Untitled"
+				autoFocus={true}
 				value={title_ ? title_ : ""}
 				onChange={(e) => updateTitle(e.target.value)}
 			/>
@@ -88,6 +92,7 @@ const EditorApp = (props: any) => {
 				placeholder="content"
 				// value={text ? text : ""}
 				value={ref.current}
+					// ref="ref2"
 				onChange={updateBody}
 				id={id}
 				// onChange={(event: React.ChangeEvent<HTMLInputElement>) => {

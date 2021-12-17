@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 
-function List(props: any) {
+function CreateNote(props: any) {
 	const { classes, notes, selectedNoteIndex } = props;
 	const [addingNote, setAddingNote] = useState(false);
 	const [title, setTitle] = useState("");
@@ -50,4 +50,4 @@ function List(props: any) {
 	);
 }
 
-export default List;
+export default CreateNote;

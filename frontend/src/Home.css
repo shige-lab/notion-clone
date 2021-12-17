@@ -16,7 +16,7 @@
   /* flex-grow: 0; */
   /* text-align: center; */
 }
-.Home_header {
+.HomeHeader {
   text-align: center;
   font-size: 50px;
   font-weight: bold;
@@ -37,7 +37,7 @@
   }
 }
 
-.List {
+.Sidebar {
   width: 240px;
   flex-shrink: 0;
   background: rgb(247, 246, 243);
@@ -76,7 +76,7 @@
 }
 
 
-.contents {
+.Note {
   display: block;
   background: white;
   /* flex-direction:column; */

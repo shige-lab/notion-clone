@@ -4,11 +4,10 @@ import { auth, db } from "./firebase";
 import "./Home.css";
 import Content from "./Content";
 import EditorApp from "./Editor";
-import List from "./List";
+import List from "./CreateNote";
 
 const Home = (props: any) => {
 	const [currentUser, setCurrentUser] = useState<null | object>(null);
-	const [new_page, setNew_page] = useState(false);
 	const [notes, setNotes] = useState([{ id: "", title: "", body: "" }]);
 	const [note, setNote] = useState({ id: "", title: "", body: "" });
 
@@ -58,11 +57,9 @@ const Home = (props: any) => {
 		});
 
 		const newID = newFromDB.id;
-		// console.log(newID);
 
 		await setNotes([{ id: newID, title: note.title, body: note.body }]);
 		setNote({ id: newID, title: note.title, body: note.body });
-
 	};
 	const noteUpdate = (id: string, noteObj: any) => {
 		console.log(noteObj.body);
@@ -81,7 +78,7 @@ const Home = (props: any) => {
 	return (
 		<Fragment>
 			<div className="Home">
-				<header className="Home_header">notion clone</header>
+				<header className="HomeHeader">notion clone</header>
 				<button
 					className="Heme_logout"
 					onClick={async (event) => {
@@ -97,11 +94,10 @@ const Home = (props: any) => {
 					Logout
 				</button>
 				<div className="Home_main">
-					<div className="List">
+					<div className="Sidebar">
 						list
 						{notes.map((note, index) => (
 							<div>
-								{" "}
 								{
 									<Content
 										note={note}
@@ -114,7 +110,7 @@ const Home = (props: any) => {
 						))}
 						{<List newNote={newNote} />}
 					</div>
-					<div className="contents">
+					<div className="Note">
 						{note.id && (
 							<EditorApp note={note} noteUpdate={noteUpdate} />
 						)}
