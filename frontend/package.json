@@ -54,7 +54,7 @@
     "@types/draft-js": "^0.11.7",
     "@types/lodash": "^4.14.178",
     "stylelint": "^14.1.0",
-    "stylelint-config-prettier": "^9.0.3",
+      "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-standard": "^24.0.0",
     "stylelint-prettier": "^2.0.0"
   }
