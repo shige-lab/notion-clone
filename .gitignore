@@ -1,5 +1,6 @@
 nouse
 /node_modules
+.vscode
 
 
 # misc
@@ -7,3 +8,4 @@ nouse
 .env.development.local
 .env.test.local
 .env.production.local
+.env
