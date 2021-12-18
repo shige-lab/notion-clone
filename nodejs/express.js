@@ -6,6 +6,8 @@ const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 dotenv.config();
 
+const Page = require("./model");
+
 
 app.use((req, res, next) => {
 	res.setHeader("Access-Control-Allow-Headers", "Content-Type");
@@ -18,19 +20,29 @@ app.use((req, res, next) => {
 	next();
 });
 
-app.use(bodyParser.json());
+	app.use(bodyParser.json());
 // app.use(express.static(path.join(__dirname, '../frontend/src/index.tsx')));
 
 // app.get('/', (req,res) => {
 // 	res.sendFile(path.join(__dirname, '../frontend/index.html'));
 //   });
 
-app.get("/pages", (req, res) => {
+// app.get("/", (req, res) => {
+// 	// res.sendFile(path.join(__dirname, '../my-app/build/index.html'));
+// 	console.log(req.data);
+// 	console.log("1");
+// });
+
+app.post("/", (req, res) => {
+	const page = new Page({
+		content : req.data,
+	  });
+	page.save();
+	console.log(res.data);
 	// res.sendFile(path.join(__dirname, '../my-app/build/index.html'));
 	console.log(req.data);
 	console.log("1");
 });
-
 
 const PORT = process.env.PORT || 3000;
 // const PORT = 8080;
