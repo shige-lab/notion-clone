@@ -35,12 +35,12 @@ app.use((req, res, next) => {
 
 app.post("/", (req, res) => {
 	const page = new Page({
-		content : req.data,
+		note : req.body.note,
 	  });
 	page.save();
-	console.log(res.data);
+	// console.log(req.body.content);
 	// res.sendFile(path.join(__dirname, '../my-app/build/index.html'));
-	console.log(req.data);
+	// console.log(req.data);
 	console.log("1");
 });
 

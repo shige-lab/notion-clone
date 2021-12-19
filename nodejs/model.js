@@ -3,10 +3,26 @@ const Schema = mongoose.Schema;
 
 const pageSchema = new Schema(
 	{
-		content: {
+		note: [
+			{
+			  title: {
+				type: String,
+				required: true,
+			  },
+			  id: {
+				type: String,
+				required: false,
+			  },
+			  body: {
+				type: String,
+				required: false,
+			  },
+			},
+		  ],
+		userId :{
 			type: String,
-			required: true,
-		}
+			required: false,
+		},
 	}
 );
 

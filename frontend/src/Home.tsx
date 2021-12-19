@@ -10,6 +10,7 @@ const Home = (props: any) => {
 	const [currentUser, setCurrentUser] = useState<null | object>(null);
 	const [notes, setNotes] = useState([{ id: "", title: "", body: "" }]);
 	const [note, setNote] = useState({ id: "", title: "", body: "" });
+	const [userId, setUserId] = useState<string | undefined>("");
 
 	// const [notes, setNotes] = useState<firebase.firestore.DocumentData[]>([]);
 	// const [selectedNoteIndex, setSelectedNoteIndex] = useState(Number);
@@ -18,13 +19,14 @@ const Home = (props: any) => {
 	// ]);
 
 	const HandleOnclick = () => {
-		newNote("Untitled");
+	newNote("Untitled");
 	};
 	useEffect(() => {
 		auth.onAuthStateChanged((user) => {
 			user ? setCurrentUser(user) : props.history.push("/login");
+			setUserId(user?.uid);
 
-			const unSub = db.collection("notes").onSnapshot((serverUpdate) => {
+const unSub = db.collection("notes").where("userId", "==", user?.uid).onSnapshot((serverUpdate) => {
 				setNotes(
 					serverUpdate.docs.map((doc) => ({
 						id: doc.id,
@@ -38,6 +40,16 @@ const Home = (props: any) => {
 		});
 	}, []);
 
+	const createUser = async (data : any) => {
+		const response = await fetch(`${process.env.REACT_APP_PUBLIC_API}/`, {
+			method: 'POST',
+			headers: {'Content-Type': 'application/json'},
+			// body: JSON.stringify({user: data})
+			body: JSON.stringify({note: data})
+		  })
+		return await response.json();
+	}
+
 	const selectNote = (SelectedNote: any) => {
 		setNote(SelectedNote);
 		console.log(SelectedNote.body);
@@ -50,7 +62,8 @@ const Home = (props: any) => {
 			title,
 			body: "",
 		};
-		const newFromDB = await firebase.firestore().collection("notes").add({
+		const newFromDB = await db.collection("notes").add({
+			userId : userId,
 			title: note.title,
 			body: note.body,
 			timestamp: firebase.firestore.FieldValue.serverTimestamp(),
@@ -63,6 +76,7 @@ const Home = (props: any) => {
 	};
 	const noteUpdate = (id: string, noteObj: any) => {
 		console.log(noteObj.body);
+		createUser(noteObj);
 		db.collection("notes").doc(id).update({
 			title: noteObj.title,
 			body: noteObj.body,
