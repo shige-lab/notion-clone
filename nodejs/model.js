@@ -17,11 +17,11 @@ const pageSchema = new Schema(
 				type: String,
 				required: false,
 			  },
+			  userId :{
+				  type: String,
+				  required: false,
 			},
-		// userId :{
-		// 	type: String,
-		// 	required: false,
-		// },
+		},
 	}
 );
 

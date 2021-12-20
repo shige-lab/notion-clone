@@ -10,7 +10,6 @@ import {
 
 const Content = (props: any) => {
 	const note = props.note;
-	const index = props.index;
 	// console.log(index);
 
 	const Handle_test = () => {
@@ -25,7 +24,7 @@ const Content = (props: any) => {
 	return (
 		<div className="List_Block">
 			<div className="list" onClick={Handle_test}>
-				{note.title}
+				{note.note.title}
 			</div>
 			<button className="button" onClick={deleteNote}>
 				delete

@@ -11,10 +11,12 @@ const Home = (props: any) => {
 	const [notes, setNotes] = useState([{ id: "", title: "", body: "" }]);
 	const [note, setNote] = useState({ id: "", title: "", body: "" });
 	const [userId, setUserId] = useState<string | undefined>("");
-	const [test, setTest] = useState({ _id: "", title: "", body: "" });
+	const [tests, setTests] = useState([{ _id: "", note: {title: "", body: ""}}]);
+	const [test, setTest] = useState({ _id: "", note: {title: "", body: ""}});
+	// const [test, setTest] = useState({});
 	// const [notes, setNotes] = useState<firebase.firestore.DocumentData[]>([]);
 	// const [selectedNoteIndex, setSelectedNoteIndex] = useState(Number);
-	// const [selectedNote, setSelectedNote] = useState([
+		// const [selectedNote, setSelectedNote] = useState([
 	// 	{ id: "", title: "", body: "" },
 	// ]);
 
@@ -25,23 +27,12 @@ const Home = (props: any) => {
 		auth.onAuthStateChanged((user) => {
 			user ? setCurrentUser(user) : props.history.push("/login");
 			setUserId(user?.uid);
-
-const unSub = db.collection("notes").where("userId", "==", user?.uid).onSnapshot((serverUpdate) => {
-				setNotes(
-					serverUpdate.docs.map((doc) => ({
-						id: doc.id,
-						title: doc.data().title,
-						body: doc.data().body,
-					}))
-				);
-
-				return () => unSub();
+			getNotes();
 			});
-		});
 	}, []);
 
 	// const fetchAllUsers = () => {
-	// 	getUser()
+	// 	getNotes()
 	// 	  .then(note => {
 	// 		console.log(note)
 	// 		setTest(note);
@@ -55,9 +46,12 @@ const unSub = db.collection("notes").where("userId", "==", user?.uid).onSnapshot
 			// body: JSON.stringify({user: data})
 			body: JSON.stringify({note: data})
 		  })
-		return await response.json();
+		  await getNotes();
+		
+		// return await response.json();
 	}
-	const getUser = async () => {
+
+	const getNotes = async () => {
 		console.log("3")
 	const response = await fetch(
 		`${process.env.REACT_APP_PUBLIC_API}/`,
@@ -73,11 +67,16 @@ const unSub = db.collection("notes").where("userId", "==", user?.uid).onSnapshot
 		}
 	  );
 	  const Test = await response.json();
-	  setTest(Test.note);
-	  console.log(Test);
-	  console.log(Test.note);
-	  console.log(Test.note.title);
-	  console.log(Test.note.body);
+	  await setTests(Test);
+	  console.log(tests[0].note.title)
+	  console.log(Test[0].note.title)
+	//   setTest(Test.note);
+	//   setTest({...test, _id: Test._id});
+	//   console.log(Test);
+	//   console.log(tests);
+	//   console.log(Test.note);
+	//   console.log(Test.note.title);
+	//   console.log(Test.note.body);
 
 
 	// try{
@@ -88,10 +87,23 @@ const unSub = db.collection("notes").where("userId", "==", user?.uid).onSnapshot
     // }
 	}
 
-	const selectNote = (SelectedNote: any) => {
-		setNote(SelectedNote);
+	const update = async (_title: string, text: string) => {
+		console.log("1");
+		await fetch(`${process.env.REACT_APP_PUBLIC_API}/update`, {
+			method: 'POST',
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify({title: _title, body: text, id : test._id})
+		})
+		await setTest({...test, note : {title: _title, body: text }})
+		console.log("2");
+		getNotes();
+		// return await response.json();
+	}
+
+const selectNote = (SelectedNote: any) => {
+		setTest(SelectedNote);
 		// console.log(SelectedNote.body);
-		// console.log(SelectedNote.title);
+		// console.log(SelectedNote.note.title);
 		// console.log(SelectedNote.id);
 	};
 
@@ -99,19 +111,10 @@ const unSub = db.collection("notes").where("userId", "==", user?.uid).onSnapshot
 		const note = {
 			title,
 			body: "",
-		};
-		const newFromDB = await db.collection("notes").add({
 			userId : userId,
-			title: note.title,
-			body: note.body,
-			timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-		});
-
-		const newID = newFromDB.id;
-
-		await setNotes([{ id: newID, title: note.title, body: note.body }]);
-		// setNote({ id: newID, title: note.title, body: note.body });
-		createUser(note);
+		};
+		const c = createUser(note);
+			console.log(c);
 	};
 	const noteUpdate = (id: string, noteObj: any) => {
 		console.log(noteObj.body);
@@ -122,9 +125,14 @@ const unSub = db.collection("notes").where("userId", "==", user?.uid).onSnapshot
 		});
 	};
 
-	const deleteNote = async (note: any) => {
-		db.collection("notes").doc(note.id).delete();
-		setNote({ id: "", title: "", body: "" });
+	const deleteNote = async (SelectedNote: any) => {
+		setTest({ _id: "", note: {title: "", body: ""}});
+		console.log(SelectedNote._id);
+		await fetch(`${process.env.REACT_APP_PUBLIC_API}/delete`, {
+			method: 'POST',
+			headers: {'Content-Type': 'application/json'},
+				body: JSON.stringify({id : SelectedNote._id})
+		})
 	};
 
 	return (
@@ -148,12 +156,11 @@ const unSub = db.collection("notes").where("userId", "==", user?.uid).onSnapshot
 				<div className="Home_main">
 					<div className="Sidebar">
 						list
-						{notes.map((note, index) => (
+						{tests.map((test) => (
 							<div>
 								{
 									<Content
-										note={note}
-										index={index}
+										note={test}
 										selectNote={selectNote}
 										deleteNote={deleteNote}
 									/>
@@ -163,11 +170,10 @@ const unSub = db.collection("notes").where("userId", "==", user?.uid).onSnapshot
 						{<List newNote={newNote} />}
 					</div>
 					<div className="Note">
-						{note.id && (
-							<EditorApp note={note} noteUpdate={noteUpdate} />
+						{test._id && (
+							<EditorApp note={test} noteUpdate={update} />
 						)}
-						<button onClick={getUser}></button>
-							<div>{test.title}</div>
+							
 					</div>
 				</div>
 				<button className="Home_newpage" onClick={HandleOnclick}>

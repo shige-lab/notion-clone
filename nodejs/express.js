@@ -19,27 +19,28 @@ app.use((req, res, next) => {
 	);
 	next();
 });
+app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json());
-// app.use(express.static(path.join(__dirname, '../frontend/src/index.tsx')));
+
+// app.use(express.static(path.join(__dirname, '../frontend/public/index.html')));
 
 // app.get('/', (req,res) => {
 // 	res.sendFile(path.join(__dirname, '../frontend/index.html'));
 //   });
 
-const test = "test";
 
 app.get("/", (req, res) => {
-	console.log("2");
-	console.log(req.userId)
 	// const page = Page.find({title: "test"});
 		// const page = Page.findById("61bf6a1996fda3d6d03a27ba");
-		const page = Page.findOne({title: "test"}, function (err, docs) {
+		// Page.find({note: {$title: ["test"]}}, function (err, docs) {
+		const page = Page.find({"note.userId": '8BtJsjpDbXfe5jvOhGzt9hcI2aq1'}, function (err, docs) {
+		// const page = Page.findOne({title: "test"}, function (err, docs) {
 		if (err)
 			{
 				console.log(err);
 			}
 		else {
-			console.log(docs);
+			console.log(docs[0]);
 			res.json(docs);
 		}
 	});
@@ -61,6 +62,42 @@ app.post("/", (req, res) => {
 	// res.sendFile(path.join(__dirname, '../my-app/build/index.html'));
 	// console.log(req.data);
 });
+
+app.post("/update", (req, res) => {
+	console.log('a');
+	// Page.find({_id: req.body.id}, function (err, docs) {
+	// const note = Page.findById(req.body.id);
+	// console.log(note.note.title);
+	const note = Page.findById(req.body.id, function (err, docs) {
+		if (err)
+		{
+			console.log(err);
+		}
+	else {
+		console.log(docs._id);
+		docs.note.title = req.body.title;
+		docs.note.body = req.body.body;
+		console.log(docs.note.title);
+		docs.save();
+		// res.json(docs);
+	}
+	});
+	// note.save();
+	});
+
+app.post("/delete", (req, res) => {
+	console.log('a');
+	// Page.find({_id: req.body.id}, function (err, docs) {
+	// const note = Page.findById(req.body.id);
+	// console.log(note.note.title);
+	const note = Page.findByIdAndDelete(req.body.id, function (err) {
+		if (err)
+		{
+			console.log(err);
+		}
+		console.log("delete");
+	});
+	});
 
 const PORT = process.env.PORT || 3000;
 // const PORT = 8080;
