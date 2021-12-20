@@ -19,29 +19,47 @@ app.use((req, res, next) => {
 	);
 	next();
 });
-
-	app.use(bodyParser.json());
+app.use(bodyParser.json());
 // app.use(express.static(path.join(__dirname, '../frontend/src/index.tsx')));
 
 // app.get('/', (req,res) => {
 // 	res.sendFile(path.join(__dirname, '../frontend/index.html'));
 //   });
 
-// app.get("/", (req, res) => {
-// 	// res.sendFile(path.join(__dirname, '../my-app/build/index.html'));
-// 	console.log(req.data);
-// 	console.log("1");
-// });
+const test = "test";
+
+app.get("/", (req, res) => {
+	console.log("2");
+	console.log(req.userId)
+	// const page = Page.find({title: "test"});
+		// const page = Page.findById("61bf6a1996fda3d6d03a27ba");
+		const page = Page.findOne({title: "test"}, function (err, docs) {
+		if (err)
+			{
+				console.log(err);
+			}
+		else {
+			console.log(docs);
+			res.json(docs);
+		}
+	});
+	// res.json(page.note)
+	// res.status(201).json({
+	// res.status(201).json({
+    //     // message: "Fetched page successfully.",
+    //     note: page,
+    //   });
+	// console.log(page);
+});
 
 app.post("/", (req, res) => {
 	const page = new Page({
 		note : req.body.note,
 	  });
-	page.save();
+	  const savedPage = page.save();
 	// console.log(req.body.content);
 	// res.sendFile(path.join(__dirname, '../my-app/build/index.html'));
 	// console.log(req.data);
-	console.log("1");
 });
 
 const PORT = process.env.PORT || 3000;

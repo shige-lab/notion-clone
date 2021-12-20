@@ -73,7 +73,7 @@ const EditorApp = (props: any) => {
 			body: text,
 		});
 	}, 1500);
-	console.log(text);
+	// console.log(text);
 	return (
 		<div>
 			<input

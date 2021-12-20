@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const pageSchema = new Schema(
 	{
-		note: [
+		note:
 			{
 			  title: {
 				type: String,
@@ -18,11 +18,10 @@ const pageSchema = new Schema(
 				required: false,
 			  },
 			},
-		  ],
-		userId :{
-			type: String,
-			required: false,
-		},
+		// userId :{
+		// 	type: String,
+		// 	required: false,
+		// },
 	}
 );
 
