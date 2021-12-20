@@ -31,6 +31,12 @@
   margin-top: -10px;
 }
 
+.category{
+  /* color: rgba( 255, 255, 255, 0.2); */
+  color: rgba(55, 53, 47, 0.4);
+  /* color: black; */
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .Home-logo {
     animation: Home-logo-spin infinite 20s linear;
@@ -42,6 +48,7 @@
   flex-shrink: 0;
   background: rgb(247, 246, 243);
   height: 100%;
+  font-size: 14px;
 }
 
 .List_Block {

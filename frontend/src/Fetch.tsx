@@ -1,8 +1,6 @@
-import { StringLiteralType } from "typescript";
 
-
-export const updateEditor = async (_title: string, text: string, id: StringLiteralType) => {
-	const response = await fetch(`${process.env.REACT_APP_PUBLIC_API}/update`, {
+export const _updateEditor = (_title: string, text: string, id: string) => {
+	fetch(`${process.env.REACT_APP_PUBLIC_API}/update`, {
 		method: 'POST',
 		headers: {'Content-Type': 'application/json'},
 		body: JSON.stringify({title: _title, body: text, id : id})
@@ -11,7 +9,6 @@ export const updateEditor = async (_title: string, text: string, id: StringLiter
 }
 
 export const getNotes = async (userId: string | undefined) => {
-	console.log("3")
 const response = await fetch(
 	`${process.env.REACT_APP_PUBLIC_API}/`,
 	{
@@ -24,9 +21,10 @@ const response = await fetch(
 		// id: "61bf6a1996fda3d6d03a27bb",
 	},
 	body: JSON.stringify({userId: userId})
-	}
-  );
-	return await response.json();
+}
+);
+console.log("use getNotes");
+return await response.json();
 }
 
 export const _deleteNote = async (SelectedNote: any) => {
@@ -34,15 +32,15 @@ export const _deleteNote = async (SelectedNote: any) => {
 	await fetch(`${process.env.REACT_APP_PUBLIC_API}/delete`, {
 		method: 'POST',
 		headers: {'Content-Type': 'application/json'},
+		body: JSON.stringify({id: SelectedNote._id})
 	})
 };
 
-export const createNote = async (data : any) => {
-	const response = await fetch(`${process.env.REACT_APP_PUBLIC_API}/new`, {
+export const createNote = (data : any) => {
+	fetch(`${process.env.REACT_APP_PUBLIC_API}/new`, {
 		method: 'POST',
 		headers: {'Content-Type': 'application/json'},
 		// body: JSON.stringify({user: data})
 		body: JSON.stringify({note: data})
 	  })
-	return response.json();
 }

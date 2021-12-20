@@ -15,6 +15,7 @@ const ContentEditable = (props: any) => {
 		<div
 			// id="test"
 			contentEditable
+			placeholder="content"
 			className="test"
 			// ref={props.ref2}
 			// ref="refs"

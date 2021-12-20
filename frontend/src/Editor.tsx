@@ -16,7 +16,7 @@ import {
 	Typography,
 } from "@material-ui/core";
 
-const EditorApp = (props: any) => {
+	const EditorApp = (props: any) => {
 	const noteUpdate = props.noteUpdate;
 	const { title, body } = props.note.note;
 	const id = props.note._id;
@@ -26,17 +26,11 @@ const EditorApp = (props: any) => {
 	const ref = useRef(body);
 
 	useEffect(() => {
-		console.log(title)
 		setText(body);
 		setTitle_(title);
 		ref.current = body;
+		console.log(ref.current)
 		// refs["ref2"].focus();
-		// document.getElementById("test").focus();
-		// console.log(title);
-		// console.log(title_);
-		// console.log(body);
-		// console.log(text);
-		// console.log(id);
 	}, [id]);
 
 	const updateTitle = async (t: string) => {
@@ -50,27 +44,12 @@ const EditorApp = (props: any) => {
 		// console.log(text);
 		update(title, content);
 	};
-	// const update = () => {
-		// 	noteUpdate(id, {
-			// 		id,
-			// 		title,
-			// 		body: text,
-			// 	});
-			// };
 			
 	const update = _.debounce((title, text) => {
 		noteUpdate(title, text, id);
 		
 	}, 1500);
 
-	// const update = _.debounce((title, text) => {
-	// 	noteUpdate(id, {
-	// 		id,
-		// 		title: title,
-	// 		body: text,
-	// 	});
-	// }, 1500);
-	// console.log(text);
 	return (
 		<div>
 			<input
@@ -80,13 +59,8 @@ const EditorApp = (props: any) => {
 				value={title_ ? title_ : ""}
 				onChange={(e) => updateTitle(e.target.value)}
 			/>
-			{/* <ReactQuill
-				value={text}
-				onChange={props.noteUpdate(note.id, note)}
-			></ReactQuill> */}
 			<ContentEditable
 				className="textInput"
-				placeholder="content"
 				// value={text ? text : ""}
 				value={ref.current}
 					// ref="ref2"
@@ -101,4 +75,4 @@ const EditorApp = (props: any) => {
 	);
 };
 
-export default EditorApp;
+	export default EditorApp;

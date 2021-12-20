@@ -1,2 +1,0 @@
-const Page = require("./model");
-
