@@ -10,38 +10,39 @@ export const updateEditor = async (_title: string, text: string, id: StringLiter
 	// return response.json();
 }
 
-const getNotes = async () => {
+export const getNotes = async (userId: string | undefined) => {
 	console.log("3")
 const response = await fetch(
 	`${process.env.REACT_APP_PUBLIC_API}/`,
 	{
-	  method: "GET",
+	  method: "POST",
 	  credentials: "include",
 	  // Forward the authentication cookie to the backend
 	  headers: {
 		"Content-Type": "application/json",
 		// Cookie: req ? req.headers.cookie : undefined,
 		// id: "61bf6a1996fda3d6d03a27bb",
-	  },
+	},
+	body: JSON.stringify({userId: userId})
 	}
   );
-  const Test = await response.json();
-//   await setTests(Test);
-//   console.log(tests[0].note.title)
-  console.log(Test[0].note.title)
-//   setTest(Test.note);
-//   setTest({...test, _id: Test._id});
-//   console.log(Test);
-//   console.log(tests);
-//   console.log(Test.note);
-//   console.log(Test.note.title);
-//   console.log(Test.note.body);
+	return await response.json();
+}
 
+export const _deleteNote = async (SelectedNote: any) => {
+	console.log(SelectedNote._id);
+	await fetch(`${process.env.REACT_APP_PUBLIC_API}/delete`, {
+		method: 'POST',
+		headers: {'Content-Type': 'application/json'},
+	})
+};
 
-// try{
-	// const response = await fetch(`${process.env.REACT_APP_PUBLIC_API}/`);
-	// return await response.json();
-// }catch(error) {
-//     return [];
-// }
+export const createNote = async (data : any) => {
+	const response = await fetch(`${process.env.REACT_APP_PUBLIC_API}/new`, {
+		method: 'POST',
+		headers: {'Content-Type': 'application/json'},
+		// body: JSON.stringify({user: data})
+		body: JSON.stringify({note: data})
+	  })
+	return response.json();
 }

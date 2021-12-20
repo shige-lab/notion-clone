@@ -29,18 +29,21 @@ app.use(bodyParser.json());
 //   });
 
 
-app.get("/", (req, res) => {
+app.post("/", (req, res) => {
 	// const page = Page.find({title: "test"});
 		// const page = Page.findById("61bf6a1996fda3d6d03a27ba");
 		// Page.find({note: {$title: ["test"]}}, function (err, docs) {
-		const page = Page.find({"note.userId": '8BtJsjpDbXfe5jvOhGzt9hcI2aq1'}, function (err, docs) {
-		// const page = Page.findOne({title: "test"}, function (err, docs) {
+			console.log("1");
+			console.log(req.body.userId);
+		const page = Page.find({"note.userId": req.body.userId}, function (err, docs) {
+		// const page = Page.find({"note.userId": "8BtJsjpDbXfe5jvOhGzt9hcI2aq1"}, function (err, docs) {
+		// const page = Page.findOne({"note.note.title": "saaa"}, function (err, docs) {
 		if (err)
 			{
 				console.log(err);
 			}
 		else {
-			console.log(docs[0]);
+			// console.log(docs[0]);
 			res.json(docs);
 		}
 	});
@@ -53,7 +56,7 @@ app.get("/", (req, res) => {
 	// console.log(page);
 });
 
-app.post("/", (req, res) => {
+app.post("/new", (req, res) => {
 	const page = new Page({
 		note : req.body.note,
 	  });

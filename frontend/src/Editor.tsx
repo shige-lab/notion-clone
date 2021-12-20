@@ -17,24 +17,14 @@ import {
 } from "@material-ui/core";
 
 const EditorApp = (props: any) => {
-	// const [title, setTitle] = useState("");
-	// const [id, setId] = useState("");
-	// const note = props.note;
 	const noteUpdate = props.noteUpdate;
 	const { title, body } = props.note.note;
 	const id = props.note._id;
-	// const body: string = props.note.body;
-	// const title: string = props.note.title;
-	// const id: string = props.note.id;
 	const [text, setText] = useState(body);
 	const [title_, setTitle_] = useState(title);
 
 	const ref = useRef(body);
-	// const setRef = useCallback((body: string) => {
-	// 	ref.current = body;
-	// }, []);
 
-	
 	useEffect(() => {
 		console.log(title)
 		setText(body);
@@ -69,7 +59,7 @@ const EditorApp = (props: any) => {
 			// };
 			
 	const update = _.debounce((title, text) => {
-		noteUpdate(title, text);
+		noteUpdate(title, text, id);
 		
 	}, 1500);
 
