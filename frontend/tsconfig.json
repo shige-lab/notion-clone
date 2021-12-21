@@ -24,6 +24,12 @@
 		"GetHtml.tsx",
 		"../nouse/old/Editor.tsx",
 		"src/Home.tsx",
-		"../nouse/old/Home1.tsx"
-, "../nouse/App.test.tsx", "../nouse/react-app-env.d.ts", "../nouse/setupTests.ts", "../nouse/List.tsx", "../nouse/reportWebVitals.ts"	]
+		"../nouse/old/Home1.tsx",
+		"../nouse/App.test.tsx",
+		"../nouse/react-app-env.d.ts",
+		"../nouse/setupTests.ts",
+		"../nouse/List.tsx",
+		"../nouse/reportWebVitals.ts",
+		"SelectButton.tsx"
+	]
 }

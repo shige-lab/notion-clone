@@ -2,6 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction:column;
+  margin-top: 10px;
   /* background: rgb(247, 246, 243); */
 }
 
@@ -29,59 +30,100 @@
   /* margin-left: auto; */
   margin-right: auto;
   margin-top: -10px;
+  border: none;
+  background-color: white;
+  font-weight: bold;
 }
 
 .category{
+  display: flex;
+  margin-top: 10px;
   /* color: rgba( 255, 255, 255, 0.2); */
   color: rgba(55, 53, 47, 0.4);
+  margin-bottom: 20px;
   /* color: black; */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .Home-logo {
-    animation: Home-logo-spin infinite 20s linear;
-  }
+.sidebarButton {
+  font-size: 20px;
+  border: none;
+  background-color: transparent;
 }
 
+.button-true {
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+.button-false {
+  margin-left: 10px ; position: absolute; 
+}
+
+
 .Sidebar {
-  width: 240px;
   flex-shrink: 0;
   background: rgb(247, 246, 243);
   height: 100%;
   font-size: 14px;
 }
+.true {
+  width: 240px;
+}
 
+.false {
+  width: 0px;
+}
 .List_Block {
   display: flex;
+  margin-left: 5px;
+  margin-top: 5px;
+  
+}
+.titleField {
+  height: 100px;
   
 }
 
 .titleInput {
-  height: 50px;
   outline: none;
   border: none;
-  font-size: 30px;
-  width: 50%;
+  font-size: 40px;
+  width: 100%;
+  margin-top: 60px;
+  font-weight: bold;
+  /* padding-top: auto; */
+  /* line-height: 100px; */
 }
 
 .textInput {
+  outline: none;
   border: none;
-  margin-top: 10%;
+  margin-top: 30px;
+  margin-left: 5px;
   height: 100%;
 }
 
+.selectButton {
+  margin-left: auto;
+  
+}
 .button {
   /* padding-left: 50px; */
   margin-left: auto;
+  margin-right: 5px;
+  outline: none;
+  border: none;
+  /* background: rgb(247, 246, 243); */
+  background-color: transparent;
   /* width: 30px; */
 }
 
-.test {
-  outline: none;
-  border: none;
+.noteBar {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
   
 }
-
 
 .Note {
   display: block;
@@ -103,6 +145,11 @@
   text-align: left;
 }
 
+.menu {
+  background-color: white;
+  position: absolute;
+}
+
 
 @keyframes Home-logo-spin {
   from {
@@ -111,4 +158,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+@media screen and (max-width: 1000px) {
+
 }

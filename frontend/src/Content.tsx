@@ -7,10 +7,12 @@ import {
 	TextField,
 	Typography,
 } from "@material-ui/core";
+import SelectButton from "./SelectButton";
+import { useState } from "react";
 
 const Content = (props: any) => {
 	const note = props.note;
-	// console.log(index);
+	const [test, setTest] = useState(false);
 
 	const Handle_test = () => {
 		// console.log(note.id);
@@ -23,12 +25,15 @@ const Content = (props: any) => {
 
 	return (
 		<div className="List_Block">
-			<div className="list" onClick={Handle_test}>
+			<li className="list" onClick={Handle_test}>
 				{note.note.title}
-			</div>
-			<button className="button" onClick={deleteNote}>
+			</li>
+			{/* <button className="button" onClick={deleteNote}>
 				delete
-			</button>
+			</button> */}
+			<div className="button">
+				<SelectButton delete={deleteNote} />
+			</div>
 		</div>
 	);
 };
