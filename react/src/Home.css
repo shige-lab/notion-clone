@@ -1,0 +1,165 @@
+.Home {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction:column;
+  margin-top: 10px;
+  /* background: rgb(247, 246, 243); */
+}
+
+.Home_main {
+  border-top: solid 1px black;
+  display: flex;
+  /* flex-direction:column;s */
+  align-items: stretch;
+  height: 100vh;
+  max-height: 100%;
+  /* height: 100%; */
+  /* flex-grow: 0; */
+  /* text-align: center; */
+}
+.HomeHeader {
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
+  vertical-align: -100px;
+  /* text-align: 100px; */
+  /* line-height: 30%; */
+  /* margin-top: 10px; */
+}
+.Heme_logout {
+  /* margin-left: auto; */
+  margin-right: auto;
+  margin-top: -10px;
+  border: none;
+  background-color: white;
+  font-weight: bold;
+}
+
+.category{
+  display: flex;
+  margin-top: 10px;
+  /* color: rgba( 255, 255, 255, 0.2); */
+  color: rgba(55, 53, 47, 0.4);
+  margin-bottom: 20px;
+  /* color: black; */
+}
+
+.sidebarButton {
+  font-size: 20px;
+  border: none;
+  background-color: transparent;
+}
+
+.button-true {
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+.button-false {
+  margin-left: 10px ; position: absolute; 
+}
+
+
+.Sidebar {
+  flex-shrink: 0;
+  background: rgb(247, 246, 243);
+  height: 100%;
+  font-size: 14px;
+}
+.true {
+  width: 240px;
+}
+
+.false {
+  width: 0px;
+}
+.List_Block {
+  display: flex;
+  margin-left: 5px;
+  margin-top: 5px;
+  
+}
+.titleField {
+  height: 100px;
+  
+}
+
+.titleInput {
+  outline: none;
+  border: none;
+  font-size: 40px;
+  width: 100%;
+  margin-top: 60px;
+  font-weight: bold;
+  /* padding-top: auto; */
+  /* line-height: 100px; */
+}
+
+.textInput {
+  outline: none;
+  border: none;
+  margin-top: 30px;
+  margin-left: 5px;
+  height: 100%;
+}
+
+.selectButton {
+  margin-left: auto;
+  
+}
+.button {
+  /* padding-left: 50px; */
+  margin-left: auto;
+  margin-right: 5px;
+  outline: none;
+  border: none;
+  /* background: rgb(247, 246, 243); */
+  background-color: transparent;
+  /* width: 30px; */
+}
+
+.noteBar {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.Note {
+  display: block;
+  background: white;
+  /* flex-direction:column; */
+  width: 100%;
+  height: 100%;
+  padding-left: 10%;
+}
+
+.header{
+  font-size: 10px;
+}
+
+.Home_newpage {
+  background: rgb(247, 246, 243);
+  width: 240px;
+  padding-left: 30px;
+  text-align: left;
+}
+
+.menu {
+  background-color: white;
+  position: absolute;
+}
+
+
+@keyframes Home-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 1000px) {
+
+}
