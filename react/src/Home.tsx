@@ -12,39 +12,43 @@ const Home = (props: any) => {
 	const [notes, setNotes] = useState([
 		{ _id: "", note: { title: "", body: "" } },
 	]);
-	const [note, setNote] = useState({
-		_id: "",
-		note: { title: "", body: "" },
-	});
+	// const [note, setNote] = useState({
+	// 	_id: "",
+	// 	note: { title: "", body: "" },
+	// });
 	const [sidebar, setSidebar] = useState(true);
+	const [selectIndex, setSelectIndex] = useState(0);
+	const [noteCount, setNoteCount] = useState(0);
+	const [listUpdate, setListUpdate] = useState(false);
 
 	useEffect(() => {
-		console.log("useEffect");
+		console.log("home useEffect");
 		auth.onAuthStateChanged((user) => {
 			user ? setUserId(user?.uid) : props.history.push("/login");
 			// setUserId(user?.uid);
 			getNotes(user?.uid).then((docs: any) => {
 				setNotes(docs);
-				//  console.log(docs.length);
-				console.log(note._id);
-				if (docs.length && !note._id) setNote(docs[0]);
+				setNoteCount(docs.length);
+				// console.log(note._id);
 			});
 		});
-	}, [note]);
+	}, [listUpdate]);
 
 	const HandleOnclick = () => {
 		newNote("Untitled");
 	};
 
 	const newNote = async (title: string) => {
-		console.log("6");
 		const note = {
 			title,
 			body: "",
 			userId: userId,
 		};
+		console.log("try newNote");
 		await createNote(note);
-		console.log("0");
+		console.log("finish newNote");
+		setSelectIndex(noteCount);
+		setListUpdate(!listUpdate);
 		// getNotes(userId).then((docs: any) => {
 		// 	const last = docs.slice(-1)[0];
 		// 	console.log(last);
@@ -53,18 +57,32 @@ const Home = (props: any) => {
 	};
 	const updateEditor = async (_title: string, text: string, id: string) => {
 		await _updateEditor(_title, text, id);
-		if (note.note.title != _title) {
-			console.log(_title);
-			getNotes(userId).then((docs: any) => {
-				console.log(docs[0].note.title);
-				setNotes(docs);
-			});
+		if (notes[selectIndex].note.title != _title) {
+			const newNotes = notes;
+			newNotes[selectIndex].note.title = _title;
+			newNotes[selectIndex].note.body = text;
+			console.log("try update");
+			await setNotes(newNotes);
+			console.log("finish update");
+			// setListUpdate(!listUpdate);
+
+			// console.log(notes[selectIndex].note.title);
+			// setNotes([
+			// 	{ ...notes[selectIndex], note: { title: _title, body: text } },
+			// ]);
+			// getNotes(userId).then((docs: any) => {
+			// 	console.log(docs[0].note.title);
+			// 	setNotes(docs);
+			// });
 		}
 	};
 
 	const deleteNote = async (SelectedNote: any) => {
-		setNote({ _id: "", note: { title: "", body: "" } });
-		_deleteNote(SelectedNote);
+		// setNote({ _id: "", note: { title: "", body: "" } });
+		console.log("try delete");
+		await _deleteNote(SelectedNote);
+		console.log("finish delete");
+		setListUpdate(!listUpdate);
 	};
 
 	return (
@@ -97,12 +115,13 @@ const Home = (props: any) => {
 								<GrMenu />
 							</button>
 						</div>
-						{notes.map((array) => (
+						{notes.map((array, index) => (
 							<div>
 								{
 									<Content
+										index={index}
 										note={array}
-										selectNote={setNote}
+										selectNote={setSelectIndex}
 										deleteNote={deleteNote}
 									/>
 								}
@@ -110,9 +129,9 @@ const Home = (props: any) => {
 						))}
 						{<List newNote={newNote} />}
 					</div>
-					{note._id && (
+					{noteCount > selectIndex && (
 						<EditorApp
-							note={note}
+							note={notes[selectIndex]}
 							noteUpdate={updateEditor}
 							deleteNote={deleteNote}
 						/>

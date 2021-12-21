@@ -16,7 +16,7 @@ const Content = (props: any) => {
 
 	const Handle_test = () => {
 		// console.log(note.id);
-		props.selectNote(note);
+		props.selectNote(props.index);
 	};
 
 	const deleteNote = () => {

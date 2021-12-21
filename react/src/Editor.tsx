@@ -25,32 +25,44 @@ const Editor = (props: any) => {
 	const id = props.note._id;
 	const [text, setText] = useState(body);
 	const [title_, setTitle_] = useState(title);
-	const [textValue] = useDebounce(text, 1500);
-	const [titleValue] = useDebounce(title_, 1500);
+	// const [textValue] = useDebounce(text, 1500);
+	// const [titleValue] = useDebounce(title_, 1500);
+	const isFirstRender = useRef(false);
+	const [isUpdate, setIsUpdate] = useState(0);
+	const [update] = useDebounce(isUpdate, 1500);
 
 	const ref = useRef(body);
 
 	useEffect(() => {
+		console.log("change note");
 		setText(body);
 		setTitle_(title);
 		ref.current = body;
-		console.log(ref.current);
+		console.log("editor value", ref.current);
+		isFirstRender.current = true;
 		// refs["ref2"].focus();
 	}, [id]);
 
 	useEffect(() => {
-		console.log("debounce");
-		noteUpdate(titleValue, textValue, id);
-	}, [titleValue, textValue]);
+		if (isFirstRender.current) {
+			isFirstRender.current = false;
+		} else {
+			console.log("debounce");
+			noteUpdate(title_, text, id);
+			console.log(isUpdate);
+		}
+	}, [update]);
 
 	const updateTitle = async (t: string) => {
 		await setTitle_(t);
+		setIsUpdate(isUpdate + 1);
 		// update(t, text);
 		// console.log(title_);
-		console.log(t);
 	};
 	const updateBody = async (content: string) => {
+		console.log("eidtor text", ref.current);
 		await setText(content);
+		setIsUpdate(isUpdate + 1);
 		// console.log(text);
 		// update(title, content);
 	};

@@ -6,6 +6,7 @@ const ContentEditable = (props: any) => {
 	const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 		props.onChange(e.target.innerHTML);
 	};
+	console.log("div value", props.value);
 
 	return (
 		<div>

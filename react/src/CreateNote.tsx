@@ -7,7 +7,6 @@ function CreateNote(props: any) {
 
 	const newNoteBtnClick = () => {
 		setAddingNote(!addingNote);
-		console.log(addingNote);
 	};
 
 	const updateTitle = (txt: string) => {
