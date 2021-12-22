@@ -6,6 +6,7 @@ import EditorApp from "./Editor";
 import List from "./CreateNote";
 import { getNotes, _updateEditor, _deleteNote, createNote } from "./Fetch";
 import { GrLogout, GrMenu } from "react-icons/gr";
+import { TextButton } from "./TextButton";
 
 import {
 	BrowserRouter as Router,
@@ -18,7 +19,7 @@ import { useHistory, useLocation } from "react-router-dom";
 const Home = (props: any) => {
 	const [userId, setUserId] = useState<string | undefined>("");
 	const [notes, setNotes] = useState([
-		{ _id: "", note: { title: "", body: "" } },
+		{ _id: "", note: { title: "", body: [""] } },
 	]);
 	// const [note, setNote] = useState({
 	// 	_id: "",
@@ -39,7 +40,6 @@ const Home = (props: any) => {
 			getNotes(user?.uid).then((docs: any) => {
 				setNotes(docs);
 				setNoteCount(docs.length);
-				// console.log(note._id);
 			});
 		});
 	}, [listUpdate]);
@@ -51,7 +51,7 @@ const Home = (props: any) => {
 	const newNote = async (title: string) => {
 		const note = {
 			title,
-			body: "",
+			body: [""],
 			userId: userId,
 		};
 		console.log("try newNote");
@@ -65,12 +65,12 @@ const Home = (props: any) => {
 		// 	setNote(last);
 		// });
 	};
-	const updateEditor = async (_title: string, text: string, id: string) => {
-		await _updateEditor(_title, text, id);
+	const updateEditor = async (_title: string, contents: any, id: string) => {
+		await _updateEditor(_title, contents, id);
 		if (notes[selectIndex].note.title != _title) {
 			const newNotes = notes;
 			newNotes[selectIndex].note.title = _title;
-			newNotes[selectIndex].note.body = text;
+			newNotes[selectIndex].note.body = contents;
 			console.log("try update");
 			await setNotes(newNotes);
 			console.log("finish update");
