@@ -14,7 +14,7 @@ const EditorContent = (props: any) => {
 	// console.log("div value", props.value);
 
 	const focusDown = (e: any) => {
-		if (e.key == "Enter") {
+		if (e.key === "Enter" && !e.shiftKey) {
 			e.preventDefault();
 			props.addText(ref.current, props.index);
 			// ref.current?.focus();
