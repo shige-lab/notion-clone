@@ -150,6 +150,14 @@
   position: absolute;
 }
 
+.NotFound {
+  /* margin-right: auto; */;
+  margin-top: 40%;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+}
+
 
 @keyframes Home-logo-spin {
   from {

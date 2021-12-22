@@ -24,7 +24,7 @@ const SignUp = (props: any) => {
 	useEffect(() => {
 		auth.onAuthStateChanged((user) => {
 			// ログインしている場合、ホームへリダイレクト
-			user && props.history.push("/");
+			user && props.history.push("/notes");
 		});
 	}, []);
 
@@ -82,7 +82,7 @@ const SignUp = (props: any) => {
 											password
 										);
 										// sendSignInLinkToEmail() を利用すると、メールアドレス認証のためのメールを送信することも可能
-										props.history.push("/");
+										props.history.push("/notes");
 									} catch (error) {
 										// ユーザー作成が失敗するとその内容をアラート表示
 										alert(error);

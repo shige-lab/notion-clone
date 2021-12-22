@@ -7,18 +7,20 @@ import { AuthProvider } from "./AuthContext";
 import Home from "./Home";
 import Login from "./Login";
 import SignUp from "./SignUp";
+import NotFound from "./NotFound";
 
 const App: React.FC = () => {
 	return (
 		<Router>
-			<Switch>
-				<AuthProvider>
-					<Route exact path="/" component={Home} />
+			<AuthProvider>
+				<Switch>
+					<Route path="/notes" component={Home} />
 					{/* <Route exact path="/" component={Home} /> */}
-					<Route exact path="/signup" component={SignUp} />
+					<Route exact path="/signUp" component={SignUp} />
 					<Route exact path="/login" component={Login} />
-				</AuthProvider>
-			</Switch>
+					<Route component={NotFound} />
+				</Switch>
+			</AuthProvider>
 		</Router>
 	);
 };

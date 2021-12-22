@@ -7,6 +7,14 @@ import List from "./CreateNote";
 import { getNotes, _updateEditor, _deleteNote, createNote } from "./Fetch";
 import { GrLogout, GrMenu } from "react-icons/gr";
 
+import {
+	BrowserRouter as Router,
+	Redirect,
+	Route,
+	Switch,
+} from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+
 const Home = (props: any) => {
 	const [userId, setUserId] = useState<string | undefined>("");
 	const [notes, setNotes] = useState([
@@ -20,6 +28,8 @@ const Home = (props: any) => {
 	const [selectIndex, setSelectIndex] = useState(0);
 	const [noteCount, setNoteCount] = useState(0);
 	const [listUpdate, setListUpdate] = useState(false);
+	const history = useHistory();
+	// const location = useLocation();
 
 	useEffect(() => {
 		console.log("home useEffect");
@@ -85,6 +95,14 @@ const Home = (props: any) => {
 		setListUpdate(!listUpdate);
 	};
 
+	const select = (index: number) => {
+		console.log("redirect");
+		history.push("/notes/" + notes[index]._id);
+		window.location.reload();
+		// return <Redirect to={"/notes/" + notes[index]._id} />;
+		// window.location.href={"/notes/" + notes[index]._id};
+	};
+
 	return (
 		<Fragment>
 			<div className="Home">
@@ -116,26 +134,32 @@ const Home = (props: any) => {
 							</button>
 						</div>
 						{notes.map((array, index) => (
-							<div>
+							<>
 								{
 									<Content
 										index={index}
 										note={array}
-										selectNote={setSelectIndex}
+										selectNote={select}
 										deleteNote={deleteNote}
 									/>
 								}
-							</div>
+							</>
 						))}
 						{<List newNote={newNote} />}
 					</div>
-					{noteCount > selectIndex && (
-						<EditorApp
-							note={notes[selectIndex]}
-							noteUpdate={updateEditor}
-							deleteNote={deleteNote}
-						/>
-					)}
+					{notes.map((array, index) => (
+						<Router>
+							<Switch>
+								<Route path={"/notes/" + array._id}>
+									<EditorApp
+										note={array}
+										noteUpdate={updateEditor}
+										deleteNote={deleteNote}
+									/>
+								</Route>
+							</Switch>
+						</Router>
+					))}
 				</div>
 				<button className="Home_newpage" onClick={HandleOnclick}>
 					+ New Page

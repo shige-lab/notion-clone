@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useRef, useCallback } from "react";
 import ReactQuill from "react-quill";
 import _ from "lodash";
-import ContentEditable from "./ContentEditable";
+import EditorContent from "./EditorContent";
 import SelectButton from "./SelectButton";
 // import BorderColorIcon from "@material-ui/icons/BorderColor";
 import { render } from "@testing-library/react";
@@ -30,6 +30,8 @@ const Editor = (props: any) => {
 	const isFirstRender = useRef(false);
 	const [isUpdate, setIsUpdate] = useState(0);
 	const [update] = useDebounce(isUpdate, 1500);
+	const [html, setHtml] = useState(body);
+	// const [html, setHtml] = useState("<div>" + body + "</div>");
 
 	const ref = useRef(body);
 
@@ -38,6 +40,8 @@ const Editor = (props: any) => {
 		setText(body);
 		setTitle_(title);
 		ref.current = body;
+		// setHtml("<div>" + body + "</div>");
+		setHtml(body);
 		console.log("editor value", ref.current);
 		isFirstRender.current = true;
 		// refs["ref2"].focus();
@@ -91,12 +95,13 @@ const Editor = (props: any) => {
 					onChange={(e) => updateTitle(e.target.value)}
 				/>
 			</div>
-			<ContentEditable
+			<EditorContent
 				// value={text ? text : ""}
 				value={ref.current}
 				// ref="ref2"
 				onChange={updateBody}
 				id={id}
+				html={html}
 				// onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
 				// 	updateBody(event.target.value);
 				// }}
