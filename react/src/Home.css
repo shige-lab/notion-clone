@@ -37,6 +37,7 @@
 
 .category{
   display: flex;
+  height: 27px;
   margin-top: 10px;
   /* color: rgba( 255, 255, 255, 0.2); */
   color: rgba(55, 53, 47, 0.4);
@@ -50,13 +51,13 @@
   background-color: transparent;
 }
 
-.button-true {
+.sidebarButtonOpen {
   margin-left: auto;
   margin-right: 10px;
 }
 
-.button-false {
-  margin-left: 10px ; position: absolute; 
+.sidebarButtonClose {
+  margin-left: 0px ; position: absolute; 
 }
 
 
@@ -92,9 +93,16 @@
   /* border: none; */
 }
 
+.Note {
+  display: block;
+  background: white;
+  /* flex-direction:column; */
+  width: 100%;
+  height: 100%;
+}
+
 .titleField {
   height: 100px;
-  
 }
 
 .titleInput {
@@ -104,33 +112,38 @@
   width: 100%;
   margin-top: 60px;
   font-weight: bold;
+  margin-left: 10%;
   /* padding-top: auto; */
   /* line-height: 100px; */
 }
 
 .contentField {
+  
   margin-top: 20px;
-  margin-left: 5px;
   
 }
 
+
 .textField {
+}
+
+.textBlock {
+  margin-left: 10%;
   display: flex;
   /* flex-direction: column; */
   margin-top: 20px;
-  margin-left: -20px;
-
 }
-
 .textButton {
   /* text-align: center; */
   margin-top: 3px;
+  margin-left: -30px;
+  margin-right: 13px;
 }
 
 .textInput {
   outline: none;
   border: none;
-  margin-left: 10px;
+  /* margin-left: 0px; */
   /* height: 100%; */
 }
 
@@ -157,14 +170,6 @@
   
 }
 
-.Note {
-  display: block;
-  background: white;
-  /* flex-direction:column; */
-  width: 100%;
-  height: 100%;
-  padding-left: 10%;
-}
 
 .header{
   font-size: 10px;
@@ -188,6 +193,10 @@
   text-align: center;
   font-size: 30px;
   font-weight: bold;
+}
+
+.nonDisplay {
+  display: none;
 }
 
 

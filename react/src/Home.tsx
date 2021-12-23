@@ -5,7 +5,6 @@ import Content from "./Content";
 import Editor from "./Editor";
 import List from "./CreateNote";
 import { getNotes, _updateEditor, _deleteNote, createNote } from "./Fetch";
-import NotFound from "./NotFound";
 
 import { GrLogout, GrMenu } from "react-icons/gr";
 import { TextButton } from "./TextButton";
@@ -17,6 +16,7 @@ import {
 	Switch,
 } from "react-router-dom";
 import { useHistory, useLocation } from "react-router-dom";
+var classNames = require("classnames");
 
 const Home = (props: any) => {
 	const [userId, setUserId] = useState<string | undefined>("");
@@ -28,11 +28,18 @@ const Home = (props: any) => {
 	// 	note: { title: "", body: "" },
 	// });
 	const [sidebar, setSidebar] = useState(true);
+	const [nonDisplay, setNonDisplay] = useState(true);
 	const [selectIndex, setSelectIndex] = useState(0);
 	const [noteCount, setNoteCount] = useState(0);
 	const [listUpdate, setListUpdate] = useState(false);
 	const history = useHistory();
 	const location = useLocation();
+	const sidebarButtonClass = classNames({
+		sidebarButton: true,
+		nonDisplay: nonDisplay && sidebar,
+		sidebarButtonOpen: sidebar,
+		sidebarButtonClose: !sidebar,
+	});
 
 	useEffect(() => {
 		console.log("home useEffect");
@@ -54,6 +61,12 @@ const Home = (props: any) => {
 
 	const HandleOnclick = () => {
 		newNote("Untitled");
+	};
+
+	const setSidebarDisplay = () => {
+		setNonDisplay(!sidebar);
+		setSidebar(!sidebar);
+		console.log(sidebar);
 	};
 
 	const newNote = async (title: string) => {
@@ -132,11 +145,15 @@ const Home = (props: any) => {
 				</button>
 				<div className="Home_main">
 					<div className={"Sidebar " + sidebar}>
-						<div className="category">
+						<div
+							className="category"
+							onMouseEnter={() => setNonDisplay(false)}
+							onMouseLeave={() => setNonDisplay(true)}
+						>
 							PRIVATE{" "}
 							<button
-								className={"sidebarButton button-" + sidebar}
-								onClick={() => setSidebar(!sidebar)}
+								className={sidebarButtonClass}
+								onClick={setSidebarDisplay}
 							>
 								<GrMenu />
 							</button>

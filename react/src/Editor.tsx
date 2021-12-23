@@ -43,7 +43,7 @@ const Editor = (props: any) => {
 		setTexts(body);
 		setTitle_(title);
 		if (!body.includes("")) {
-			addText(null, 0);
+			addText(null, body.length);
 		}
 		// ref.current = body;
 		// setHtml("<div>" + body + "</div>");
