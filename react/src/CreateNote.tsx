@@ -20,7 +20,7 @@ function CreateNote(props: any) {
 	};
 
 	return (
-		<div>
+		<div className="newNote" style={{ marginTop: "8px" }}>
 			{addingNote ? (
 				<div>
 					<input
@@ -34,15 +34,12 @@ function CreateNote(props: any) {
 							updateTitle(event.target.value);
 						}}
 					/>
-					<button
-						// className={classes.newNoteSubmitBtn}
-						onClick={newNote}
-					>
+					<button className="newNoteButton" onClick={newNote}>
 						ノートを作成する
 					</button>
 				</div>
 			) : null}
-			<button onClick={newNoteBtnClick}>
+			<button className="newNoteButton" onClick={newNoteBtnClick}>
 				{addingNote ? "キャンセル" : "新規ノート"}
 			</button>
 		</div>

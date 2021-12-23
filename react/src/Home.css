@@ -65,6 +65,7 @@
   background: rgb(247, 246, 243);
   height: 100%;
   font-size: 14px;
+  margin-left: 10px;
 }
 .true {
   width: 240px;
@@ -75,10 +76,22 @@
 }
 .List_Block {
   display: flex;
-  margin-left: 5px;
   margin-top: 5px;
   
 }
+
+/* .newNote {
+  margin-top: 5px;
+} */
+
+.newNoteButton {
+  background-color: rgb(21, 157, 21);
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  /* border: none; */
+}
+
 .titleField {
   height: 100px;
   

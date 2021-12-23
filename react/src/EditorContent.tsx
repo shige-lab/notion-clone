@@ -22,7 +22,7 @@ const EditorContent = (props: any) => {
 		if (e.key === "Backspace" && !props.html) {
 			console.log("delete text");
 			e.preventDefault();
-			props.deleteText(ref.current, props.index);
+			props.deleteText(ref.current, props.index + 1);
 		}
 	};
 

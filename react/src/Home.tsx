@@ -2,9 +2,11 @@ import { Fragment, useEffect, useState } from "react";
 import { auth } from "./firebase";
 import "./Home.css";
 import Content from "./Content";
-import EditorApp from "./Editor";
+import Editor from "./Editor";
 import List from "./CreateNote";
 import { getNotes, _updateEditor, _deleteNote, createNote } from "./Fetch";
+import NotFound from "./NotFound";
+
 import { GrLogout, GrMenu } from "react-icons/gr";
 import { TextButton } from "./TextButton";
 
@@ -30,7 +32,7 @@ const Home = (props: any) => {
 	const [noteCount, setNoteCount] = useState(0);
 	const [listUpdate, setListUpdate] = useState(false);
 	const history = useHistory();
-	// const location = useLocation();
+	const location = useLocation();
 
 	useEffect(() => {
 		console.log("home useEffect");
@@ -40,6 +42,12 @@ const Home = (props: any) => {
 			getNotes(user?.uid).then((docs: any) => {
 				setNotes(docs);
 				setNoteCount(docs.length);
+				if (docs.length == 0) newNote("Untitled");
+				else if (location.pathname == "/notes") {
+					console.log(location.pathname);
+					history.push("/notes/" + docs[0]._id);
+					window.location.reload();
+				}
 			});
 		});
 	}, [listUpdate]);
@@ -147,19 +155,20 @@ const Home = (props: any) => {
 						))}
 						{<List newNote={newNote} />}
 					</div>
-					{notes.map((array, index) => (
-						<Router>
-							<Switch>
-								<Route path={"/notes/" + array._id}>
-									<EditorApp
+					<Router>
+						<Switch>
+							{notes.map((array, index) => (
+								<Route exact path={"/notes/" + array._id}>
+									<Editor
 										note={array}
 										noteUpdate={updateEditor}
 										deleteNote={deleteNote}
 									/>
 								</Route>
-							</Switch>
-						</Router>
-					))}
+							))}
+							{/* <Route>{props.history.push("/a")}</Route> */}
+						</Switch>
+					</Router>
 				</div>
 				<button className="Home_newpage" onClick={HandleOnclick}>
 					+ New Page

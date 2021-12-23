@@ -42,6 +42,9 @@ const Editor = (props: any) => {
 		console.log("change note");
 		setTexts(body);
 		setTitle_(title);
+		if (!body.includes("")) {
+			addText(null, 0);
+		}
 		// ref.current = body;
 		// setHtml("<div>" + body + "</div>");
 		// console.log("editor value", ref.current);
@@ -86,7 +89,7 @@ const Editor = (props: any) => {
 
 	const addText = async (ref: any, index: number) => {
 		const newBody = texts;
-		newBody.splice(index + 1, 0, "");
+		newBody.splice(index, 0, "");
 		await setTexts(newBody);
 		// ref.nextElementSibling.focus();
 		setIsUpdate(isUpdate + 1);
