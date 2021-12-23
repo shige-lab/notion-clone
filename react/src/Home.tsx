@@ -49,6 +49,7 @@ const Home = (props: any) => {
 			getNotes(user?.uid).then((docs: any) => {
 				setNotes(docs);
 				setNoteCount(docs.length);
+				console.log("notesLength", docs.length);
 				if (docs.length == 0) newNote("Untitled");
 				else if (location.pathname == "/notes") {
 					console.log(location.pathname);
@@ -108,10 +109,15 @@ const Home = (props: any) => {
 		}
 	};
 
-	const deleteNote = async (SelectedNote: any) => {
+	const deleteNote = async (index: number) => {
 		// setNote({ _id: "", note: { title: "", body: "" } });
 		console.log("try delete");
-		await _deleteNote(SelectedNote);
+		console.log(index);
+		// console.log(notes[index].note.title);
+		_deleteNote(notes[index]);
+		// const newNotes = notes;
+		// newNotes.splice(index, 1);
+		// await setNotes(newNotes);
 		console.log("finish delete");
 		setListUpdate(!listUpdate);
 	};
@@ -177,6 +183,7 @@ const Home = (props: any) => {
 							{notes.map((array, index) => (
 								<Route exact path={"/notes/" + array._id}>
 									<Editor
+										index={index}
 										note={array}
 										noteUpdate={updateEditor}
 										deleteNote={deleteNote}

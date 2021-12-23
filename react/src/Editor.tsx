@@ -83,13 +83,13 @@ const Editor = (props: any) => {
 	// 	noteUpdate(title, texts, id);
 	// }, 1500);
 
-	const deleteNote = () => {
-		props.deleteNote(props.note);
+	const _deleteNote = () => {
+		props.deleteNote(props.index);
 	};
 
 	const addText = async (ref: any, index: number) => {
 		const newBody = texts;
-		newBody.splice(index, 0, "");
+		newBody.splice(index + 1, 0, "");
 		await setTexts(newBody);
 		// ref.nextElementSibling.focus();
 		setIsUpdate(isUpdate + 1);
@@ -108,7 +108,7 @@ const Editor = (props: any) => {
 			<div className="noteBar">
 				<div className="barTitle">{title_ ? title_ : ""}</div>
 				<SelectButton
-					delete={deleteNote}
+					delete={_deleteNote}
 					buttonClass="buttonNoteBar"
 					menuClass="menuNoteBar"
 				/>

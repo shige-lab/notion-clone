@@ -24,7 +24,7 @@ const SelectButton = (props: any) => {
 	}, [isOpen]);
 
 	return (
-		<div className="menuBlock">
+		<div className={"menuBlock " + props.buttonClass}>
 			{/* <SplitButton
 				key="t"
 				title="t"
@@ -33,7 +33,7 @@ const SelectButton = (props: any) => {
 				onClick={() => setIsOpen(isOpen ? false : true)}
 			> */}
 			<button
-				className={"button " + props.buttonClass}
+				className={"button buttonSideBar"}
 				onClick={() => setIsOpen(isOpen ? false : true)}
 			>
 				<IoEllipsisHorizontalSharp />

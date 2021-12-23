@@ -69,7 +69,7 @@
   margin-left: 10px;
 }
 .true {
-  width: 240px;
+  width: 240px; 
 }
 
 .false {
@@ -77,10 +77,22 @@
 }
 .List_Block {
   display: flex;
-  margin-top: 5px;
+  margin-top: 10px;
   align-items: center;
+  cursor: pointer;
+  font-size: 16px;
+}
+.list {
+  width: 200px;
+  margin-left: 5px;
   
 }
+.List_Block:hover {
+  /* background-color: rgba(45, 170, 219, 0.3); */
+  background-color: #D3D1CB;
+}
+
+
 
 /* .newNote {
   margin-top: 5px;
@@ -103,7 +115,7 @@
 }
 
 .noteBar {
-  margin-top: 10px;
+  margin-top: 5px;
   display: flex;
   flex-direction: row;
   /* text-align: center; */
@@ -157,16 +169,23 @@
 }
 .menuBlock {
   margin-left: auto;
+  margin-right: 0px;
+  /* background: rgb(247, 246, 243); */
+}
+.menuBlock:hover {
+  background-color: #D3D1CB;
 }
 
 .button {
   /* padding-left: 50px; */
   outline: none;
+  cursor: pointer;
   border: none;
   /* background: rgb(247, 246, 243); */
   background-color: transparent;
   /* width: 30px; */
 }
+
 .buttonSideBar {
   margin-right: 5px;
   margin-top: 2px;

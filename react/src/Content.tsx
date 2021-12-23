@@ -9,6 +9,7 @@ import {
 } from "@material-ui/core";
 import SelectButton from "./SelectButton";
 import { useState } from "react";
+import { GrNotes } from "react-icons/gr";
 var classNames = require("classnames");
 
 const Content = (props: any) => {
@@ -16,17 +17,16 @@ const Content = (props: any) => {
 	const [test, setTest] = useState(false);
 	const [nonDisplay, setNonDisplay] = useState(true);
 	const buttonClass = classNames({
-		buttonSideBar: true,
 		nonDisplay: nonDisplay,
 	});
 
 	const Handle_test = () => {
-		// console.log(note.id);
+		console.log("select from content");
 		props.selectNote(props.index);
 	};
 
 	const deleteNote = () => {
-		props.deleteNote(note);
+		props.deleteNote(props.index);
 	};
 
 	return (
@@ -35,13 +35,13 @@ const Content = (props: any) => {
 			onMouseEnter={() => setNonDisplay(false)}
 			onMouseLeave={() => setNonDisplay(true)}
 		>
-			<li className="list" onClick={Handle_test}>
-				{note.note.title}
-			</li>
-			{/* <button className="button" onClick={deleteNote}>
-				delete
-			</button> */}
+			<div>
+				<GrNotes />
+			</div>
 
+			<div className="list" onClick={Handle_test}>
+				{note.note.title}
+			</div>
 			<SelectButton
 				delete={deleteNote}
 				buttonClass={buttonClass}
