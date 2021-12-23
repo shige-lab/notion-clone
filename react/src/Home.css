@@ -152,9 +152,12 @@
   margin-left: auto;
   
 }
+.menuBlock {
+  margin-left: auto;
+}
+
 .button {
   /* padding-left: 50px; */
-  margin-left: auto;
   margin-right: 5px;
   margin-top: 2px;
   outline: none;
@@ -163,6 +166,49 @@
   background-color: transparent;
   /* width: 30px; */
 }
+
+.menuSideBar {
+  position: fixed; 
+  /* position: absolute; */
+  /* margin-left: auto; */
+  /* margin-right: 100px; */
+}
+
+.menuNoteBar {
+  position: fixed; right: 0px;
+  /* position: absolute; */
+  /* margin-left: auto; */
+  /* margin-right: 100px; */
+}
+
+.menu {
+  width: 220px;
+  height: 246px;
+  background-color: white;
+  /* border-color: black; */
+  /* border: 1px solid; */
+  box-shadow: 2px 2px 4px gray;
+  border-radius: 2px;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.menuContent {
+  margin-top: 12px;
+  margin-left: 25px;
+  display: flex;
+}
+
+.menuContentIcon {
+
+}
+
+.menuContentText {
+  margin-left: 8px;
+}
+
 
 
 
@@ -177,11 +223,7 @@
   text-align: left;
 }
 
-.menu {
-  background-color: white;
-  position: absolute;
-}
-  
+
 .NotFound {
   /* margin-right: auto; */;
   margin-top: 40%;
@@ -191,7 +233,8 @@
 }
 
 .nonDisplay {
-  display: none;
+  /* display: none; */
+  visibility: hidden;
 }
 
 

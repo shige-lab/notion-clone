@@ -97,7 +97,8 @@ const Editor = (props: any) => {
 
 	const deleteText = async (ref: any, index: number) => {
 		const newBody = texts;
-		newBody.splice(index, 1);
+		if (newBody.length == 1) newBody[0] = "";
+		else newBody.splice(index, 1);
 		await setTexts(newBody);
 		setIsUpdate(isUpdate + 1);
 	};
@@ -106,7 +107,7 @@ const Editor = (props: any) => {
 		<div className="Note">
 			<div className="noteBar">
 				<div className="barTitle">{title_ ? title_ : ""}</div>
-				<SelectButton delete={deleteNote} />
+				<SelectButton delete={deleteNote} menuClass="menuNoteBar" />
 			</div>
 			<div className="titleField">
 				<input

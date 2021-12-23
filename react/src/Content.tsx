@@ -16,7 +16,6 @@ const Content = (props: any) => {
 	const [test, setTest] = useState(false);
 	const [nonDisplay, setNonDisplay] = useState(true);
 	const buttonClass = classNames({
-		button: true,
 		nonDisplay: nonDisplay,
 	});
 
@@ -41,9 +40,12 @@ const Content = (props: any) => {
 			{/* <button className="button" onClick={deleteNote}>
 				delete
 			</button> */}
-			<div className={buttonClass}>
-				<SelectButton delete={deleteNote} />
-			</div>
+
+			<SelectButton
+				delete={deleteNote}
+				buttonClass={buttonClass}
+				menuClass="menuSideBar"
+			/>
 		</div>
 	);
 };

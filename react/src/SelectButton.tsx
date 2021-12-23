@@ -1,6 +1,10 @@
 import { useEffect, useState, useRef } from "react";
 import SplitButton from "react-bootstrap/SplitButton";
-import { IoEllipsisHorizontalSharp } from "react-icons/io5";
+import {
+	IoEllipsisHorizontalSharp,
+	IoTrashOutline,
+	IoPencilSharp,
+} from "react-icons/io5";
 
 const SelectButton = (props: any) => {
 	// 	const deleteNote = props.delete;
@@ -20,7 +24,7 @@ const SelectButton = (props: any) => {
 	}, [isOpen]);
 
 	return (
-		<div className="selectButton">
+		<div className="menuBlock">
 			{/* <SplitButton
 				key="t"
 				title="t"
@@ -29,21 +33,27 @@ const SelectButton = (props: any) => {
 				onClick={() => setIsOpen(isOpen ? false : true)}
 			> */}
 			<button
-				className="button"
+				className={"button " + props.buttonClass}
 				onClick={() => setIsOpen(isOpen ? false : true)}
 			>
 				<IoEllipsisHorizontalSharp />
 			</button>
 			{isOpen && (
-				<ul
-					className="menu"
+				<div
+					className={"menu " + props.menuClass}
 					onBlur={() => setTimeout(() => setIsOpen(false), 100)}
 					ref={menuRef}
 					tabIndex={1}
 				>
-					<li onClick={props.delete}>delete</li>
-					<li>rename</li>
-				</ul>
+					<div className="menuContent" onClick={props.delete}>
+						<IoTrashOutline className="menuContentIcon" />
+						<div className="menuContentText">delete</div>
+					</div>
+					<div className="menuContent">
+						<IoPencilSharp className="menuContentIcon" />
+						<div className="menuContentText">rename</div>
+					</div>
+				</div>
 			)}
 			{/* </SplitButton> */}
 		</div>
