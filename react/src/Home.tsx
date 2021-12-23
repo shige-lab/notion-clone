@@ -21,7 +21,10 @@ var classNames = require("classnames");
 const Home = (props: any) => {
 	const [userId, setUserId] = useState<string | undefined>("");
 	const [notes, setNotes] = useState([
-		{ _id: "", note: { title: "", body: [""] } },
+		{
+			_id: "",
+			note: { title: "", body: [{ text: "", class: "divText" }] },
+		},
 	]);
 	// const [note, setNote] = useState({
 	// 	_id: "",
@@ -73,7 +76,7 @@ const Home = (props: any) => {
 	const newNote = async (title: string) => {
 		const note = {
 			title,
-			body: [""],
+			body: [{ text: "", class: "divText" }],
 			userId: userId,
 		};
 		console.log("try newNote");
@@ -87,6 +90,7 @@ const Home = (props: any) => {
 		// 	setNote(last);
 		// });
 	};
+
 	const updateEditor = async (_title: string, contents: any, id: string) => {
 		await _updateEditor(_title, contents, id);
 		if (notes[selectIndex].note.title != _title) {
@@ -96,7 +100,6 @@ const Home = (props: any) => {
 			console.log("try update");
 			await setNotes(newNotes);
 			console.log("finish update");
-			// setListUpdate(!listUpdate);
 
 			// console.log(notes[selectIndex].note.title);
 			// setNotes([
@@ -114,7 +117,7 @@ const Home = (props: any) => {
 		console.log("try delete");
 		console.log(index);
 		// console.log(notes[index].note.title);
-		_deleteNote(notes[index]);
+		await _deleteNote(notes[index]);
 		// const newNotes = notes;
 		// newNotes.splice(index, 1);
 		// await setNotes(newNotes);
@@ -164,12 +167,12 @@ const Home = (props: any) => {
 								<GrMenu />
 							</button>
 						</div>
-						{notes.map((array, index) => (
+						{notes.map((note, index) => (
 							<>
 								{
 									<Content
 										index={index}
-										note={array}
+										note={note}
 										selectNote={select}
 										deleteNote={deleteNote}
 									/>

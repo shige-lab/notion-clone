@@ -68,10 +68,11 @@ const Editor = (props: any) => {
 		// update(t, texts);
 		// console.log(title_);
 	};
-	const updateBody = async (content: string, index: number) => {
+	const updateBody = async (content: string, index: number, tag: string) => {
 		// console.log("eidtor texts", ref.current);
 		const newBody = texts;
-		newBody[index] = content;
+		newBody[index].text = content;
+		newBody[index].class = tag;
 		await setTexts(newBody);
 		setIsUpdate(isUpdate + 1);
 		// console.log(texts);
@@ -89,15 +90,18 @@ const Editor = (props: any) => {
 
 	const addText = async (ref: any, index: number) => {
 		const newBody = texts;
-		newBody.splice(index + 1, 0, "");
-		await setTexts(newBody);
-		// ref.nextElementSibling.focus();
+		await newBody.splice(index + 1, 0, { text: "", class: "divText" });
+		setTexts(newBody);
+		// () => {
+		// 	// ref.nextElementSibling.focus();
+		// 	// ref.previousElementSibling.focus();
+		// };
 		setIsUpdate(isUpdate + 1);
 	};
 
 	const deleteText = async (ref: any, index: number) => {
 		const newBody = texts;
-		if (newBody.length == 1) newBody[0] = "";
+		if (newBody.length == 1) newBody[0] = { text: "", class: "divText" };
 		else newBody.splice(index, 1);
 		await setTexts(newBody);
 		setIsUpdate(isUpdate + 1);
@@ -124,22 +128,25 @@ const Editor = (props: any) => {
 			</div>
 
 			<div className="contentField">
-				{texts.map((text: string, index: number) => (
-					<EditorContent
-						// value={text}
-						// value={ref.current}
-						// ref={ref}
-						index={index}
-						onChange={updateBody}
-						id={id}
-						html={text}
-						addText={addText}
-						deleteText={deleteText}
-						// onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-						// 	updateBody(event.target.value);
-						// }}
-					/>
-				))}
+				{texts.map(
+					(text: any, index: number) =>
+						text && (
+							<EditorContent
+								// value={text}
+								// value={ref.current}
+								// ref={ref}
+								index={index}
+								onChange={updateBody}
+								id={id}
+								html={text}
+								addText={addText}
+								deleteText={deleteText}
+								// onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+								// 	updateBody(event.target.value);
+								// }}
+							/>
+						)
+				)}
 			</div>
 			{/* {/* <ContentEditable value={tex} onChange={updateBody} /> */}
 		</div>

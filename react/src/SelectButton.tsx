@@ -53,6 +53,10 @@ const SelectButton = (props: any) => {
 						<IoPencilSharp className="menuContentIcon" />
 						<div className="menuContentText">rename</div>
 					</div>
+					<div className="menuContent">
+						<IoPencilSharp className="menuContentIcon" />
+						<div className="menuContentText">turn into</div>
+					</div>
 				</div>
 			)}
 			{/* </SplitButton> */}

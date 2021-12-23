@@ -13,8 +13,15 @@ const pageSchema = new Schema({
 		},
 		body: [
 			{
-				type: String,
-				required: false,
+				text: {
+					type: String,
+					required: false,
+				},
+
+				class: {
+					type: String,
+					required: false,
+				},
 			},
 		],
 		userId: {
