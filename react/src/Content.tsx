@@ -16,6 +16,7 @@ const Content = (props: any) => {
 	const [test, setTest] = useState(false);
 	const [nonDisplay, setNonDisplay] = useState(true);
 	const buttonClass = classNames({
+		buttonSideBar: true,
 		nonDisplay: nonDisplay,
 	});
 

@@ -107,7 +107,11 @@ const Editor = (props: any) => {
 		<div className="Note">
 			<div className="noteBar">
 				<div className="barTitle">{title_ ? title_ : ""}</div>
-				<SelectButton delete={deleteNote} menuClass="menuNoteBar" />
+				<SelectButton
+					delete={deleteNote}
+					buttonClass="buttonNoteBar"
+					menuClass="menuNoteBar"
+				/>
 			</div>
 			<div className="titleField">
 				<input

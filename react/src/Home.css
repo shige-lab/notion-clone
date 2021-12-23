@@ -78,6 +78,7 @@
 .List_Block {
   display: flex;
   margin-top: 5px;
+  align-items: center;
   
 }
 
@@ -105,6 +106,8 @@
   margin-top: 10px;
   display: flex;
   flex-direction: row;
+  /* text-align: center; */
+  align-items: center;
   
 }
 
@@ -158,13 +161,21 @@
 
 .button {
   /* padding-left: 50px; */
-  margin-right: 5px;
-  margin-top: 2px;
   outline: none;
   border: none;
   /* background: rgb(247, 246, 243); */
   background-color: transparent;
   /* width: 30px; */
+}
+.buttonSideBar {
+  margin-right: 5px;
+  margin-top: 2px;
+  font-size: 18px;
+}
+
+.buttonNoteBar {
+  font-size: 25px;
+  margin-top: 0px;
 }
 
 .menuSideBar {
@@ -173,6 +184,7 @@
   /* margin-left: auto; */
   /* margin-right: 100px; */
 }
+
 
 .menuNoteBar {
   position: fixed; right: 0px;
@@ -202,7 +214,7 @@
 }
 
 .menuContentIcon {
-
+  
 }
 
 .menuContentText {
