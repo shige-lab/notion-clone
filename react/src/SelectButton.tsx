@@ -5,7 +5,7 @@ import {
 	IoTrashOutline,
 	IoPencilSharp,
 } from "react-icons/io5";
-import { DeleteMenu, RenameMenu, TurnIntoMenu } from "./MenuContent";
+import { DeleteMenu, RenameMenu, TurnIntoMenu } from "./components/MenuContent";
 
 const SelectButton = (props: any) => {
 	// 	const deleteNote = props.delete;

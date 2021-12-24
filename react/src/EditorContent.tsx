@@ -3,6 +3,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useRef, createRef } from "react";
 import ContentEditable from "react-contenteditable";
 import { TextButton } from "./components/TextButton";
+import ContentSideButton from "./components/ContentSideButton";
 import { IoApps } from "react-icons/io5";
 var classNames = require("classnames");
 
@@ -51,9 +52,13 @@ const EditorContent = (props: any) => {
 		props.onChange(props.html.text, props.index, textClass);
 	}, [textClass]);
 
-	const onClickHandle = () => {
+	const toHeader = () => {
 		setTextClass("headerText");
 		// props.deleteText(ref.current, props.index);
+	};
+
+	const deleteText = () => {
+		props.deleteText(ref.current, props.index);
 	};
 
 	return (
@@ -64,9 +69,14 @@ const EditorContent = (props: any) => {
 		>
 			<div className="textBlock">
 				{/* <div className="textButton"> */}
-				<div className={contentButtonClass} onClick={onClickHandle}>
+				{/* <div className={contentButtonClass} onClick={onClickHandle}>
 					<IoApps />
-				</div>
+				</div> */}
+				<ContentSideButton
+					className={contentButtonClass}
+					toHeader={toHeader}
+					deleteText={deleteText}
+				/>
 				<ContentEditable
 					className={"textInput " + textClass}
 					// innerRef={props.ref}

@@ -1,21 +1,11 @@
 import { useEffect, useState, useRef } from "react";
 import SplitButton from "react-bootstrap/SplitButton";
-import {
-	IoEllipsisHorizontalSharp,
-	IoTrashOutline,
-	IoPencilSharp,
-} from "react-icons/io5";
+import { DeleteMenu, TurnIntoMenu } from "./MenuContent";
+import { IoApps } from "react-icons/io5";
 
 const ContentSideButton = (props: any) => {
 	// 	const deleteNote = props.delete;
 
-	// 	return (
-	// 		<div className="ContentSideButoon">
-	// 			<div onClick={deleteNote}>delete</div>
-	// 			<div>rename</div>
-	// 		</div>
-	// 	);
-	// };
 	const [isOpen, setIsOpen] = useState(false);
 	const menuRef: any = useRef();
 
@@ -24,7 +14,7 @@ const ContentSideButton = (props: any) => {
 	}, [isOpen]);
 
 	return (
-		<div className={"menuBlock " + props.buttonClass}>
+		<div className={"menuBlock " + props.className}>
 			{/* <SplitButton
 				key="t"
 				title="t"
@@ -32,12 +22,16 @@ const ContentSideButton = (props: any) => {
 				// toggleLabel=""
 				onClick={() => setIsOpen(isOpen ? false : true)}
 			> */}
-			<button
+			{/* <button
+				className={"button buttonSideBar"}
+				onClick={() => setIsOpen(isOpen ? false : true)}
+			></button> */}
+			<div
 				className={"button buttonSideBar"}
 				onClick={() => setIsOpen(isOpen ? false : true)}
 			>
-				<IoEllipsisHorizontalSharp />
-			</button>
+				<IoApps />
+			</div>
 			{isOpen && (
 				<div
 					className={"menu " + props.menuClass}
@@ -45,18 +39,8 @@ const ContentSideButton = (props: any) => {
 					ref={menuRef}
 					tabIndex={1}
 				>
-					<div className="menuContent" onClick={props.delete}>
-						<IoTrashOutline className="menuContentIcon" />
-						<div className="menuContentText">delete</div>
-					</div>
-					<div className="menuContent">
-						<IoPencilSharp className="menuContentIcon" />
-						<div className="menuContentText">rename</div>
-					</div>
-					<div className="menuContent">
-						<IoPencilSharp className="menuContentIcon" />
-						<div className="menuContentText">turn into</div>
-					</div>
+					<DeleteMenu delete={props.deleteText} />
+					<TurnIntoMenu toHeader={props.toHeader} />
 				</div>
 			)}
 			{/* </SplitButton> */}
