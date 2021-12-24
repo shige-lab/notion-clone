@@ -16,15 +16,17 @@ const EditorContent = (props: any) => {
 	});
 	const classTag = props.html.class;
 	const [textClass, setTextClass] = useState(classTag);
-	console.log(props.index);
+	// console.log(props.index);
 
 	useEffect(() => {
 		setTextClass(classTag);
 	}, [classTag]);
+
 	const handleInput = (e: any) => {
 		console.log("handleInput");
 		props.onChange(e.target.value, props.index, textClass);
 	};
+
 	// console.log("div value", props.value);
 
 	const focusDown = (e: any) => {
@@ -43,6 +45,11 @@ const EditorContent = (props: any) => {
 			props.deleteText(ref.current, props.index);
 		}
 	};
+
+	useEffect(() => {
+		console.log("useEffect for class");
+		props.onChange(props.html.text, props.index, textClass);
+	}, [textClass]);
 
 	const onClickHandle = () => {
 		setTextClass("headerText");

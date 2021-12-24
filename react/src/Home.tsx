@@ -117,12 +117,12 @@ const Home = (props: any) => {
 		console.log("try delete");
 		console.log(index);
 		// console.log(notes[index].note.title);
-		await _deleteNote(notes[index]);
-		// const newNotes = notes;
-		// newNotes.splice(index, 1);
-		// await setNotes(newNotes);
+		_deleteNote(notes[index]);
+		const newNotes = notes;
+		newNotes.splice(index, 1);
+		await setNotes(newNotes);
 		console.log("finish delete");
-		setListUpdate(!listUpdate);
+		// setListUpdate(!listUpdate);
 	};
 
 	const select = (index: number) => {
@@ -159,7 +159,7 @@ const Home = (props: any) => {
 							onMouseEnter={() => setNonDisplay(false)}
 							onMouseLeave={() => setNonDisplay(true)}
 						>
-							PRIVATE{" "}
+							PRIVATE
 							<button
 								className={sidebarButtonClass}
 								onClick={setSidebarDisplay}
