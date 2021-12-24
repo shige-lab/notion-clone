@@ -7,7 +7,7 @@ import { AuthProvider } from "./auth/AuthContext";
 import Home from "./Home";
 import Login from "./auth/Login";
 import SignUp from "./auth/SignUp";
-import NotFound from "./NotFound";
+import NotFound from "./components/NotFound";
 
 const App: React.FC = () => {
 	return (

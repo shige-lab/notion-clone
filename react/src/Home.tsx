@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
 import { auth } from "./auth/firebase";
-import "./Home.css";
+import "./style/Home.css";
 import Content from "./Content";
 import Editor from "./Editor";
 import List from "./CreateNote";
