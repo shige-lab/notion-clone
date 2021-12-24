@@ -38,7 +38,6 @@ const Content = (props: any) => {
 			<div>
 				<GrNotes />
 			</div>
-
 			<div className="list" onClick={Handle_test}>
 				{note.note.title}
 			</div>

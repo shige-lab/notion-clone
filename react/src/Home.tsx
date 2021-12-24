@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
-import { auth } from "./firebase";
+import { auth } from "./auth/firebase";
 import "./Home.css";
 import Content from "./Content";
 import Editor from "./Editor";
@@ -7,7 +7,7 @@ import List from "./CreateNote";
 import { getNotes, _updateEditor, _deleteNote, createNote } from "./Fetch";
 
 import { GrLogout, GrMenu } from "react-icons/gr";
-import { TextButton } from "./TextButton";
+import { TextButton } from "./components/TextButton";
 
 import {
 	BrowserRouter as Router,

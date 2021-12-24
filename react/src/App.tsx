@@ -3,10 +3,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import { AuthProvider } from "./AuthContext";
+import { AuthProvider } from "./auth/AuthContext";
 import Home from "./Home";
-import Login from "./Login";
-import SignUp from "./SignUp";
+import Login from "./auth/Login";
+import SignUp from "./auth/SignUp";
 import NotFound from "./NotFound";
 
 const App: React.FC = () => {

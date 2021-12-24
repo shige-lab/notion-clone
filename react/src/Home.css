@@ -239,6 +239,10 @@
   margin-top: 12px;
   margin-left: 25px;
   display: flex;
+  cursor: pointer;
+}
+.menuContent:hover {
+  background-color: #D3D1CB;
 }
 
 .menuContentIcon {

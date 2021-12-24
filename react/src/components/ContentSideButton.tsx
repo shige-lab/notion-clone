@@ -5,13 +5,12 @@ import {
 	IoTrashOutline,
 	IoPencilSharp,
 } from "react-icons/io5";
-import { DeleteMenu, RenameMenu, TurnIntoMenu } from "./MenuContent";
 
-const SelectButton = (props: any) => {
+const ContentSideButton = (props: any) => {
 	// 	const deleteNote = props.delete;
 
 	// 	return (
-	// 		<div className="selectButton">
+	// 		<div className="ContentSideButoon">
 	// 			<div onClick={deleteNote}>delete</div>
 	// 			<div>rename</div>
 	// 		</div>
@@ -46,9 +45,18 @@ const SelectButton = (props: any) => {
 					ref={menuRef}
 					tabIndex={1}
 				>
-					<DeleteMenu delete={props.delete} />
-					<RenameMenu delete={props.delete} />
-					<TurnIntoMenu delete={props.delete} />
+					<div className="menuContent" onClick={props.delete}>
+						<IoTrashOutline className="menuContentIcon" />
+						<div className="menuContentText">delete</div>
+					</div>
+					<div className="menuContent">
+						<IoPencilSharp className="menuContentIcon" />
+						<div className="menuContentText">rename</div>
+					</div>
+					<div className="menuContent">
+						<IoPencilSharp className="menuContentIcon" />
+						<div className="menuContentText">turn into</div>
+					</div>
 				</div>
 			)}
 			{/* </SplitButton> */}
@@ -56,4 +64,4 @@ const SelectButton = (props: any) => {
 	);
 };
 
-export default SelectButton;
+export default ContentSideButton;

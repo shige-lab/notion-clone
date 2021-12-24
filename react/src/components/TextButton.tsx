@@ -4,7 +4,6 @@ export const TextButton = () => {
 	return (
 		<div className="textButton">
 			<IoApps />
-			xxxxxx
 		</div>
 	);
 };

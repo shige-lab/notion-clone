@@ -8,7 +8,7 @@ import SelectButton from "./SelectButton";
 import { render } from "@testing-library/react";
 import ReactDOM from "react-dom";
 import { useDebounce } from "use-debounce";
-import { TextButton } from "./TextButton";
+import { TextButton } from "./components/TextButton";
 
 import ContentEditable from "react-contenteditable";
 

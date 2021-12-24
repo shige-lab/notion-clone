@@ -18,7 +18,7 @@
 	},
 	"include": [
 		"src",
-		"src/Login.tsx",
+		"src/auth/Login.tsx",
 		"firebase.tsx",
 		"node_modules/firebase.tsx",
 		"GetHtml.tsx",
@@ -30,6 +30,10 @@
 		"../nouse/setupTests.ts",
 		"../nouse/List.tsx",
 		"../nouse/reportWebVitals.ts",
-		"SelectButton.tsx"
+		"SelectButton.tsx",
+		"src/components/ContentSideButton.tsx",
+		"src/components/TextButton.tsx",
+		"src/auth/AuthContext.tsx",
+		"src/auth/SignUp.tsx"
 	]
 }

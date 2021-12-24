@@ -2,7 +2,7 @@ import { PinDropSharp } from "@material-ui/icons";
 import React, { useState, useEffect, useCallback } from "react";
 import { useRef, createRef } from "react";
 import ContentEditable from "react-contenteditable";
-import { TextButton } from "./TextButton";
+import { TextButton } from "./components/TextButton";
 import { IoApps } from "react-icons/io5";
 var classNames = require("classnames");
 
