@@ -8,7 +8,7 @@ import SelectButton from "./SelectButton";
 import { render } from "@testing-library/react";
 import ReactDOM from "react-dom";
 import { useDebounce } from "use-debounce";
-import { TextButton } from "./components/TextButton";
+import { TextButton } from "../components/TextButton";
 
 import ContentEditable from "react-contenteditable";
 
@@ -117,38 +117,40 @@ const Editor = (props: any) => {
 					menuClass="menuNoteBar"
 				/>
 			</div>
-			<div className="titleField">
-				<input
-					className="titleInput"
-					placeholder="Untitled"
-					autoFocus={true}
-					value={title_ ? title_ : ""}
-					onChange={(e) => updateTitle(e.target.value)}
-				/>
-			</div>
+			<div className="noteField">
+				<div className="titleField">
+					<input
+						className="titleInput"
+						placeholder="Untitled"
+						autoFocus={true}
+						value={title_ ? title_ : ""}
+						onChange={(e) => updateTitle(e.target.value)}
+					/>
+				</div>
 
-			<div className="contentField">
-				{texts.map(
-					(text: any, index: number) =>
-						text && (
-							<EditorContent
-								// value={text}
-								// value={ref.current}
-								// ref={ref}
-								index={index}
-								onChange={updateBody}
-								id={id}
-								html={text}
-								addText={addText}
-								deleteText={deleteText}
-								// onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-								// 	updateBody(event.target.value);
-								// }}
-							/>
-						)
-				)}
+				<div className="contentField">
+					{texts.map(
+						(text: any, index: number) =>
+							text && (
+								<EditorContent
+									// value={text}
+									// value={ref.current}
+									// ref={ref}
+									index={index}
+									onChange={updateBody}
+									id={id}
+									html={text}
+									addText={addText}
+									deleteText={deleteText}
+									// onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+									// 	updateBody(event.target.value);
+									// }}
+								/>
+							)
+					)}
+				</div>
+				{/* {/* <ContentEditable value={tex} onChange={updateBody} /> */}
 			</div>
-			{/* {/* <ContentEditable value={tex} onChange={updateBody} /> */}
 		</div>
 	);
 };

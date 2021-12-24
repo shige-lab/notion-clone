@@ -14,27 +14,16 @@ const ContentSideButton = (props: any) => {
 	}, [isOpen]);
 
 	return (
-		<div className={"menuBlock " + props.className}>
-			{/* <SplitButton
-				key="t"
-				title="t"
-				id="aa"
-				// toggleLabel=""
-				onClick={() => setIsOpen(isOpen ? false : true)}
-			> */}
-			{/* <button
-				className={"button buttonSideBar"}
-				onClick={() => setIsOpen(isOpen ? false : true)}
-			></button> */}
+		<>
 			<div
-				className={"button buttonSideBar"}
+				className={props.className + " menu-for-" + props.textClass}
 				onClick={() => setIsOpen(isOpen ? false : true)}
 			>
 				<IoApps />
 			</div>
 			{isOpen && (
 				<div
-					className={"menu " + props.menuClass}
+					className={"menu contentSideMenu"}
 					onBlur={() => setTimeout(() => setIsOpen(false), 100)}
 					ref={menuRef}
 					tabIndex={1}
@@ -44,7 +33,7 @@ const ContentSideButton = (props: any) => {
 				</div>
 			)}
 			{/* </SplitButton> */}
-		</div>
+		</>
 	);
 };
 

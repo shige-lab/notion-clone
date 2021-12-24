@@ -74,6 +74,7 @@ const EditorContent = (props: any) => {
 				</div> */}
 				<ContentSideButton
 					className={contentButtonClass}
+					textClass={textClass}
 					toHeader={toHeader}
 					deleteText={deleteText}
 				/>

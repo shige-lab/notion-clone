@@ -8,6 +8,7 @@ import { getNotes, _updateEditor, _deleteNote, createNote } from "./Fetch";
 
 import { GrLogout, GrMenu } from "react-icons/gr";
 import { TextButton } from "./components/TextButton";
+import { LogoutMenu } from "./components/MenuContent";
 
 import {
 	BrowserRouter as Router,
@@ -135,51 +136,63 @@ const Home = (props: any) => {
 
 	return (
 		<Fragment>
-			<div className="Home">
-				<header className="HomeHeader">notion clone</header>
-				<button
-					className="Heme_logout"
-					onClick={async (event) => {
-						try {
-							await auth.signOut();
-							props.history.push("/login");
-						} catch (error) {
-							alert(error);
-						}
-					}}
-					style={{ marginTop: "0.5em", marginBottom: "0.5em" }}
-				>
-					<GrLogout />
-					Logout
-				</button>
-				<div className="Home_main">
-					<div className={"Sidebar " + sidebar}>
-						<div
-							className="category"
-							onMouseEnter={() => setNonDisplay(false)}
-							onMouseLeave={() => setNonDisplay(true)}
-						>
-							PRIVATE
-							<button
-								className={sidebarButtonClass}
-								onClick={setSidebarDisplay}
-							>
-								<GrMenu />
-							</button>
+			<div className="home">
+				{/* <header className="HomeHeader">notion clone</header> */}
+				<div className="home-main">
+					<div
+						className={"sidebar " + sidebar}
+						onMouseEnter={() => setNonDisplay(false)}
+						onMouseLeave={() => setNonDisplay(true)}
+					>
+						<div className="sidebar-flame">
+							<div className="hover-gray">
+								<div
+									className="logout"
+									onClick={async (event) => {
+										try {
+											await auth.signOut();
+											props.history.push("/login");
+										} catch (error) {
+											alert(error);
+										}
+									}}
+									style={{
+										marginTop: "0.5em",
+										marginBottom: "0.5em",
+									}}
+								>
+									<LogoutMenu />
+								</div>
+								<div
+									className={
+										sidebarButtonClass + " hover-gray"
+									}
+									onClick={setSidebarDisplay}
+								>
+									<GrMenu />
+								</div>
+							</div>
+							<div className="category">PRIVATE</div>
+							{notes.map((note, index) => (
+								<>
+									{
+										<Content
+											index={index}
+											note={note}
+											selectNote={select}
+											deleteNote={deleteNote}
+										/>
+									}
+								</>
+							))}
+							{<List newNote={newNote} />}
 						</div>
-						{notes.map((note, index) => (
-							<>
-								{
-									<Content
-										index={index}
-										note={note}
-										selectNote={select}
-										deleteNote={deleteNote}
-									/>
-								}
-							</>
-						))}
-						{<List newNote={newNote} />}
+						<button
+							className="sidebar-bottom-new-page hover-gray"
+							onClick={HandleOnclick}
+						>
+							+ New page
+						</button>
 					</div>
 					<Router>
 						<Switch>
@@ -197,9 +210,6 @@ const Home = (props: any) => {
 						</Switch>
 					</Router>
 				</div>
-				<button className="Home_newpage" onClick={HandleOnclick}>
-					+ New Page
-				</button>
 			</div>
 		</Fragment>
 	);

@@ -4,7 +4,17 @@ import {
 	IoTrashOutline,
 	IoPencilSharp,
 } from "react-icons/io5";
+import { GrLogout } from "react-icons/gr";
 var classNames = require("classnames");
+
+export const LogoutMenu = () => {
+	return (
+		<div className="logout-style">
+			<GrLogout className="menuContentIcon" />
+			<div className="menuContentText">logout</div>
+		</div>
+	);
+};
 
 export const DeleteMenu = (props: any) => {
 	return (

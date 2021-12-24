@@ -1,17 +1,17 @@
-.Home {
+.home {
   display: flex;
   flex-wrap: wrap;
   flex-direction:column;
-  margin-top: 10px;
-  /* background: rgb(247, 246, 243); */
+  /* margin-top: 10px; */
+    /* background: rgb(247, 246, 243); */
 }
 
-.Home_main {
+.home-main {
   border-top: solid 1px black;
   display: flex;
   /* flex-direction:column;s */
   align-items: stretch;
-  height: 100vh;
+  height: 100%;
   max-height: 100%;
   /* height: 100%; */
   /* flex-grow: 0; */
@@ -26,47 +26,61 @@
   /* line-height: 30%; */
   /* margin-top: 10px; */
 }
-.Heme_logout {
+
+
+.logout {
   /* margin-left: auto; */
-  margin-right: auto;
-  margin-top: -10px;
-  border: none;
-  background-color: white;
+  /* border: none; */
+  /* background-color: white; */
+  width: 180px;
+  padding-top: 10px;
   font-weight: bold;
+  cursor: pointer;
+  padding-bottom: 10px;
+  height: 20px;
+  /* flex-direction: column; */
+}
+
+.logout-style {
+  display: flex;
+  margin-left: 8px;
+
 }
 
 .category{
   display: flex;
   height: 27px;
   margin-top: 10px;
-  /* color: rgba( 255, 255, 255, 0.2); */
   color: rgba(55, 53, 47, 0.4);
   margin-bottom: 20px;
-  /* color: black; */
 }
 
 .sidebarButton {
   font-size: 20px;
-  border: none;
   background-color: transparent;
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
 }
 
 .sidebarButtonOpen {
-  margin-left: auto;
-  margin-right: 10px;
+  left: 200px
 }
+
+/* .sidebarButtonOpen:hover {
+  background-color: #e7e709;
+} */
 
 .sidebarButtonClose {
-  margin-left: 0px ; position: absolute; 
+  margin-left: 0px ;
 }
 
 
-.Sidebar {
+.sidebar {
   flex-shrink: 0;
   background: rgb(247, 246, 243);
-  height: 100%;
+  height: 100vh;
   font-size: 14px;
-  margin-left: 10px;
 }
 .true {
   width: 240px; 
@@ -74,6 +88,10 @@
 
 .false {
   width: 0px;
+}
+
+.sidebar-flame {
+  margin-left: 10px;
 }
 .List_Block {
   display: flex;
@@ -107,20 +125,30 @@
 }
 
 .Note {
-  display: block;
+  display: flex;
   background: white;
-  /* flex-direction:column; */
+  flex-direction:column;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
 .noteBar {
+  height: 45px;
   margin-top: 5px;
   display: flex;
   flex-direction: row;
   /* text-align: center; */
   align-items: center;
   
+}
+.noteField {
+  overflow: auto;
+  display: flex;
+  max-height: 100%;
+  height:  calc(100vh - 45px);
+  flex-direction: column;
+  /* height: 100%; */
 }
 
 .barTitle {
@@ -145,15 +173,23 @@
 .textBlock {
   margin-left: 10%;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
+  /* vertical-align: middle; */
   /* flex-direction: column; */
   margin-top: 20px;
 }
 .textButton {
   /* text-align: center; */
-  margin-top: 3px;
   margin-left: -30px;
   margin-right: 13px;
+}
+
+.menu-for-divText {
+  margin-top: 3px;
+}
+
+.menu-for-headerText {
+  margin-top: 14px;
 }
 
 .textInput {
@@ -253,6 +289,11 @@
   margin-left: 8px;
 }
 
+.contentSideMenu {
+  /* position: absolute; */
+  position: fixed;
+}
+
 
 
 
@@ -260,16 +301,25 @@
   font-size: 10px;
 }
 
-.Home_newpage {
+.sidebar-bottom-new-page {
   background: rgb(247, 246, 243);
   width: 240px;
-  padding-left: 30px;
-  text-align: left;
+  height: 40px;
+  font-weight: bold;
+  text-align: center;
+  padding-right: 100px;
+  color: rgba(55, 53, 47, 0.6);
+  /* margin-top: auto; */
+  position: absolute; 
+  bottom: 0px;
+  border: none;
+  /* border-top: 1px solid black; */
+  box-shadow: rgb(55 53 47 / 9%) 0px -1px 0px;
 }
 
 .turnInto {
   margin-left: auto;
-  position: fixed; right: 70px;
+  position: fixed;
 }
 
 
@@ -284,6 +334,10 @@
 .nonDisplay {
   /* display: none; */
   visibility: hidden;
+}
+
+.hover-gray:hover {
+  background-color: #D3D1CB;
 }
 
 
