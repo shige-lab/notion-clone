@@ -27,6 +27,11 @@ const ContentSideButton = (props: any) => {
 		props.toHeader();
 	};
 
+	const toTodo = () => {
+		setIsOpen(false);
+		props.toTodo();
+	};
+
 	return (
 		<>
 			<div
@@ -49,6 +54,7 @@ const ContentSideButton = (props: any) => {
 					<TurnIntoMenu
 						// change={handleChange}
 						toHeader={toHeader}
+						toTodo={toTodo}
 					/>
 				</div>
 			)}

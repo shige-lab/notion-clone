@@ -208,6 +208,23 @@
   font-size: 18px;
 }
 
+.todo {
+  font-size: 18px;
+}
+
+.todo-done {
+  font-size: 18px;
+  text-decoration: line-through;
+  color: rgb(75, 72, 64);
+}
+
+.todo-checkbox {
+  margin-top: 5px;
+  margin-right: 5px;
+  margin-left: -5px;
+  width: 20px;
+}
+
 .selectButton {
   margin-left: auto;
 }

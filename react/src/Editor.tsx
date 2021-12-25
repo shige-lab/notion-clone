@@ -3,7 +3,7 @@ import { useRef, useCallback } from "react";
 import ReactQuill from "react-quill";
 import _ from "lodash";
 import EditorContent from "./EditorContent";
-import SelectButton from "./SelectButton";
+import SelectButton from "./components/SelectButton";
 // import BorderColorIcon from "@material-ui/icons/BorderColor";
 import { render } from "@testing-library/react";
 import ReactDOM from "react-dom";

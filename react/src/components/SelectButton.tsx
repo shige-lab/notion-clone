@@ -5,18 +5,9 @@ import {
 	IoTrashOutline,
 	IoPencilSharp,
 } from "react-icons/io5";
-import { DeleteMenu, RenameMenu, TurnIntoMenu } from "./components/MenuContent";
+import { DeleteMenu, RenameMenu, TurnIntoMenu } from "./MenuContent";
 
 const SelectButton = (props: any) => {
-	// 	const deleteNote = props.delete;
-
-	// 	return (
-	// 		<div className="selectButton">
-	// 			<div onClick={deleteNote}>delete</div>
-	// 			<div>rename</div>
-	// 		</div>
-	// 	);
-	// };
 	const [isOpen, setIsOpen] = useState(false);
 	const menuRef: any = useRef();
 
@@ -24,15 +15,13 @@ const SelectButton = (props: any) => {
 		isOpen && menuRef.current.focus();
 	}, [isOpen]);
 
+	const deleteNote = () => {
+		setIsOpen(false);
+		props.delete();
+	};
+
 	return (
 		<div className={"menuBlock " + props.buttonClass}>
-			{/* <SplitButton
-				key="t"
-				title="t"
-				id="aa"
-				// toggleLabel=""
-				onClick={() => setIsOpen(isOpen ? false : true)}
-			> */}
 			<button
 				className={"button buttonSideBar"}
 				onClick={() => setIsOpen(isOpen ? false : true)}
@@ -46,12 +35,10 @@ const SelectButton = (props: any) => {
 					ref={menuRef}
 					tabIndex={1}
 				>
-					<DeleteMenu delete={props.delete} />
+					<DeleteMenu delete={deleteNote} />
 					<RenameMenu delete={props.delete} />
-					<TurnIntoMenu delete={props.delete} />
 				</div>
 			)}
-			{/* </SplitButton> */}
 		</div>
 	);
 };

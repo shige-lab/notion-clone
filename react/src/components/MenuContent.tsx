@@ -59,6 +59,10 @@ export const TurnIntoMenu = (props: any) => {
 						<IoPencilSharp className="menuContentIcon" />
 						<div className="menuContentText">header</div>
 					</div>
+					<div className="menuContent" onClick={props.toTodo}>
+						<IoPencilSharp className="menuContentIcon" />
+						<div className="menuContentText">todo</div>
+					</div>
 				</div>
 			</div>
 		</>

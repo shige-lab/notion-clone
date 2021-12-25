@@ -17,10 +17,12 @@ const EditorContent = (props: any) => {
 	});
 	const classTag = props.html.class;
 	const [textClass, setTextClass] = useState(classTag);
+	const [todo, setTodo] = useState(false);
 	// console.log(props.index);
 
 	useEffect(() => {
 		setTextClass(classTag);
+		if (classTag == "todo" || classTag == "todo-done") setTodo(true);
 	}, [classTag]);
 
 	const handleInput = (e: any) => {
@@ -40,7 +42,10 @@ const EditorContent = (props: any) => {
 			console.log(ref.current);
 			console.log(ref.current!.nextElementSibling);
 		}
-		if (e.key === "Backspace" && !props.html) {
+		if (e.key === "Backspace") {
+			console.log("back", props.html.text);
+		}
+		if (e.key === "Backspace" && !props.html.text) {
 			console.log("delete text");
 			e.preventDefault();
 			props.deleteText(ref.current, props.index);
@@ -57,8 +62,18 @@ const EditorContent = (props: any) => {
 		// props.deleteText(ref.current, props.index);
 	};
 
+	const toTodo = () => {
+		setTextClass("todo");
+		// props.deleteText(ref.current, props.index);
+	};
+
 	const deleteText = () => {
 		props.deleteText(ref.current, props.index);
+	};
+
+	const handleTodo = () => {
+		if (classTag == "todo") setTextClass("todo-done");
+		else if (classTag == "todo-done") setTextClass("todo");
 	};
 
 	return (
@@ -76,8 +91,17 @@ const EditorContent = (props: any) => {
 					className={contentButtonClass}
 					textClass={textClass}
 					toHeader={toHeader}
+					toTodo={toTodo}
 					deleteText={deleteText}
 				/>
+				{todo && (
+					<input
+						onClick={handleTodo}
+						className="todo-checkbox"
+						type="checkbox"
+						checked={textClass == "todo" ? false : true}
+					/>
+				)}
 				<ContentEditable
 					className={"textInput " + textClass}
 					// innerRef={props.ref}
@@ -95,9 +119,7 @@ const EditorContent = (props: any) => {
 					onKeyDown={(e) => focusDown(e)}
 					// dangerouslySetInnerHTML={{ __html: props.value }}
 				/>
-
 				{/* <form action=""> */}
-
 				{/* <input type="text" value={text} onChange={ (e) => createUser(e.target.value)}/>
 		<button type="button" onClick= {(e) => createUser} className="btn btn-danger">Create</button> */}
 				{/* </form> */}
