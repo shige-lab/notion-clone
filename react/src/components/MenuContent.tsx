@@ -34,16 +34,11 @@ export const RenameMenu = (props: any) => {
 };
 
 export const TurnIntoMenu = (props: any) => {
-	const [isOpen, setIsOpen] = useState(false);
-	const menuRef: any = useRef();
 	const [nonDisplay, setNonDisplay] = useState(true);
 	const turnIntoClass = classNames({
 		turnInto: true,
 		nonDisplay: nonDisplay,
 	});
-	useEffect(() => {
-		isOpen && menuRef.current.focus();
-	}, [isOpen]);
 
 	const test = () => {
 		console.log("test");
@@ -59,20 +54,13 @@ export const TurnIntoMenu = (props: any) => {
 			>
 				<IoPencilSharp className="menuContentIcon" />
 				<div className="menuContentText">turn into</div>
-				{/* <div className={"menuBlock " + turnIntoClass}> */}
-				<div
-					className={"menu " + turnIntoClass}
-					onBlur={() => setTimeout(() => setIsOpen(false), 100)}
-					ref={menuRef}
-					tabIndex={1}
-				>
+				<div className={"menu " + turnIntoClass}>
 					<div className="menuContent" onClick={test}>
 						<IoPencilSharp className="menuContentIcon" />
 						<div className="menuContentText">header</div>
 					</div>
 				</div>
 			</div>
-			{/* </div> */}
 		</>
 	);
 };

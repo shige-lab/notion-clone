@@ -13,6 +13,20 @@ const ContentSideButton = (props: any) => {
 		isOpen && menuRef.current.focus();
 	}, [isOpen]);
 
+	useEffect(() => {
+		setIsOpen(false);
+	}, []);
+
+	const deleteText = () => {
+		setIsOpen(false);
+		props.deleteText();
+	};
+
+	const toHeader = () => {
+		setIsOpen(false);
+		props.toHeader();
+	};
+
 	return (
 		<>
 			<div
@@ -28,8 +42,14 @@ const ContentSideButton = (props: any) => {
 					ref={menuRef}
 					tabIndex={1}
 				>
-					<DeleteMenu delete={props.deleteText} />
-					<TurnIntoMenu toHeader={props.toHeader} />
+					<DeleteMenu
+						// change={handleChange}
+						delete={deleteText}
+					/>
+					<TurnIntoMenu
+						// change={handleChange}
+						toHeader={toHeader}
+					/>
 				</div>
 			)}
 			{/* </SplitButton> */}
