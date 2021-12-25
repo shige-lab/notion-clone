@@ -3,7 +3,7 @@ const NotFound = (props: any) => {
 		props.history.push("/notes");
 	};
 	return (
-		<div className="NotFound">
+		<div className="not-found">
 			<div>This content does not exist</div>
 			<button
 				onClick={backHome}

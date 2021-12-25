@@ -281,6 +281,7 @@
 .button-note-bar {
   font-size: 25px;
   margin-top: 0px;
+  margin-left: auto;
 }
 
 .menu-sidebar {
@@ -366,7 +367,7 @@
 }
 
 
-.NotFound {
+.not-found {
   /* margin-right: auto; */;
   margin-top: 40%;
   text-align: center;
@@ -384,7 +385,7 @@
 }
 
 
-@keyframes Home-logo-spin {
+/* @keyframes Home-logo-spin {
   from {
       transform: rotate(0deg);
   }
@@ -395,4 +396,4 @@
 
 @media screen and (max-width: 1000px) {
   
-}
+} */

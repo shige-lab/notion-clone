@@ -21,7 +21,7 @@ const SelectButton = (props: any) => {
 	};
 
 	return (
-		<div className={"hover-gray" + props.buttonClass}>
+		<div className={"hover-gray " + props.buttonClass}>
 			<button
 				className={"button button-sidebar"}
 				onClick={() => setIsOpen(isOpen ? false : true)}
