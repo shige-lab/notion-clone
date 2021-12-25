@@ -78,3 +78,40 @@ export const TurnIntoMenu = (props: any) => {
 		</>
 	);
 };
+
+export const TurnInto = (props: any) => {
+	const [nonDisplay, setNonDisplay] = useState(!props.isOpen);
+	const turnIntoClass = classNames({
+		turnInto: true,
+		nonDisplay: nonDisplay,
+	});
+
+	return (
+		<div
+			className={"menu " + turnIntoClass}
+			onFocus={() => setNonDisplay(false)}
+			onBlur={() => setNonDisplay(true)}
+		>
+			<div className="menuContent" onClick={props.toText}>
+				<BiText className="menuContentIcon" />
+				<div className="menuContentText">Text</div>
+			</div>
+			<div className="menuContent" onClick={props.toHeader1}>
+				<BiHeading className="menuContentIcon" />
+				<div className="menuContentText">Heading 1</div>
+			</div>
+			<div className="menuContent" onClick={props.toHeader2}>
+				<BiHeading className="menuContentIcon" />
+				<div className="menuContentText">Heading 2</div>
+			</div>
+			<div className="menuContent" onClick={props.toHeader3}>
+				<BiHeading className="menuContentIcon" />
+				<div className="menuContentText">Heading 3</div>
+			</div>
+			<div className="menuContent" onClick={props.toTodo}>
+				<FcTodoList className="menuContentIcon" />
+				<div className="menuContentText">To-do list</div>
+			</div>
+		</div>
+	);
+};

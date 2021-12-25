@@ -32,7 +32,7 @@ const Editor = (props: any) => {
 	// const [titleValue] = useDebounce(title_, 1500);
 	const isFirstRender = useRef(false);
 	const [isUpdate, setIsUpdate] = useState(0);
-	const [update] = useDebounce(isUpdate, 1500);
+	const [update] = useDebounce(isUpdate, 1000);
 	const [nextIndex, setNextIndex] = useState(-1);
 	const [cursorMove, setCursorMove] = useState(false);
 	// const [html, setHtml] = useState("<div>" + body + "</div>");
@@ -131,7 +131,14 @@ const Editor = (props: any) => {
 					menuClass="menuNoteBar"
 				/>
 			</div>
-			<div className="noteField">
+			<div
+				className="noteField"
+				style={{
+					width: props.sidebar
+						? "calc(100vw - 300px)"
+						: "calc(100vw - 60px)",
+				}}
+			>
 				<div className="titleField">
 					<input
 						className="titleInput"

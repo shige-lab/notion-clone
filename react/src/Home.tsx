@@ -3,7 +3,7 @@ import { auth } from "./auth/firebase";
 import "./style/Home.css";
 import Content from "./Content";
 import Editor from "./Editor";
-import CreateNote from "./CreateNote";
+import CreateNote from "./components/CreateNote";
 import {
 	getNotes,
 	_updateEditor,
@@ -139,7 +139,8 @@ const Home = (props: any) => {
 				{/* <header className="HomeHeader">notion clone</header> */}
 				<div className="home-main">
 					<div
-						className={"sidebar " + sidebar}
+						className={"sidebar"}
+						style={{ width: sidebar ? "240px" : "0px" }}
 						onMouseEnter={() => setNonDisplay(false)}
 						onMouseLeave={() => setNonDisplay(true)}
 					>
@@ -203,6 +204,7 @@ const Home = (props: any) => {
 									note={array}
 									noteUpdate={updateEditor}
 									deleteNote={deleteNote}
+									sidebar={sidebar}
 								/>
 							</Route>
 						))}

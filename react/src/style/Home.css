@@ -82,13 +82,13 @@
   height: 100vh;
   font-size: 14px;
 }
-.true {
+/* .true {
   width: 240px; 
 }
 
 .false {
   width: 0px;
-}
+} */
 
 .sidebar-flame {
   margin-left: 10px;
@@ -101,6 +101,9 @@
   font-size: 16px;
 }
 .list {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   width: 200px;
   margin-left: 5px;
   
@@ -112,11 +115,13 @@
 
 
 
-/* .newNote {
-  margin-top: 5px;
-} */
+.newNote {
+  margin-top: 10px;
+  cursor: pointer;
+}
 
 .newNoteButton {
+  cursor: pointer;
   background-color: rgb(21, 157, 21);
   border-radius: 5px;
   color: white;
@@ -144,15 +149,27 @@
 }
 .noteField {
   overflow: auto;
+  /* overflow-y: auto; */
+  /* overflow-x: hidden; */
   display: flex;
   max-height: 100%;
   height:  calc(100vh - 45px);
+  /* width: calc(100vw - 300px); */
+  /* flex-grow: 1; */
+  /* width: 100%; */
+  /* width: 900px; */
+  max-width: 100%;
+  /* padding-right: 96px ; */
   flex-direction: column;
   /* height: 100%; */
 }
 
 .barTitle {
   margin-left: 5%;
+  width: 240px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .titleField {

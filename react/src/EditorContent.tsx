@@ -4,6 +4,7 @@ import { useRef, createRef } from "react";
 import ContentEditable from "react-contenteditable";
 import { TextButton } from "./components/TextButton";
 import ContentSideButton from "./components/ContentSideButton";
+import { TurnInto } from "./components/MenuContent";
 import { IoApps } from "react-icons/io5";
 var classNames = require("classnames");
 
@@ -18,6 +19,7 @@ const EditorContent = (props: any) => {
 	const classTag = props.html.class;
 	const [textClass, setTextClass] = useState(classTag);
 	const [todo, setTodo] = useState(false);
+	const [openMenu, setOpenMenu] = useState(false);
 	const isFirstRender = useRef(false);
 	// console.log(props.index);
 
@@ -60,6 +62,7 @@ const EditorContent = (props: any) => {
 			e.preventDefault();
 			props.deleteText(props.index);
 		}
+		if (e.key === "/") setOpenMenu(true);
 	};
 
 	const toText = () => {
@@ -136,6 +139,7 @@ const EditorContent = (props: any) => {
 					onKeyDown={(e) => focusDown(e)}
 					// dangerouslySetInnerHTML={{ __html: props.value }}
 				/>
+				<TurnInto isOpen={openMenu} />
 				{/* <form action=""> */}
 				{/* <input type="text" value={text} onChange={ (e) => createUser(e.target.value)}/>
 		<button type="button" onClick= {(e) => createUser} className="btn btn-danger">Create</button> */}

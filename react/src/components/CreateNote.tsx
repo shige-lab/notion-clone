@@ -20,7 +20,7 @@ const CreateNote = (props: any) => {
 	};
 
 	return (
-		<div className="newNote" style={{ marginTop: "8px" }}>
+		<div className="newNote">
 			{addingNote ? (
 				<div>
 					<input
