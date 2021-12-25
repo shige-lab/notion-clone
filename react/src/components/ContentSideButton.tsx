@@ -54,7 +54,7 @@ const ContentSideButton = (props: any) => {
 			</div>
 			{isOpen && (
 				<div
-					className={"menu contentSideMenu"}
+					className={"menu content-side-menu"}
 					onBlur={() => setTimeout(() => setIsOpen(false), 100)}
 					ref={menuRef}
 					tabIndex={1}

@@ -21,9 +21,9 @@ const SelectButton = (props: any) => {
 	};
 
 	return (
-		<div className={"menuBlock " + props.buttonClass}>
+		<div className={"hover-gray" + props.buttonClass}>
 			<button
-				className={"button buttonSideBar"}
+				className={"button button-sidebar"}
 				onClick={() => setIsOpen(isOpen ? false : true)}
 			>
 				<IoEllipsisHorizontalSharp />

@@ -13,25 +13,25 @@ var classNames = require("classnames");
 export const LogoutMenu = () => {
 	return (
 		<div className="logout-style">
-			<GrLogout className="menuContentIcon" />
-			<div className="menuContentText">logout</div>
+			<GrLogout className="menu-content-icon" />
+			<div className="menu-content-text">logout</div>
 		</div>
 	);
 };
 
 export const DeleteMenu = (props: any) => {
 	return (
-		<div className="menuContent" onClick={props.delete}>
-			<IoTrashOutline className="menuContentIcon" />
-			<div className="menuContentText">delete</div>
+		<div className="menu-content" onClick={props.delete}>
+			<IoTrashOutline className="menu-content-icon" />
+			<div className="menu-content-text">delete</div>
 		</div>
 	);
 };
 export const RenameMenu = (props: any) => {
 	return (
-		<div className="menuContent">
-			<IoPencilSharp className="menuContentIcon" />
-			<div className="menuContentText">rename</div>
+		<div className="menu-content">
+			<IoPencilSharp className="menu-content-icon" />
+			<div className="menu-content-text">rename</div>
 		</div>
 	);
 };
@@ -39,39 +39,39 @@ export const RenameMenu = (props: any) => {
 export const TurnIntoMenu = (props: any) => {
 	const [nonDisplay, setNonDisplay] = useState(true);
 	const turnIntoClass = classNames({
-		turnInto: true,
+		turn_into: true,
 		nonDisplay: nonDisplay,
 	});
 
 	return (
 		<>
 			<div
-				className="menuContent"
+				className="menu-content"
 				onMouseEnter={() => setNonDisplay(false)}
 				onMouseLeave={() => setNonDisplay(true)}
 			>
-				<GrPowerCycle className="menuContentIcon" />
-				<div className="menuContentText">turn into</div>
+				<GrPowerCycle className="menu-content-icon" />
+				<div className="menu-content-text">turn into</div>
 				<div className={"menu " + turnIntoClass}>
-					<div className="menuContent" onClick={props.toText}>
-						<BiText className="menuContentIcon" />
-						<div className="menuContentText">Text</div>
+					<div className="menu-content" onClick={props.toText}>
+						<BiText className="menu-content-icon" />
+						<div className="menu-content-text">Text</div>
 					</div>
-					<div className="menuContent" onClick={props.toHeader1}>
-						<BiHeading className="menuContentIcon" />
-						<div className="menuContentText">Heading 1</div>
+					<div className="menu-content" onClick={props.toHeader1}>
+						<BiHeading className="menu-content-icon" />
+						<div className="menu-content-text">Heading 1</div>
 					</div>
-					<div className="menuContent" onClick={props.toHeader2}>
-						<BiHeading className="menuContentIcon" />
-						<div className="menuContentText">Heading 2</div>
+					<div className="menu-content" onClick={props.toHeader2}>
+						<BiHeading className="menu-content-icon" />
+						<div className="menu-content-text">Heading 2</div>
 					</div>
-					<div className="menuContent" onClick={props.toHeader3}>
-						<BiHeading className="menuContentIcon" />
-						<div className="menuContentText">Heading 3</div>
+					<div className="menu-content" onClick={props.toHeader3}>
+						<BiHeading className="menu-content-icon" />
+						<div className="menu-content-text">Heading 3</div>
 					</div>
-					<div className="menuContent" onClick={props.toTodo}>
-						<FcTodoList className="menuContentIcon" />
-						<div className="menuContentText">To-do list</div>
+					<div className="menu-content" onClick={props.toTodo}>
+						<FcTodoList className="menu-content-icon" />
+						<div className="menu-content-text">To-do list</div>
 					</div>
 				</div>
 			</div>
@@ -82,7 +82,7 @@ export const TurnIntoMenu = (props: any) => {
 export const TurnInto = (props: any) => {
 	const [nonDisplay, setNonDisplay] = useState(!props.isOpen);
 	const turnIntoClass = classNames({
-		turnInto: true,
+		turn_into: true,
 		nonDisplay: nonDisplay,
 	});
 
@@ -92,25 +92,25 @@ export const TurnInto = (props: any) => {
 			onFocus={() => setNonDisplay(false)}
 			onBlur={() => setNonDisplay(true)}
 		>
-			<div className="menuContent" onClick={props.toText}>
-				<BiText className="menuContentIcon" />
-				<div className="menuContentText">Text</div>
+			<div className="menu-content" onClick={props.toText}>
+				<BiText className="menu-content-icon" />
+				<div className="menu-content-text">Text</div>
 			</div>
-			<div className="menuContent" onClick={props.toHeader1}>
-				<BiHeading className="menuContentIcon" />
-				<div className="menuContentText">Heading 1</div>
+			<div className="menu-content" onClick={props.toHeader1}>
+				<BiHeading className="menu-content-icon" />
+				<div className="menu-content-text">Heading 1</div>
 			</div>
-			<div className="menuContent" onClick={props.toHeader2}>
-				<BiHeading className="menuContentIcon" />
-				<div className="menuContentText">Heading 2</div>
+			<div className="menu-content" onClick={props.toHeader2}>
+				<BiHeading className="menu-content-icon" />
+				<div className="menu-content-text">Heading 2</div>
 			</div>
-			<div className="menuContent" onClick={props.toHeader3}>
-				<BiHeading className="menuContentIcon" />
-				<div className="menuContentText">Heading 3</div>
+			<div className="menu-content" onClick={props.toHeader3}>
+				<BiHeading className="menu-content-icon" />
+				<div className="menu-content-text">Heading 3</div>
 			</div>
-			<div className="menuContent" onClick={props.toTodo}>
-				<FcTodoList className="menuContentIcon" />
-				<div className="menuContentText">To-do list</div>
+			<div className="menu-content" onClick={props.toTodo}>
+				<FcTodoList className="menu-content-icon" />
+				<div className="menu-content-text">To-do list</div>
 			</div>
 		</div>
 	);

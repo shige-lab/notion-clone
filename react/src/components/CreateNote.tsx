@@ -20,7 +20,7 @@ const CreateNote = (props: any) => {
 	};
 
 	return (
-		<div className="newNote">
+		<div className="new-note">
 			{addingNote ? (
 				<div>
 					<input
@@ -34,12 +34,12 @@ const CreateNote = (props: any) => {
 							updateTitle(event.target.value);
 						}}
 					/>
-					<button className="newNoteButton" onClick={newNote}>
+					<button className="new-note-button" onClick={newNote}>
 						Create note
 					</button>
 				</div>
 			) : null}
-			<button className="newNoteButton" onClick={newNoteBtnClick}>
+			<button className="new-note-button" onClick={newNoteBtnClick}>
 				{addingNote ? "Cancel" : "Add note"}
 			</button>
 		</div>

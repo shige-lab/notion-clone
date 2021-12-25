@@ -13,7 +13,7 @@ const EditorContent = (props: any) => {
 	// let ref = useRef(null);
 	const [nonDisplay, setNonDisplay] = useState(true);
 	const contentButtonClass = classNames({
-		textButton: true,
+		text_button: true,
 		nonDisplay: nonDisplay,
 	});
 	const classTag = props.html.class;
@@ -98,7 +98,7 @@ const EditorContent = (props: any) => {
 			onMouseEnter={() => setNonDisplay(false)}
 			onMouseLeave={() => setNonDisplay(true)}
 		>
-			<div className="textBlock">
+			<div className="text-block">
 				{/* <div className="textButton"> */}
 				{/* <div className={contentButtonClass} onClick={onClickHandle}>
 					<IoApps />
@@ -122,7 +122,7 @@ const EditorContent = (props: any) => {
 					/>
 				)}
 				<ContentEditable
-					className={"textInput " + textClass}
+					className={"text-input " + textClass}
 					data-position={props.index}
 					// innerRef={props.ref}
 					// ref={ref}

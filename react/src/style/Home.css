@@ -17,7 +17,7 @@
   /* flex-grow: 0; */
   /* text-align: center; */
 }
-.HomeHeader {
+.home-header {
   text-align: center;
   font-size: 50px;
   font-weight: bold;
@@ -55,7 +55,7 @@
   margin-bottom: 20px;
 }
 
-.sidebarButton {
+.sidebar_button {
   font-size: 20px;
   background-color: transparent;
   cursor: pointer;
@@ -63,15 +63,15 @@
   top: 15px;
 }
 
-.sidebarButtonOpen {
+.sidebar_button_open {
   left: 200px
 }
 
-/* .sidebarButtonOpen:hover {
+/* .sidebar_button_open:hover {
   background-color: #e7e709;
 } */
 
-.sidebarButtonClose {
+.sidebar_button_close {
   margin-left: 0px ;
 }
 
@@ -93,7 +93,7 @@
 .sidebar-flame {
   margin-left: 10px;
 }
-.List_Block {
+.list-block {
   display: flex;
   margin-top: 10px;
   align-items: center;
@@ -108,19 +108,19 @@
   margin-left: 5px;
   
 }
-.List_Block:hover {
+.list-block:hover {
   /* background-color: rgba(45, 170, 219, 0.3); */
   background-color: #D3D1CB;
 }
 
 
 
-.newNote {
+.new-note {
   margin-top: 10px;
   cursor: pointer;
 }
 
-.newNoteButton {
+.new-note-button {
   cursor: pointer;
   background-color: rgb(21, 157, 21);
   border-radius: 5px;
@@ -129,7 +129,7 @@
   /* border: none; */
 }
 
-.Note {
+.note {
   display: flex;
   background: white;
   flex-direction:column;
@@ -138,7 +138,7 @@
   overflow: hidden;
 }
 
-.noteBar {
+.note-bar {
   height: 45px;
   margin-top: 5px;
   display: flex;
@@ -147,7 +147,7 @@
   align-items: center;
   
 }
-.noteField {
+.note-field {
   overflow: auto;
   /* overflow-y: auto; */
   /* overflow-x: hidden; */
@@ -164,7 +164,7 @@
   /* height: 100%; */
 }
 
-.barTitle {
+.bar-title {
   margin-left: 5%;
   width: 240px;
   text-overflow: ellipsis;
@@ -172,11 +172,11 @@
   overflow: hidden;
 }
 
-.titleField {
+.title-field {
   height: 100px;
 }
 
-.titleInput {
+.title-input {
   outline: none;
   border: none;
   font-size: 40px;
@@ -187,7 +187,7 @@
   /* line-height: 100px; */
 }
 
-.textBlock {
+.text-block {
   margin-left: 10%;
   display: flex;
   /* align-items: center; */
@@ -195,7 +195,7 @@
   /* flex-direction: column; */
   margin-top: 20px;
 }
-.textButton {
+.text_button {
   /* text-align: center; */
   margin-left: -20px;
   margin-right: 13px;
@@ -212,7 +212,7 @@
   margin-top: 6px;
 }
 
-.textInput {
+.text-input {
   outline: none;
   border: none;
   width: 100%;
@@ -256,17 +256,10 @@
   width: 20px;
 }
 
-.selectButton {
-  margin-left: auto;
-}
-
-.menuBlock {
+.menu-block {
   margin-left: auto;
   margin-right: 0px;
   /* background: rgb(247, 246, 243); */
-}
-.menuBlock:hover {
-  background-color: #D3D1CB;
 }
 
 .button {
@@ -279,18 +272,18 @@
   /* width: 30px; */
 }
 
-.buttonSideBar {
+.button-sidebar {
   margin-right: 5px;
   margin-top: 2px;
   font-size: 18px;
 }
 
-.buttonNoteBar {
+.button-note-bar {
   font-size: 25px;
   margin-top: 0px;
 }
 
-.menuSideBar {
+.menu-sidebar {
   position: fixed; 
   /* position: absolute; */
   /* margin-left: auto; */
@@ -298,7 +291,7 @@
 }
 
 
-.menuNoteBar {
+.menu-note-bar {
   position: fixed; right: 0px;
   /* position: absolute; */
   /* margin-left: auto; */
@@ -319,26 +312,27 @@
   
 }
 
-.menuContent {
+.menu-content {
   margin-top: 12px;
   margin-left: 25px;
   display: flex;
   align-items: center;
   cursor: pointer;
 }
-.menuContent:hover {
+
+.menu-content:hover {
   background-color: #D3D1CB;
 }
 
-.menuContentIcon {
+.menu-content-icon {
   
 }
 
-.menuContentText {
+.menu-content-text {
   margin-left: 8px;
 }
 
-.contentSideMenu {
+.content-side-menu {
   /* position: absolute; */
   position: fixed;
 }
@@ -366,7 +360,7 @@
   box-shadow: rgb(55 53 47 / 9%) 0px -1px 0px;
 }
 
-.turnInto {
+.turn_into {
   margin-left: 155px;
   position: fixed;
 }
@@ -392,7 +386,7 @@
 
 @keyframes Home-logo-spin {
   from {
-    transform: rotate(0deg);
+      transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);

@@ -122,26 +122,26 @@ const Editor = (props: any) => {
 	};
 
 	return (
-		<div className="Note">
-			<div className="noteBar">
-				<div className="barTitle">{title_ ? title_ : ""}</div>
+		<div className="note">
+			<div className="note-bar">
+				<div className="bar-title">{title_ ? title_ : ""}</div>
 				<SelectButton
 					delete={_deleteNote}
-					buttonClass="buttonNoteBar"
-					menuClass="menuNoteBar"
+					buttonClass="button-note-bar"
+					menuClass="menu-note-bar"
 				/>
 			</div>
 			<div
-				className="noteField"
+				className="note-field"
 				style={{
 					width: props.sidebar
 						? "calc(100vw - 300px)"
 						: "calc(100vw - 60px)",
 				}}
 			>
-				<div className="titleField">
+				<div className="title-field">
 					<input
-						className="titleInput"
+						className="title-input"
 						placeholder="Untitled"
 						autoFocus={true}
 						value={title_ ? title_ : ""}

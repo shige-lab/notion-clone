@@ -17,6 +17,7 @@ const Content = (props: any) => {
 	const [test, setTest] = useState(false);
 	const [nonDisplay, setNonDisplay] = useState(true);
 	const buttonClass = classNames({
+		menu_block: true,
 		nonDisplay: nonDisplay,
 	});
 
@@ -31,7 +32,7 @@ const Content = (props: any) => {
 
 	return (
 		<div
-			className="List_Block"
+			className="list-block"
 			onMouseEnter={() => setNonDisplay(false)}
 			onMouseLeave={() => setNonDisplay(true)}
 		>
@@ -44,7 +45,7 @@ const Content = (props: any) => {
 			<SelectButton
 				delete={deleteNote}
 				buttonClass={buttonClass}
-				menuClass="menuSideBar"
+				menuClass="menu-sidebar"
 			/>
 		</div>
 	);

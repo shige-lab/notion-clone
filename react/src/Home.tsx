@@ -40,11 +40,11 @@ const Home = (props: any) => {
 	const [listUpdate, setListUpdate] = useState(false);
 	const history = useHistory();
 	const location = useLocation();
-	const sidebarButtonClass = classNames({
-		sidebarButton: true,
+	const sidebar_buttonClass = classNames({
+		sidebar_button: true,
 		nonDisplay: nonDisplay && sidebar,
-		sidebarButtonOpen: sidebar,
-		sidebarButtonClose: !sidebar,
+		sidebar_button_open: sidebar,
+		sidebar_button_close: !sidebar,
 	});
 
 	useEffect(() => {
@@ -136,7 +136,7 @@ const Home = (props: any) => {
 	return (
 		<Fragment>
 			<div className="home">
-				{/* <header className="HomeHeader">notion clone</header> */}
+				{/* <header className="home-header">notion clone</header> */}
 				<div className="home-main">
 					<div
 						className={"sidebar"}
@@ -165,7 +165,7 @@ const Home = (props: any) => {
 								</div>
 								<div
 									className={
-										sidebarButtonClass + " hover-gray"
+										sidebar_buttonClass + " hover-gray"
 									}
 									onClick={setSidebarDisplay}
 								>
