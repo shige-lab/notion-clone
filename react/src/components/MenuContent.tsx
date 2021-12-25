@@ -4,7 +4,10 @@ import {
 	IoTrashOutline,
 	IoPencilSharp,
 } from "react-icons/io5";
-import { GrLogout } from "react-icons/gr";
+import { GrLogout, GrPowerCycle } from "react-icons/gr";
+import { FaHeading } from "react-icons/fa";
+import { BiText, BiHeading } from "react-icons/bi";
+import { FcTodoList } from "react-icons/fc";
 var classNames = require("classnames");
 
 export const LogoutMenu = () => {
@@ -40,11 +43,6 @@ export const TurnIntoMenu = (props: any) => {
 		nonDisplay: nonDisplay,
 	});
 
-	const test = () => {
-		console.log("test");
-		props.toHeader();
-	};
-
 	return (
 		<>
 			<div
@@ -52,15 +50,27 @@ export const TurnIntoMenu = (props: any) => {
 				onMouseEnter={() => setNonDisplay(false)}
 				onMouseLeave={() => setNonDisplay(true)}
 			>
-				<IoPencilSharp className="menuContentIcon" />
+				<GrPowerCycle className="menuContentIcon" />
 				<div className="menuContentText">turn into</div>
 				<div className={"menu " + turnIntoClass}>
-					<div className="menuContent" onClick={test}>
-						<IoPencilSharp className="menuContentIcon" />
-						<div className="menuContentText">header</div>
+					<div className="menuContent" onClick={props.toText}>
+						<BiText className="menuContentIcon" />
+						<div className="menuContentText">text</div>
+					</div>
+					<div className="menuContent" onClick={props.toHeader1}>
+						<BiHeading className="menuContentIcon" />
+						<div className="menuContentText">heading 1</div>
+					</div>
+					<div className="menuContent" onClick={props.toHeader2}>
+						<BiHeading className="menuContentIcon" />
+						<div className="menuContentText">heading 2</div>
+					</div>
+					<div className="menuContent" onClick={props.toHeader3}>
+						<BiHeading className="menuContentIcon" />
+						<div className="menuContentText">heading 3</div>
 					</div>
 					<div className="menuContent" onClick={props.toTodo}>
-						<IoPencilSharp className="menuContentIcon" />
+						<FcTodoList className="menuContentIcon" />
 						<div className="menuContentText">todo</div>
 					</div>
 				</div>

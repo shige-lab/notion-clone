@@ -23,6 +23,7 @@ const EditorContent = (props: any) => {
 	useEffect(() => {
 		setTextClass(classTag);
 		if (classTag == "todo" || classTag == "todo-done") setTodo(true);
+		else setTodo(false);
 	}, [classTag]);
 
 	const handleInput = (e: any) => {
@@ -57,9 +58,17 @@ const EditorContent = (props: any) => {
 		props.onChange(props.html.text, props.index, textClass);
 	}, [textClass]);
 
-	const toHeader = () => {
-		setTextClass("headerText");
-		// props.deleteText(ref.current, props.index);
+	const toText = () => {
+		setTextClass("divText");
+	};
+	const toHeader1 = () => {
+		setTextClass("header1Text");
+	};
+	const toHeader2 = () => {
+		setTextClass("header2Text");
+	};
+	const toHeader3 = () => {
+		setTextClass("header3Text");
 	};
 
 	const toTodo = () => {
@@ -90,7 +99,10 @@ const EditorContent = (props: any) => {
 				<ContentSideButton
 					className={contentButtonClass}
 					textClass={textClass}
-					toHeader={toHeader}
+					toText={toText}
+					toHeader1={toHeader1}
+					toHeader2={toHeader2}
+					toHeader3={toHeader3}
 					toTodo={toTodo}
 					deleteText={deleteText}
 				/>

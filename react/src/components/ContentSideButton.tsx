@@ -22,9 +22,21 @@ const ContentSideButton = (props: any) => {
 		props.deleteText();
 	};
 
-	const toHeader = () => {
+	const toText = () => {
 		setIsOpen(false);
-		props.toHeader();
+		props.toText();
+	};
+	const toHeader1 = () => {
+		setIsOpen(false);
+		props.toHeader1();
+	};
+	const toHeader2 = () => {
+		setIsOpen(false);
+		props.toHeader2();
+	};
+	const toHeader3 = () => {
+		setIsOpen(false);
+		props.toHeader3();
 	};
 
 	const toTodo = () => {
@@ -53,7 +65,10 @@ const ContentSideButton = (props: any) => {
 					/>
 					<TurnIntoMenu
 						// change={handleChange}
-						toHeader={toHeader}
+						toText={toText}
+						toHeader1={toHeader1}
+						toHeader2={toHeader2}
+						toHeader3={toHeader3}
 						toTodo={toTodo}
 					/>
 				</div>

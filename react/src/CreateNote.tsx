@@ -26,7 +26,7 @@ function CreateNote(props: any) {
 					<input
 						type="text"
 						//   className={newNoteInput}
-						placeholder="ノートのタイトル"
+						placeholder="note title"
 						value={title}
 						onChange={(
 							event: React.ChangeEvent<HTMLInputElement>
@@ -35,12 +35,12 @@ function CreateNote(props: any) {
 						}}
 					/>
 					<button className="newNoteButton" onClick={newNote}>
-						ノートを作成する
+						Create note
 					</button>
 				</div>
 			) : null}
 			<button className="newNoteButton" onClick={newNoteBtnClick}>
-				{addingNote ? "キャンセル" : "新規ノート"}
+				{addingNote ? "Cancel" : "Add note"}
 			</button>
 		</div>
 	);
