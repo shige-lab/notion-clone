@@ -36,20 +36,15 @@ const EditorContent = (props: any) => {
 	const focusDown = (e: any) => {
 		if (e.key === "Enter" && !e.shiftKey) {
 			e.preventDefault();
-			// props.addText(ref.current, props.index);
+			props.addText(props.index);
 			// if (ref.current?.nextElementSibling)
 			// 	ref.current.nextElementSibling.focus();
 			// else console.log("null");
-			console.log(ref.current);
-			console.log(ref.current!.nextElementSibling);
 		}
-		if (e.key === "Backspace") {
-			console.log("back", props.html.text);
-		}
-		if (e.key === "Backspace" && !props.html.text) {
+		if (e.key === "Backspace" && !props.html.text && props.index) {
 			console.log("delete text");
 			e.preventDefault();
-			props.deleteText(ref.current, props.index);
+			props.deleteText(props.index);
 		}
 	};
 
@@ -116,6 +111,7 @@ const EditorContent = (props: any) => {
 				)}
 				<ContentEditable
 					className={"textInput " + textClass}
+					data-position={props.index}
 					// innerRef={props.ref}
 					// ref={ref}
 					innerRef={ref}

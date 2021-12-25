@@ -75,9 +75,12 @@ const Home = (props: any) => {
 	};
 
 	const newNote = async (title: string) => {
+		const content = { text: "", class: "divText" };
+		// const newBody = new Array(20).fill(text);
+		// console.log(newBody);
 		const note = {
 			title,
-			body: [{ text: "", class: "divText" }],
+			body: content,
 			userId: userId,
 		};
 		console.log("try newNote");

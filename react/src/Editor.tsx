@@ -33,6 +33,7 @@ const Editor = (props: any) => {
 	const isFirstRender = useRef(false);
 	const [isUpdate, setIsUpdate] = useState(0);
 	const [update] = useDebounce(isUpdate, 1500);
+	const [nextIndex, setNextIndex] = useState(0);
 	// const [html, setHtml] = useState("<div>" + body + "</div>");
 
 	const ref = useRef<HTMLInputElement>(null);
@@ -42,9 +43,10 @@ const Editor = (props: any) => {
 		console.log("change note");
 		setTexts(body);
 		setTitle_(title);
-		if (!body.includes("")) {
-			addText(null, body.length);
-		}
+		// if (!body.includes("")) {
+		// 	addText(null, body.length);
+		// 	console.log("add text");
+		// }
 		// ref.current = body;
 		// setHtml("<div>" + body + "</div>");
 		// console.log("editor value", ref.current);
@@ -62,18 +64,29 @@ const Editor = (props: any) => {
 		}
 	}, [update]);
 
+	useEffect(() => {
+		if (isFirstRender.current) {
+			isFirstRender.current = false;
+		} else {
+			const nextText = document.querySelector<HTMLElement>(
+				`[data-position="${nextIndex}"]`
+			);
+			if (nextText) nextText.focus();
+		}
+	}, [nextIndex]);
+
 	const updateTitle = async (t: string) => {
 		await setTitle_(t);
 		setIsUpdate(isUpdate + 1);
 		// update(t, texts);
 		// console.log(title_);
 	};
-	const updateBody = async (content: string, index: number, tag: string) => {
+	const updateBody = (content: string, index: number, tag: string) => {
 		// console.log("eidtor texts", ref.current);
 		const newBody = texts;
 		newBody[index].text = content;
 		newBody[index].class = tag;
-		await setTexts(newBody);
+		setTexts(newBody);
 		setIsUpdate(isUpdate + 1);
 		// console.log(texts);
 		// update(title, content);
@@ -88,22 +101,24 @@ const Editor = (props: any) => {
 		props.deleteNote(props.index);
 	};
 
-	const addText = async (ref: any, index: number) => {
+	const addText = async (index: number) => {
 		const newBody = texts;
 		await newBody.splice(index + 1, 0, { text: "", class: "divText" });
 		setTexts(newBody);
-		// () => {
-		// 	// ref.nextElementSibling.focus();
+		console.log("add text");
 		// 	// ref.previousElementSibling.focus();
-		// };
+		setNextIndex(index + 1);
 		setIsUpdate(isUpdate + 1);
 	};
 
-	const deleteText = async (ref: any, index: number) => {
+	const deleteText = async (index: number) => {
 		const newBody = texts;
-		if (newBody.length == 1) newBody[0] = { text: "", class: "divText" };
-		else newBody.splice(index, 1);
+		newBody.splice(index, 1);
 		await setTexts(newBody);
+		const nextText = document.querySelector<HTMLElement>(
+			`[data-position="${index - 1}"]`
+		);
+		if (nextText) nextText.focus();
 		setIsUpdate(isUpdate + 1);
 	};
 
@@ -129,8 +144,8 @@ const Editor = (props: any) => {
 				</div>
 
 				<div className="contentField">
-					{texts.map(
-						(text: any, index: number) =>
+					{texts.map((text: any, index: number) => {
+						return (
 							text && (
 								<EditorContent
 									// value={text}
@@ -148,7 +163,8 @@ const Editor = (props: any) => {
 									// }}
 								/>
 							)
-					)}
+						);
+					})}
 				</div>
 				{/* {/* <ContentEditable value={tex} onChange={updateBody} /> */}
 			</div>
