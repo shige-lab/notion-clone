@@ -13,7 +13,7 @@ import { GrNotes } from "react-icons/gr";
 var classNames = require("classnames");
 
 const Content = (props: any) => {
-	const note = props.note;
+	const title = props.title;
 	const [test, setTest] = useState(false);
 	const [nonDisplay, setNonDisplay] = useState(true);
 	const buttonClass = classNames({
@@ -39,7 +39,7 @@ const Content = (props: any) => {
 				<GrNotes />
 			</div>
 			<div className="list" onClick={Handle_test}>
-				{note.note.title}
+				{title}
 			</div>
 			<SelectButton
 				delete={deleteNote}

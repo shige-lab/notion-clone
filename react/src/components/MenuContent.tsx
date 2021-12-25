@@ -55,23 +55,23 @@ export const TurnIntoMenu = (props: any) => {
 				<div className={"menu " + turnIntoClass}>
 					<div className="menuContent" onClick={props.toText}>
 						<BiText className="menuContentIcon" />
-						<div className="menuContentText">text</div>
+						<div className="menuContentText">Text</div>
 					</div>
 					<div className="menuContent" onClick={props.toHeader1}>
 						<BiHeading className="menuContentIcon" />
-						<div className="menuContentText">heading 1</div>
+						<div className="menuContentText">Heading 1</div>
 					</div>
 					<div className="menuContent" onClick={props.toHeader2}>
 						<BiHeading className="menuContentIcon" />
-						<div className="menuContentText">heading 2</div>
+						<div className="menuContentText">Heading 2</div>
 					</div>
 					<div className="menuContent" onClick={props.toHeader3}>
 						<BiHeading className="menuContentIcon" />
-						<div className="menuContentText">heading 3</div>
+						<div className="menuContentText">Heading 3</div>
 					</div>
 					<div className="menuContent" onClick={props.toTodo}>
 						<FcTodoList className="menuContentIcon" />
-						<div className="menuContentText">todo</div>
+						<div className="menuContentText">To-do list</div>
 					</div>
 				</div>
 			</div>

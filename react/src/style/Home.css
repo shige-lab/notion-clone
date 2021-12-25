@@ -289,8 +289,8 @@
 }
 
 .menu {
-  width: 220px;
-  height: 246px;
+  width: 180px;
+  height: 200px;
   background-color: white;
   /* border-color: black; */
   /* border: 1px solid; */
@@ -350,7 +350,7 @@
 }
 
 .turnInto {
-  margin-left: 195px;
+  margin-left: 155px;
   position: fixed;
 }
 

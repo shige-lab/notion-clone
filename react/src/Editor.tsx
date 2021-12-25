@@ -137,6 +137,7 @@ const Editor = (props: any) => {
 									// value={ref.current}
 									// ref={ref}
 									index={index}
+									key={index}
 									onChange={updateBody}
 									id={id}
 									html={text}

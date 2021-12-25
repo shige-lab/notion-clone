@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 
-function CreateNote(props: any) {
+const CreateNote = (props: any) => {
 	const { classes, notes, selectedNoteIndex } = props;
 	const [addingNote, setAddingNote] = useState(false);
 	const [title, setTitle] = useState("");
@@ -44,6 +44,6 @@ function CreateNote(props: any) {
 			</button>
 		</div>
 	);
-}
+};
 
 export default CreateNote;

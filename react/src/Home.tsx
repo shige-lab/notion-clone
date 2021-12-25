@@ -3,7 +3,7 @@ import { auth } from "./auth/firebase";
 import "./style/Home.css";
 import Content from "./Content";
 import Editor from "./Editor";
-import List from "./CreateNote";
+import CreateNote from "./CreateNote";
 import {
 	getNotes,
 	_updateEditor,
@@ -21,6 +21,7 @@ import {
 	Route,
 	Switch,
 } from "react-router-dom";
+
 import { useHistory, useLocation } from "react-router-dom";
 var classNames = require("classnames");
 
@@ -32,10 +33,6 @@ const Home = (props: any) => {
 			note: { title: "", body: [{ text: "", class: "divText" }] },
 		},
 	]);
-	// const [note, setNote] = useState({
-	// 	_id: "",
-	// 	note: { title: "", body: "" },
-	// });
 	const [sidebar, setSidebar] = useState(true);
 	const [nonDisplay, setNonDisplay] = useState(true);
 	const [selectIndex, setSelectIndex] = useState(0);
@@ -59,12 +56,10 @@ const Home = (props: any) => {
 				setNotes(docs);
 				setNoteCount(docs.length);
 				console.log("notesLength", docs.length);
-				if (docs.length == 0) newNote("Untitled");
-				else if (location.pathname == "/notes") {
-					console.log(location.pathname);
-					history.push("/notes/" + docs[0]._id);
-					window.location.reload();
-				}
+				if (docs.length == 1 || location.pathname == "/notes/")
+					props.history.push("/notes/" + docs[0]._id);
+				else if (selectIndex == docs.length - 1)
+					props.history.push("/notes/" + docs[docs.length - 1]._id);
 			});
 		});
 	}, [listUpdate]);
@@ -99,42 +94,38 @@ const Home = (props: any) => {
 
 	const updateEditor = async (_title: string, contents: any, id: string) => {
 		await _updateEditor(_title, contents, id);
-		if (notes[selectIndex].note.title != _title) {
-			const newNotes = notes;
-			newNotes[selectIndex].note.title = _title;
-			newNotes[selectIndex].note.body = contents;
-			console.log("try update");
-			await setNotes(newNotes);
-			console.log("finish update");
-
-			// console.log(notes[selectIndex].note.title);
-			// setNotes([
-			// 	{ ...notes[selectIndex], note: { title: _title, body: text } },
-			// ]);
-			// getNotes(userId).then((docs: any) => {
-			// 	console.log(docs[0].note.title);
-			// 	setNotes(docs);
-			// });
-		}
+		const newNotes = notes;
+		newNotes[selectIndex].note.title = _title;
+		newNotes[selectIndex].note.body = contents;
+		props.history.push("/notes/" + notes[selectIndex]._id);
+		console.log("try update");
+		setNotes(newNotes);
+		console.log("finish update");
 	};
 
 	const deleteNote = async (index: number) => {
-		// setNote({ _id: "", note: { title: "", body: "" } });
 		console.log("try delete");
-		console.log(index);
-		// console.log(notes[index].note.title);
 		_deleteNote(notes[index]);
-		const newNotes = notes;
-		newNotes.splice(index, 1);
-		await setNotes(newNotes);
+		if (noteCount == 1) {
+			newNote("Untitled");
+		} else {
+			const newNotes = notes;
+			newNotes.splice(index, 1);
+			await setNotes(newNotes);
+			setSelectIndex(0);
+		}
 		console.log("finish delete");
 		// setListUpdate(!listUpdate);
 	};
 
 	const select = (index: number) => {
 		console.log("redirect");
+		setSelectIndex(index);
 		history.push("/notes/" + notes[index]._id);
-		window.location.reload();
+		// window.location.href = "/notes/" + notes[selectIndex]._id;
+		// history.push("/notes/" + notes[index]._id);
+		// setListUpdate(!listUpdate);
+		// window.location.reload();
 		// return <Redirect to={"/notes/" + notes[index]._id} />;
 		// window.location.href={"/notes/" + notes[index]._id};
 	};
@@ -183,14 +174,14 @@ const Home = (props: any) => {
 									{
 										<Content
 											index={index}
-											note={note}
+											title={note.note.title}
 											selectNote={select}
 											deleteNote={deleteNote}
 										/>
 									}
 								</>
 							))}
-							{<List newNote={newNote} />}
+							{<CreateNote newNote={newNote} />}
 						</div>
 						<button
 							className="sidebar-bottom-new-page hover-gray"
@@ -199,21 +190,20 @@ const Home = (props: any) => {
 							+ New page
 						</button>
 					</div>
-					<Router>
-						<Switch>
-							{notes.map((array, index) => (
-								<Route exact path={"/notes/" + array._id}>
-									<Editor
-										index={index}
-										note={array}
-										noteUpdate={updateEditor}
-										deleteNote={deleteNote}
-									/>
-								</Route>
-							))}
-							{/* <Route>{props.history.push("/a")}</Route> */}
-						</Switch>
-					</Router>
+					<Switch>
+						{notes.map((array, index) => (
+							<Route exact path={"/notes/" + array._id}>
+								<Editor
+									index={index}
+									key={index}
+									note={array}
+									noteUpdate={updateEditor}
+									deleteNote={deleteNote}
+								/>
+							</Route>
+						))}
+						{/* <Route>{props.history.push("/a")}</Route> */}
+					</Switch>
 				</div>
 			</div>
 		</Fragment>
