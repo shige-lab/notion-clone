@@ -10,17 +10,10 @@ import {
 	_deleteNote,
 	createNote,
 } from "./fetch/Fetch";
-
-import { GrLogout, GrMenu } from "react-icons/gr";
-import { TextButton } from "./components/TextButton";
+import { GrMenu } from "react-icons/gr";
 import { LogoutMenu } from "./components/MenuContent";
 
-import {
-	BrowserRouter as Router,
-	Redirect,
-	Route,
-	Switch,
-} from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import { useHistory, useLocation } from "react-router-dom";
 var classNames = require("classnames");
@@ -56,9 +49,9 @@ const Home = (props: any) => {
 				setNotes(docs);
 				setNoteCount(docs.length);
 				console.log("notesLength", docs.length);
-				if (docs.length == 1 || location.pathname == "/notes/")
+				if (docs.length === 1 || location.pathname === "/notes/")
 					props.history.push("/notes/" + docs[0]._id);
-				else if (selectIndex == docs.length - 1)
+				else if (selectIndex === docs.length - 1)
 					props.history.push("/notes/" + docs[docs.length - 1]._id);
 			});
 		});
@@ -109,7 +102,7 @@ const Home = (props: any) => {
 	const deleteNote = async (index: number) => {
 		console.log("try delete");
 		_deleteNote(notes[index]);
-		if (noteCount == 1) {
+		if (noteCount === 1) {
 			newNote("Untitled");
 		} else {
 			const newNotes = notes;

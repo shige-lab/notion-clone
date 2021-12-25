@@ -1,11 +1,6 @@
-import { useEffect, useState, useRef } from "react";
-import {
-	IoEllipsisHorizontalSharp,
-	IoTrashOutline,
-	IoPencilSharp,
-} from "react-icons/io5";
+import { useState } from "react";
+import { IoTrashOutline, IoPencilSharp } from "react-icons/io5";
 import { GrLogout, GrPowerCycle } from "react-icons/gr";
-import { FaHeading } from "react-icons/fa";
 import { BiText, BiHeading } from "react-icons/bi";
 import { FcTodoList } from "react-icons/fc";
 var classNames = require("classnames");

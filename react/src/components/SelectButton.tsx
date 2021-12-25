@@ -1,11 +1,6 @@
 import { useEffect, useState, useRef } from "react";
-import SplitButton from "react-bootstrap/SplitButton";
-import {
-	IoEllipsisHorizontalSharp,
-	IoTrashOutline,
-	IoPencilSharp,
-} from "react-icons/io5";
-import { DeleteMenu, RenameMenu, TurnIntoMenu } from "./MenuContent";
+import { IoEllipsisHorizontalSharp } from "react-icons/io5";
+import { DeleteMenu, RenameMenu } from "./MenuContent";
 
 const SelectButton = (props: any) => {
 	const [isOpen, setIsOpen] = useState(false);

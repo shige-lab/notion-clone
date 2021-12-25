@@ -1,11 +1,8 @@
-import { PinDropSharp } from "@material-ui/icons";
-import React, { useState, useEffect, useCallback } from "react";
-import { useRef, createRef } from "react";
+import { useState, useEffect, useRef, createRef } from "react";
 import ContentEditable from "react-contenteditable";
-import { TextButton } from "./components/TextButton";
 import ContentSideButton from "./components/ContentSideButton";
 import { TurnInto } from "./components/MenuContent";
-import { IoApps } from "react-icons/io5";
+// import { TextButton } from "./components/TextButton";
 var classNames = require("classnames");
 
 const EditorContent = (props: any) => {
@@ -38,7 +35,7 @@ const EditorContent = (props: any) => {
 
 	useEffect(() => {
 		setTextClass(classTag);
-		if (classTag == "todo" || classTag == "todo-done") setTodo(true);
+		if (classTag === "todo" || classTag === "todo-done") setTodo(true);
 		else setTodo(false);
 	}, [classTag]);
 
@@ -47,15 +44,10 @@ const EditorContent = (props: any) => {
 		props.onChange(e.target.value, props.index, textClass);
 	};
 
-	// console.log("div value", props.value);
-
 	const focusDown = (e: any) => {
 		if (e.key === "Enter" && !e.shiftKey) {
 			e.preventDefault();
 			props.addText(props.index);
-			// if (ref.current?.nextElementSibling)
-			// 	ref.current.nextElementSibling.focus();
-			// else console.log("null");
 		}
 		if (e.key === "Backspace" && !props.html.text && props.index) {
 			console.log("delete text");
@@ -80,7 +72,6 @@ const EditorContent = (props: any) => {
 
 	const toTodo = () => {
 		setTextClass("todo");
-		// props.deleteText(ref.current, props.index);
 	};
 
 	const deleteText = () => {
@@ -88,8 +79,8 @@ const EditorContent = (props: any) => {
 	};
 
 	const handleTodo = () => {
-		if (classTag == "todo") setTextClass("todo-done");
-		else if (classTag == "todo-done") setTextClass("todo");
+		if (classTag === "todo") setTextClass("todo-done");
+		else if (classTag === "todo-done") setTextClass("todo");
 	};
 
 	return (
@@ -99,10 +90,6 @@ const EditorContent = (props: any) => {
 			onMouseLeave={() => setNonDisplay(true)}
 		>
 			<div className="text-block">
-				{/* <div className="textButton"> */}
-				{/* <div className={contentButtonClass} onClick={onClickHandle}>
-					<IoApps />
-				</div> */}
 				<ContentSideButton
 					className={contentButtonClass}
 					textClass={textClass}
@@ -118,14 +105,12 @@ const EditorContent = (props: any) => {
 						onClick={handleTodo}
 						className="todo-checkbox"
 						type="checkbox"
-						checked={textClass == "todo" ? false : true}
+						checked={textClass === "todo" ? false : true}
 					/>
 				)}
 				<ContentEditable
 					className={"text-input " + textClass}
 					data-position={props.index}
-					// innerRef={props.ref}
-					// ref={ref}
 					innerRef={ref}
 					// innerRef={props.value}
 					html={props.html.text}
@@ -133,17 +118,10 @@ const EditorContent = (props: any) => {
 					tagName="div"
 					// id="test"
 					// placeholder="content"
-					// ref={props.ref2}
-					// ref="refs"
 					onChange={handleInput}
 					onKeyDown={(e) => focusDown(e)}
-					// dangerouslySetInnerHTML={{ __html: props.value }}
 				/>
 				<TurnInto isOpen={openMenu} />
-				{/* <form action=""> */}
-				{/* <input type="text" value={text} onChange={ (e) => createUser(e.target.value)}/>
-		<button type="button" onClick= {(e) => createUser} className="btn btn-danger">Create</button> */}
-				{/* </form> */}
 			</div>
 		</div>
 	);

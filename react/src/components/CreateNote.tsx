@@ -1,7 +1,6 @@
-import React, { Fragment, useEffect, useState } from "react";
+import { useState } from "react";
 
 const CreateNote = (props: any) => {
-	const { classes, notes, selectedNoteIndex } = props;
 	const [addingNote, setAddingNote] = useState(false);
 	const [title, setTitle] = useState("");
 

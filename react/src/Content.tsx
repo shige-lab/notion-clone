@@ -1,12 +1,3 @@
-import {
-	Button,
-	Container,
-	FormControl,
-	Grid,
-	Link,
-	TextField,
-	Typography,
-} from "@material-ui/core";
 import SelectButton from "./components/SelectButton";
 import { useState } from "react";
 import { GrNotes } from "react-icons/gr";
@@ -14,7 +5,6 @@ var classNames = require("classnames");
 
 const Content = (props: any) => {
 	const title = props.title;
-	const [test, setTest] = useState(false);
 	const [nonDisplay, setNonDisplay] = useState(true);
 	const buttonClass = classNames({
 		menu_block: true,

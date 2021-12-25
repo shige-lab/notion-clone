@@ -17,7 +17,6 @@ const Login = (props: any) => {
 	const [password, setPassword] = useState<string>("");
 
 	useEffect(() => {
-		// if logged in, redirect to home
 		auth.onAuthStateChanged((user) => {
 			user && props.history.push("/notes");
 		});

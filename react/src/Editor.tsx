@@ -1,26 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useRef, useCallback } from "react";
-import ReactQuill from "react-quill";
-import _ from "lodash";
+import React, { useState, useEffect, useRef } from "react";
 import EditorContent from "./EditorContent";
 import SelectButton from "./components/SelectButton";
-// import BorderColorIcon from "@material-ui/icons/BorderColor";
-import { render } from "@testing-library/react";
-import ReactDOM from "react-dom";
 import { useDebounce } from "use-debounce";
 // import { TextButton } from "../components/TextButton";
-
-import ContentEditable from "react-contenteditable";
-
-import {
-	Button,
-	Container,
-	FormControl,
-	Grid,
-	Link,
-	TextField,
-	Typography,
-} from "@material-ui/core";
+// import ContentEditable from "react-contenteditable";
 
 const Editor = (props: any) => {
 	const noteUpdate = props.noteUpdate;
@@ -28,16 +11,11 @@ const Editor = (props: any) => {
 	const id = props.note._id;
 	const [texts, setTexts] = useState(body);
 	const [title_, setTitle_] = useState(title);
-	// const [textsValue] = useDebounce(texts, 1500);
-	// const [titleValue] = useDebounce(title_, 1500);
 	const isFirstRender = useRef(false);
 	const [isUpdate, setIsUpdate] = useState(0);
 	const [update] = useDebounce(isUpdate, 1000);
 	const [nextIndex, setNextIndex] = useState(-1);
 	const [cursorMove, setCursorMove] = useState(false);
-	// const [html, setHtml] = useState("<div>" + body + "</div>");
-
-	const ref = useRef<HTMLInputElement>(null);
 
 	useEffect(() => {
 		isFirstRender.current = true;
@@ -72,7 +50,6 @@ const Editor = (props: any) => {
 		// console.log(title_);
 	};
 	const updateBody = (content: string, index: number, tag: string) => {
-		// console.log("eidtor texts", ref.current);
 		const newBody = texts;
 		newBody[index].text = content;
 		newBody[index].class = tag;
@@ -81,11 +58,6 @@ const Editor = (props: any) => {
 		// console.log(texts);
 		// update(title, content);
 	};
-
-	// const update = _.debounce((title, texts) => {
-	// 	console.log(title);
-	// 	noteUpdate(title, texts, id);
-	// }, 1500);
 
 	const _deleteNote = () => {
 		props.deleteNote(props.index);
@@ -155,8 +127,6 @@ const Editor = (props: any) => {
 						return (
 							text && (
 								<EditorContent
-									// value={text}
-									// value={ref.current}
 									// ref={ref}
 									index={index}
 									key={index}
@@ -165,15 +135,11 @@ const Editor = (props: any) => {
 									html={text}
 									addText={addText}
 									deleteText={deleteText}
-									// onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-									// 	updateBody(event.target.value);
-									// }}
 								/>
 							)
 						);
 					})}
 				</div>
-				{/* {/* <ContentEditable value={tex} onChange={updateBody} /> */}
 			</div>
 		</div>
 	);
