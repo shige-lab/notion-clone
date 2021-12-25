@@ -18,7 +18,21 @@ const EditorContent = (props: any) => {
 	const classTag = props.html.class;
 	const [textClass, setTextClass] = useState(classTag);
 	const [todo, setTodo] = useState(false);
+	const isFirstRender = useRef(false);
 	// console.log(props.index);
+
+	useEffect(() => {
+		isFirstRender.current = true;
+	}, []);
+
+	useEffect(() => {
+		if (isFirstRender.current) {
+			isFirstRender.current = false;
+		} else {
+			console.log("useEffect for class");
+			props.onChange(props.html.text, props.index, textClass);
+		}
+	}, [textClass]);
 
 	useEffect(() => {
 		setTextClass(classTag);
@@ -47,11 +61,6 @@ const EditorContent = (props: any) => {
 			props.deleteText(props.index);
 		}
 	};
-
-	useEffect(() => {
-		console.log("useEffect for class");
-		props.onChange(props.html.text, props.index, textClass);
-	}, [textClass]);
 
 	const toText = () => {
 		setTextClass("divText");

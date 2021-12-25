@@ -97,7 +97,7 @@ const Home = (props: any) => {
 
 	const updateEditor = async (_title: string, contents: any, id: string) => {
 		await _updateEditor(_title, contents, id);
-		const newNotes = notes;
+		const newNotes = notes.slice(0, notes.length);
 		newNotes[selectIndex].note.title = _title;
 		newNotes[selectIndex].note.body = contents;
 		props.history.push("/notes/" + notes[selectIndex]._id);
@@ -177,6 +177,7 @@ const Home = (props: any) => {
 									{
 										<Content
 											index={index}
+											key={index}
 											title={note.note.title}
 											selectNote={select}
 											deleteNote={deleteNote}

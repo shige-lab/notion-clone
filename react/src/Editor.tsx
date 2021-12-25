@@ -33,30 +33,19 @@ const Editor = (props: any) => {
 	const isFirstRender = useRef(false);
 	const [isUpdate, setIsUpdate] = useState(0);
 	const [update] = useDebounce(isUpdate, 1500);
-	const [nextIndex, setNextIndex] = useState(0);
+	const [nextIndex, setNextIndex] = useState(-1);
+	const [cursorMove, setCursorMove] = useState(false);
 	// const [html, setHtml] = useState("<div>" + body + "</div>");
 
 	const ref = useRef<HTMLInputElement>(null);
 
 	useEffect(() => {
-		console.log(texts[0]);
-		console.log("change note");
-		setTexts(body);
-		setTitle_(title);
-		// if (!body.includes("")) {
-		// 	addText(null, body.length);
-		// 	console.log("add text");
-		// }
-		// ref.current = body;
-		// setHtml("<div>" + body + "</div>");
-		// console.log("editor value", ref.current);
 		isFirstRender.current = true;
-		// refs["ref2"].focus();
-	}, [id]);
+	}, []);
 
 	useEffect(() => {
 		if (isFirstRender.current) {
-			isFirstRender.current = false;
+			isFirstRender.current = true;
 		} else {
 			console.log("debounce");
 			noteUpdate(title_, texts, id);
@@ -68,12 +57,13 @@ const Editor = (props: any) => {
 		if (isFirstRender.current) {
 			isFirstRender.current = false;
 		} else {
+			console.log("cursor move");
 			const nextText = document.querySelector<HTMLElement>(
 				`[data-position="${nextIndex}"]`
 			);
 			if (nextText) nextText.focus();
 		}
-	}, [nextIndex]);
+	}, [cursorMove]);
 
 	const updateTitle = async (t: string) => {
 		await setTitle_(t);
@@ -108,6 +98,7 @@ const Editor = (props: any) => {
 		console.log("add text");
 		// 	// ref.previousElementSibling.focus();
 		setNextIndex(index + 1);
+		setCursorMove(!cursorMove);
 		setIsUpdate(isUpdate + 1);
 	};
 
@@ -120,6 +111,14 @@ const Editor = (props: any) => {
 		);
 		if (nextText) nextText.focus();
 		setIsUpdate(isUpdate + 1);
+	};
+
+	const focusDown = (e: any) => {
+		if (e.key === "Enter" && !e.shiftKey) {
+			e.preventDefault();
+			setNextIndex(0);
+			setCursorMove(!cursorMove);
+		}
 	};
 
 	return (
@@ -140,6 +139,7 @@ const Editor = (props: any) => {
 						autoFocus={true}
 						value={title_ ? title_ : ""}
 						onChange={(e) => updateTitle(e.target.value)}
+						onKeyDown={(e) => focusDown(e)}
 					/>
 				</div>
 
