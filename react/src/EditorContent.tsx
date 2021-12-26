@@ -44,7 +44,7 @@ const EditorContent = (props: any) => {
 		props.onChange(e.target.value, props.index, textClass);
 	};
 
-	const focusDown = (e: any) => {
+	const focusDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		if (e.key === "Enter" && !e.shiftKey) {
 			e.preventDefault();
 			props.addText(props.index, textClass);
@@ -119,7 +119,9 @@ const EditorContent = (props: any) => {
 					id={"text" + props.index}
 					// placeholder="content"
 					onChange={handleInput}
-					onKeyDown={(e) => focusDown(e)}
+					onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) =>
+						focusDown(e)
+					}
 				/>
 				<TurnInto isOpen={openMenu} />
 			</div>

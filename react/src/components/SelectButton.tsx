@@ -31,7 +31,7 @@ const SelectButton = (props: any) => {
 					tabIndex={1}
 				>
 					<DeleteMenu delete={deleteNote} />
-					<RenameMenu delete={props.delete} />
+					<RenameMenu renameTitle={props.renameTitle} />
 					<Duplicate duplicate={props.duplicate} />
 				</div>
 			)}

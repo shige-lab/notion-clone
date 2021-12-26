@@ -26,10 +26,15 @@ export const DeleteMenu = (props: any) => {
 };
 export const RenameMenu = (props: any) => {
 	return (
-		<div className="menu-content hover-gray">
-			<IoPencilSharp className="menu-content-icon" />
-			<div className="menu-content-text">Rename</div>
-		</div>
+		<>
+			<div
+				className="menu-content hover-gray"
+				onClick={() => props.renameTitle(true)}
+			>
+				<IoPencilSharp className="menu-content-icon" />
+				<div className="menu-content-text">Rename</div>
+			</div>
+		</>
 	);
 };
 

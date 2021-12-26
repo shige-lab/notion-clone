@@ -367,7 +367,7 @@
 
 .menu-content-text {
   margin-left: 8px;
-      padding-right: 25px;
+  padding-right: 25px;
 }
 
 .content-side-menu {
@@ -380,6 +380,12 @@
 
 .header{
   font-size: 10px;
+}
+
+.rename {
+  position: absolute;
+  /* border: none; */
+  outline: none;
 }
 
 

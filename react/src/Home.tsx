@@ -51,13 +51,21 @@ const Home = (props: any) => {
 	}, []);
 
 	useEffect(() => {
+		console.log("1");
 		if (isFirstRender.current) {
 			isFirstRender.current = false;
 		} else {
 			if (noteCount === 0) newNote("");
-			else if (location.pathname != "/notes/" + notes[selectIndex]._id) {
-				props.history.push("/notes/" + notes[selectIndex]._id);
-				console.log("page changed");
+			else {
+				var isExist = false;
+				notes.map((note: any) => {
+					if (location.pathname == "/notes/" + note._id)
+						isExist = true;
+				});
+				if (!isExist) {
+					props.history.push("/notes/" + notes[selectIndex]._id);
+					console.log("page changed");
+				}
 			}
 		}
 	}, [notes]);
@@ -102,10 +110,9 @@ const Home = (props: any) => {
 
 	const updateEditor = async (_title: string, contents: any, id: string) => {
 		await _updateEditor(_title, contents, id);
-		const newNotes = notes.slice(0, notes.length);
+		const newNotes = notes.slice();
 		newNotes[selectIndex].note.title = _title;
 		newNotes[selectIndex].note.body = contents;
-		props.history.push("/notes/" + notes[selectIndex]._id);
 		console.log("try update");
 		setNotes(newNotes);
 		console.log("finish update");
@@ -124,6 +131,17 @@ const Home = (props: any) => {
 		console.log("finish delete");
 
 		// setListUpdate(!listUpdate);
+	};
+	const renameTitle = async (index: number, title: string) => {
+		const note = notes[index];
+		console.log("rename");
+		await _updateEditor(title, note.note.body, note._id);
+		const newNotes = notes.slice();
+		newNotes[index].note.title = title;
+		newNotes[index].note.body = note.note.body;
+		console.log("try rename");
+		setNotes(newNotes);
+		console.log("finish rename");
 	};
 
 	const duplicateNote = async (index: number) => {
@@ -204,6 +222,7 @@ const Home = (props: any) => {
 											selectNote={select}
 											deleteNote={deleteNote}
 											duplicateNote={duplicateNote}
+											renameTitle={renameTitle}
 										/>
 									}
 								</>

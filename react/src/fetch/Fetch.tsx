@@ -1,8 +1,4 @@
-export const _updateEditor = async (
-	_title: string,
-	text: string,
-	id: string
-) => {
+export const _updateEditor = async (_title: string, text: any, id: string) => {
 	fetch(`${process.env.REACT_APP_PUBLIC_API}/update`, {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
@@ -31,7 +27,7 @@ export const _deleteNote = async (SelectedNote: any) => {
 	const response = await fetch(`${process.env.REACT_APP_PUBLIC_API}/delete`, {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify({ note: SelectedNote }),
+		body: JSON.stringify({ id: SelectedNote._id }),
 	});
 	return response.json();
 };
