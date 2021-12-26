@@ -126,6 +126,22 @@ const Home = (props: any) => {
 		// setListUpdate(!listUpdate);
 	};
 
+	const duplicateNote = async (index: number) => {
+		const note = notes[index];
+		const duplicate = {
+			title: note.note.title,
+			body: note.note.body,
+			userId: userId,
+		};
+		await createNote(duplicate).then((duplicate: any) => {
+			const newNotes = notes.slice(0, notes.length);
+			newNotes.push(duplicate);
+			setSelectIndex(noteCount);
+			setNoteCount(noteCount + 1);
+			setNotes(newNotes);
+		});
+	};
+
 	const select = (index: number) => {
 		console.log("redirect");
 		setSelectIndex(index);
@@ -187,6 +203,7 @@ const Home = (props: any) => {
 											title={note.note.title}
 											selectNote={select}
 											deleteNote={deleteNote}
+											duplicateNote={duplicateNote}
 										/>
 									}
 								</>

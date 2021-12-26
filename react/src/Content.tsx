@@ -1,6 +1,7 @@
 import SelectButton from "./components/SelectButton";
 import { useState } from "react";
 import { GrNotes } from "react-icons/gr";
+import { Duplicate } from "./components/MenuContent";
 var classNames = require("classnames");
 
 const Content = (props: any) => {
@@ -20,6 +21,9 @@ const Content = (props: any) => {
 		props.deleteNote(props.index);
 	};
 
+	const duplicateNote = () => {
+		props.duplicateNote(props.index);
+	};
 	return (
 		<div
 			className="list-block"
@@ -34,6 +38,7 @@ const Content = (props: any) => {
 			</div>
 			<SelectButton
 				delete={deleteNote}
+				duplicate={duplicateNote}
 				buttonClass={buttonClass}
 				menuClass="menu-sidebar"
 			/>

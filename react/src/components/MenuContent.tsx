@@ -3,6 +3,8 @@ import { IoTrashOutline, IoPencilSharp } from "react-icons/io5";
 import { GrLogout, GrPowerCycle } from "react-icons/gr";
 import { BiText, BiHeading } from "react-icons/bi";
 import { FcTodoList } from "react-icons/fc";
+import { MdPlayArrow } from "react-icons/md";
+import { FaRegClone } from "react-icons/fa";
 var classNames = require("classnames");
 
 export const LogoutMenu = () => {
@@ -16,17 +18,26 @@ export const LogoutMenu = () => {
 
 export const DeleteMenu = (props: any) => {
 	return (
-		<div className="menu-content" onClick={props.delete}>
+		<div className="menu-content hover-gray" onClick={props.delete}>
 			<IoTrashOutline className="menu-content-icon" />
-			<div className="menu-content-text">delete</div>
+			<div className="menu-content-text">Delete</div>
 		</div>
 	);
 };
 export const RenameMenu = (props: any) => {
 	return (
-		<div className="menu-content">
+		<div className="menu-content hover-gray">
 			<IoPencilSharp className="menu-content-icon" />
-			<div className="menu-content-text">rename</div>
+			<div className="menu-content-text">Rename</div>
+		</div>
+	);
+};
+
+export const Duplicate = (props: any) => {
+	return (
+		<div className="menu-content hover-gray" onClick={props.duplicate}>
+			<FaRegClone className="menu-content-icon" />
+			<div className="menu-content-text">Duplicate</div>
 		</div>
 	);
 };
@@ -41,30 +52,46 @@ export const TurnIntoMenu = (props: any) => {
 	return (
 		<>
 			<div
-				className="menu-content"
+				className="menu-content hover-gray"
 				onMouseEnter={() => setNonDisplay(false)}
 				onMouseLeave={() => setNonDisplay(true)}
 			>
 				<GrPowerCycle className="menu-content-icon" />
-				<div className="menu-content-text">turn into</div>
+				<div className="menu-content-text">Turn into</div>
+				<MdPlayArrow style={{ color: "rgba(55, 53, 47, 0.6)" }} />
 				<div className={"menu " + turnIntoClass}>
-					<div className="menu-content" onClick={props.toText}>
+					<div
+						className="menu-content hover-gray"
+						onClick={props.toText}
+					>
 						<BiText className="menu-content-icon" />
 						<div className="menu-content-text">Text</div>
 					</div>
-					<div className="menu-content" onClick={props.toHeader1}>
+					<div
+						className="menu-content hover-gray"
+						onClick={props.toHeader1}
+					>
 						<BiHeading className="menu-content-icon" />
 						<div className="menu-content-text">Heading 1</div>
 					</div>
-					<div className="menu-content" onClick={props.toHeader2}>
+					<div
+						className="menu-content hover-gray"
+						onClick={props.toHeader2}
+					>
 						<BiHeading className="menu-content-icon" />
 						<div className="menu-content-text">Heading 2</div>
 					</div>
-					<div className="menu-content" onClick={props.toHeader3}>
+					<div
+						className="menu-content hover-gray"
+						onClick={props.toHeader3}
+					>
 						<BiHeading className="menu-content-icon" />
 						<div className="menu-content-text">Heading 3</div>
 					</div>
-					<div className="menu-content" onClick={props.toTodo}>
+					<div
+						className="menu-content hover-gray"
+						onClick={props.toTodo}
+					>
 						<FcTodoList className="menu-content-icon" />
 						<div className="menu-content-text">To-do list</div>
 					</div>
@@ -87,23 +114,23 @@ export const TurnInto = (props: any) => {
 			onFocus={() => setNonDisplay(false)}
 			onBlur={() => setNonDisplay(true)}
 		>
-			<div className="menu-content" onClick={props.toText}>
+			<div className="menu-content hover-gray" onClick={props.toText}>
 				<BiText className="menu-content-icon" />
 				<div className="menu-content-text">Text</div>
 			</div>
-			<div className="menu-content" onClick={props.toHeader1}>
+			<div className="menu-content hover-gray" onClick={props.toHeader1}>
 				<BiHeading className="menu-content-icon" />
 				<div className="menu-content-text">Heading 1</div>
 			</div>
-			<div className="menu-content" onClick={props.toHeader2}>
+			<div className="menu-content hover-gray" onClick={props.toHeader2}>
 				<BiHeading className="menu-content-icon" />
 				<div className="menu-content-text">Heading 2</div>
 			</div>
-			<div className="menu-content" onClick={props.toHeader3}>
+			<div className="menu-content hover-gray" onClick={props.toHeader3}>
 				<BiHeading className="menu-content-icon" />
 				<div className="menu-content-text">Heading 3</div>
 			</div>
-			<div className="menu-content" onClick={props.toTodo}>
+			<div className="menu-content hover-gray" onClick={props.toTodo}>
 				<FcTodoList className="menu-content-icon" />
 				<div className="menu-content-text">To-do list</div>
 			</div>

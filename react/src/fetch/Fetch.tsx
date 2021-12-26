@@ -31,18 +31,34 @@ export const _deleteNote = async (SelectedNote: any) => {
 	const response = await fetch(`${process.env.REACT_APP_PUBLIC_API}/delete`, {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify({ id: SelectedNote._id }),
+		body: JSON.stringify({ note: SelectedNote }),
 	});
 	return response.json();
 };
 
-export const createNote = async (data: any) => {
+export const createNote = async (newNote: any) => {
+	console.log(newNote);
 	const response = await fetch(`${process.env.REACT_APP_PUBLIC_API}/new`, {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
-		// body: JSON.stringify({user: data})
-		body: JSON.stringify({ note: data }),
+		// body: JSON.stringify({user: newNote})
+		body: JSON.stringify({ note: newNote }),
 	});
 	console.log("create note");
 	return response.json();
 };
+
+// export const _duplicateNote = async (duplicate: any) => {
+// 	console.log(duplicate);
+// 	const response = await fetch(
+// 		`${process.env.REACT_APP_PUBLIC_API}/duplicate`,
+// 		{
+// 			method: "POST",
+// 			headers: { "Content-Type": "application/json" },
+// 			// body: JSON.stringify({user: data})
+// 			body: JSON.stringify({ note: duplicate }),
+// 		}
+// 	);
+// 	console.log("duplicate note");
+// 	return response.json();
+// };

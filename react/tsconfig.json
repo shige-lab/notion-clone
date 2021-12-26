@@ -32,7 +32,7 @@
 		"../nouse/reportWebVitals.ts",
 		"SelectButton.tsx",
 		"src/components/ContentSideButton.tsx",
-		"src/components/TextButton.tsx",
+		"src/noUsingComponents/TextButton.tsx",
 		"src/auth/AuthContext.tsx",
 		"src/auth/SignUp.tsx"
 	]

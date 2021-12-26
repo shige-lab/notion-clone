@@ -1,4 +1,5 @@
 const Page = require("./model");
+const mongoose = require("mongoose");
 
 const getNotes = (req, res) => {
 	// const page = Page.find({title: "test"});
@@ -29,13 +30,14 @@ const getNotes = (req, res) => {
 };
 
 const saveNote = async (req, res) => {
+	console.log(req.body.note);
 	const page = new Page({
 		note: req.body.note,
 	});
+	console.log(page);
 	const savedPage = await page.save();
 	console.log("new note created");
 	res.json(savedPage);
-	// console.log(req.body.content);
 	// res.sendFile(path.join(__dirname, '../my-app/build/index.html'));
 	// console.log(req.data);
 };
@@ -75,7 +77,20 @@ const deleteNote = async (req, res) => {
 	});
 };
 
+// const duplicateNote = async (req, res) => {
+// 	console.log(req.body.note);
+// 	const duplicate = new Page({
+// 		note: req.body.note,
+// 	});
+
+// 	console.log(duplicate);
+// 	// const savedDuplicate = await duplicate.save();
+// 	console.log("complete duplicate");
+// 	// res.json(savedDuplicate);
+// };
+
 exports.getNotes = getNotes;
 exports.saveNote = saveNote;
 exports.updateNote = updateNote;
 exports.deleteNote = deleteNote;
+// exports.duplicateNote = duplicateNote;

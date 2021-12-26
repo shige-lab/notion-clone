@@ -238,6 +238,7 @@
   margin-left: -20px;
   margin-right: 13px;
   margin-top: 3px;
+  color: rgba(55, 53, 47, 0.6);;
 }
 
 .menu-for-header1Text {
@@ -341,6 +342,7 @@
   width: 180px;
   height: 200px;
   background-color: white;
+  outline: none;
   /* border-color: black; */
   /* border: 1px solid; */
   box-shadow: 2px 2px 4px gray;
@@ -357,18 +359,15 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-}
-
-.menu-content:hover {
-  background-color: #D3D1CB;
+  color: black;
 }
 
 .menu-content-icon {
-  
 }
 
 .menu-content-text {
   margin-left: 8px;
+      padding-right: 25px;
 }
 
 .content-side-menu {
