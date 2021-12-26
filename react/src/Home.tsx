@@ -1,6 +1,7 @@
-import { Fragment, useEffect, useState, useRef } from "react";
-import { auth } from "./auth/firebase";
 import "./style/Home.css";
+import { Fragment, useEffect, useState, useRef } from "react";
+import { Route, Switch, useHistory, useLocation } from "react-router-dom";
+import { auth } from "./auth/firebase";
 import Content from "./Content";
 import Editor from "./Editor";
 import CreateNote from "./components/CreateNote";
@@ -12,10 +13,6 @@ import {
 } from "./fetch/Fetch";
 import { GrMenu } from "react-icons/gr";
 import { LogoutMenu } from "./components/MenuContent";
-
-import { Route, Switch } from "react-router-dom";
-
-import { useHistory, useLocation } from "react-router-dom";
 var classNames = require("classnames");
 
 const Home = (props: any) => {
@@ -30,7 +27,6 @@ const Home = (props: any) => {
 	const [nonDisplay, setNonDisplay] = useState(true);
 	const [selectIndex, setSelectIndex] = useState(0);
 	const [noteCount, setNoteCount] = useState(0);
-	const [listUpdate, setListUpdate] = useState(false);
 	const isFirstRender = useRef(false);
 	const history = useHistory();
 	const location = useLocation();
@@ -46,18 +42,13 @@ const Home = (props: any) => {
 		isFirstRender.current = true;
 		auth.onAuthStateChanged((user) => {
 			user ? setUserId(user?.uid) : props.history.push("/login");
-			// setUserId(user?.uid);
 			getNotes(user?.uid).then((docs: any) => {
 				setNoteCount(docs.length);
 				setNotes(docs);
 				console.log("notesLength", docs.length);
-				// if (docs.length === 1 || location.pathname === "/notes/")
-				// 	props.history.push("/notes/" + docs[0]._id);
-				// else if (selectIndex === docs.length - 1)
-				// 	props.history.push("/notes/" + docs[docs.length - 1]._id);
 			});
 		});
-	}, [listUpdate]);
+	}, []);
 
 	useEffect(() => {
 		if (isFirstRender.current) {

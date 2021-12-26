@@ -353,10 +353,10 @@
   text-align: center;
   padding-right: 100px;
   color: rgba(55, 53, 47, 0.6);
-  /* margin-top: auto; */
   position: absolute; 
   bottom: 0px;
   border: none;
+  cursor: pointer;
   /* border-top: 1px solid black; */
   box-shadow: rgb(55 53 47 / 9%) 0px -1px 0px;
 }
