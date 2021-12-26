@@ -35,7 +35,7 @@ const EditorContent = (props: any) => {
 
 	useEffect(() => {
 		setTextClass(classTag);
-		if (classTag === "todo" || classTag === "todo-done") setTodo(true);
+		if (classTag.includes("todo")) setTodo(true);
 		else setTodo(false);
 	}, [classTag]);
 
@@ -47,9 +47,9 @@ const EditorContent = (props: any) => {
 	const focusDown = (e: any) => {
 		if (e.key === "Enter" && !e.shiftKey) {
 			e.preventDefault();
-			props.addText(props.index);
+			props.addText(props.index, textClass);
 		}
-		if (e.key === "Backspace" && !props.html.text && props.index) {
+		if (e.key === "Backspace" && !props.html.text) {
 			console.log("delete text");
 			e.preventDefault();
 			props.deleteText(props.index);
@@ -102,10 +102,11 @@ const EditorContent = (props: any) => {
 				/>
 				{todo && (
 					<input
-						onClick={handleTodo}
+						onChange={handleTodo}
+						// onClick={handleTodo}
 						className="todo-checkbox"
 						type="checkbox"
-						checked={textClass === "todo" ? false : true}
+						checked={textClass == "todo" ? false : true}
 					/>
 				)}
 				<ContentEditable

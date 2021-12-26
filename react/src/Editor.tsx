@@ -39,7 +39,10 @@ const Editor = (props: any) => {
 			const nextText = document.querySelector<HTMLElement>(
 				`[data-position="${nextIndex}"]`
 			);
-			if (nextText) nextText.focus();
+			if (nextText) {
+				nextText.focus();
+				// if (nextIndex === 0)
+			}
 		}
 	}, [cursorMove]);
 
@@ -63,9 +66,11 @@ const Editor = (props: any) => {
 		props.deleteNote(props.index);
 	};
 
-	const addText = async (index: number) => {
+	const addText = async (index: number, textClass: string) => {
+		let className = "divText";
+		if (textClass.includes("todo")) className = "todo";
 		const newBody = texts;
-		await newBody.splice(index + 1, 0, { text: "", class: "divText" });
+		await newBody.splice(index + 1, 0, { text: "", class: className });
 		setTexts(newBody);
 		console.log("add text");
 		// 	// ref.previousElementSibling.focus();
@@ -78,18 +83,23 @@ const Editor = (props: any) => {
 		const newBody = texts;
 		newBody.splice(index, 1);
 		await setTexts(newBody);
-		const nextText = document.querySelector<HTMLElement>(
+		const previousText = document.querySelector<HTMLElement>(
 			`[data-position="${index - 1}"]`
 		);
-		if (nextText) nextText.focus();
+		if (previousText) previousText.focus();
 		setIsUpdate(isUpdate + 1);
 	};
 
 	const focusDown = (e: any) => {
 		if (e.key === "Enter" && !e.shiftKey) {
 			e.preventDefault();
-			setNextIndex(0);
-			setCursorMove(!cursorMove);
+			if (!texts[0]) {
+				addText(-1, "");
+				console.log("test");
+			} else {
+				setNextIndex(0);
+				setCursorMove(!cursorMove);
+			}
 		}
 	};
 
@@ -113,6 +123,7 @@ const Editor = (props: any) => {
 			>
 				<div className="title-field">
 					<input
+						data-position={-1}
 						className="title-input"
 						placeholder="Untitled"
 						autoFocus={true}
