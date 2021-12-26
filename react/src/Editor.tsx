@@ -26,6 +26,11 @@ const Editor = (props: any) => {
 	}, []);
 
 	useEffect(() => {
+		setTexts(body);
+		setTitle_(title);
+	}, [title, body]);
+
+	useEffect(() => {
 		if (isFirstRender.current) {
 			isFirstRender.current = true;
 		} else {
@@ -100,12 +105,18 @@ const Editor = (props: any) => {
 		}
 	};
 
+	const duplicateNote = () => {
+		props.duplicateNote(props.index);
+	};
+
 	return (
 		<div className="note">
 			<div className="note-bar">
 				<div className="bar-title">{title_ ? title_ : ""}</div>
 				<SelectButton
 					delete={_deleteNote}
+					duplicate={duplicateNote}
+					// renameTitle={openInput}
 					buttonClass="button-note-bar"
 					menuClass="menu-note-bar"
 				/>

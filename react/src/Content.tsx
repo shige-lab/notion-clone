@@ -49,6 +49,13 @@ const Content = (props: any) => {
 	const duplicateNote = () => {
 		props.duplicateNote(props.index);
 	};
+
+	const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+		if (e.key === "Enter" && !e.shiftKey) {
+			e.preventDefault();
+			setInput(false);
+		}
+	};
 	return (
 		<div
 			className="list-block"
@@ -75,6 +82,9 @@ const Content = (props: any) => {
 					value={_title}
 					onBlur={() => setInput(false)}
 					onChange={(e) => setTitle(e.target.value)}
+					onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) =>
+						handleKeyDown(e)
+					}
 				/>
 			)}
 		</div>

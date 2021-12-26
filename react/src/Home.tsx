@@ -256,6 +256,8 @@ const Home = (props: any) => {
 									note={array}
 									noteUpdate={updateEditor}
 									deleteNote={deleteNote}
+									duplicateNote={duplicateNote}
+									renameTitle={renameTitle}
 									sidebar={sidebar}
 								/>
 							</Route>
