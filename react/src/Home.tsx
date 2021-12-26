@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState, useRef } from "react";
 import { auth } from "./auth/firebase";
 import "./style/Home.css";
 import Content from "./Content";
@@ -31,6 +31,7 @@ const Home = (props: any) => {
 	const [selectIndex, setSelectIndex] = useState(0);
 	const [noteCount, setNoteCount] = useState(0);
 	const [listUpdate, setListUpdate] = useState(false);
+	const isFirstRender = useRef(false);
 	const history = useHistory();
 	const location = useLocation();
 	const sidebar_buttonClass = classNames({
@@ -42,20 +43,33 @@ const Home = (props: any) => {
 
 	useEffect(() => {
 		console.log("home useEffect");
+		isFirstRender.current = true;
 		auth.onAuthStateChanged((user) => {
 			user ? setUserId(user?.uid) : props.history.push("/login");
 			// setUserId(user?.uid);
 			getNotes(user?.uid).then((docs: any) => {
-				setNotes(docs);
 				setNoteCount(docs.length);
+				setNotes(docs);
 				console.log("notesLength", docs.length);
-				if (docs.length === 1 || location.pathname === "/notes/")
-					props.history.push("/notes/" + docs[0]._id);
-				else if (selectIndex === docs.length - 1)
-					props.history.push("/notes/" + docs[docs.length - 1]._id);
+				// if (docs.length === 1 || location.pathname === "/notes/")
+				// 	props.history.push("/notes/" + docs[0]._id);
+				// else if (selectIndex === docs.length - 1)
+				// 	props.history.push("/notes/" + docs[docs.length - 1]._id);
 			});
 		});
 	}, [listUpdate]);
+
+	useEffect(() => {
+		if (isFirstRender.current) {
+			isFirstRender.current = false;
+		} else {
+			if (noteCount === 0) newNote("Untitled");
+			else if (location.pathname != "/notes/" + notes[selectIndex]._id) {
+				props.history.push("/notes/" + notes[selectIndex]._id);
+				console.log("page changed");
+			}
+		}
+	}, [notes]);
 
 	const HandleOnclick = () => {
 		newNote("Untitled");
@@ -77,10 +91,17 @@ const Home = (props: any) => {
 			userId: userId,
 		};
 		console.log("try newNote");
-		await createNote(note);
+		await createNote(note).then((newNote: any) => {
+			const newNotes = notes.slice(0, notes.length);
+			newNotes.push(newNote);
+			setSelectIndex(noteCount);
+			// history.push("/notes/" + notes[0]._id);
+			setNoteCount(noteCount + 1);
+			setNotes(newNotes);
+		});
 		console.log("finish newNote");
-		setSelectIndex(noteCount);
-		setListUpdate(!listUpdate);
+		// setSelectIndex(selectIndex + 1);
+		// setListUpdate(!listUpdate);
 		// getNotes(userId).then((docs: any) => {
 		// 	const last = docs.slice(-1)[0];
 		// 	console.log(last);
@@ -101,16 +122,16 @@ const Home = (props: any) => {
 
 	const deleteNote = async (index: number) => {
 		console.log("try delete");
-		_deleteNote(notes[index]);
-		if (noteCount === 1) {
-			newNote("Untitled");
-		} else {
-			const newNotes = notes;
-			newNotes.splice(index, 1);
-			await setNotes(newNotes);
-			setSelectIndex(0);
-		}
+		_deleteNote(notes[index]).then((note: any) => {
+			console.log(note);
+		});
+		const newNotes = notes.slice(0, notes.length);
+		newNotes.splice(index, 1);
+		setNoteCount(noteCount - 1);
+		setSelectIndex(0);
+		setNotes(newNotes);
 		console.log("finish delete");
+
 		// setListUpdate(!listUpdate);
 	};
 

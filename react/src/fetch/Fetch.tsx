@@ -1,4 +1,8 @@
-export const _updateEditor = (_title: string, text: string, id: string) => {
+export const _updateEditor = async (
+	_title: string,
+	text: string,
+	id: string
+) => {
 	fetch(`${process.env.REACT_APP_PUBLIC_API}/update`, {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
@@ -20,22 +24,24 @@ export const getNotes = async (userId: string | undefined) => {
 		body: JSON.stringify({ userId: userId }),
 	});
 	console.log("use getNotes");
-	return await response.json();
+	return response.json();
 };
 
 export const _deleteNote = async (SelectedNote: any) => {
-	await fetch(`${process.env.REACT_APP_PUBLIC_API}/delete`, {
+	const response = await fetch(`${process.env.REACT_APP_PUBLIC_API}/delete`, {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify({ id: SelectedNote._id }),
 	});
+	return response.json();
 };
 
-export const createNote = (data: any) => {
-	fetch(`${process.env.REACT_APP_PUBLIC_API}/new`, {
+export const createNote = async (data: any) => {
+	const response = await fetch(`${process.env.REACT_APP_PUBLIC_API}/new`, {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
 		// body: JSON.stringify({user: data})
 		body: JSON.stringify({ note: data }),
 	});
+	return response.json();
 };
