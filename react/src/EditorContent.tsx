@@ -111,13 +111,12 @@ const EditorContent = (props: any) => {
 				)}
 				<ContentEditable
 					className={"text-input " + textClass}
-					data-position={props.index}
 					innerRef={ref}
 					// innerRef={props.value}
 					html={props.html.text}
 					disabled={false}
 					tagName="div"
-					// id="test"
+					id={"text" + props.index}
 					// placeholder="content"
 					onChange={handleInput}
 					onKeyDown={(e) => focusDown(e)}

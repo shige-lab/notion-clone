@@ -36,12 +36,10 @@ const Editor = (props: any) => {
 			isFirstRender.current = false;
 		} else {
 			console.log("cursor move");
-			const nextText = document.querySelector<HTMLElement>(
-				`[data-position="${nextIndex}"]`
-			);
+			const nextText = document.getElementById("text" + nextIndex);
 			if (nextText) {
 				nextText.focus();
-				// if (nextIndex === 0)
+				nextText.innerHTML += "";
 			}
 		}
 	}, [cursorMove]);
@@ -73,7 +71,6 @@ const Editor = (props: any) => {
 		await newBody.splice(index + 1, 0, { text: "", class: className });
 		setTexts(newBody);
 		console.log("add text");
-		// 	// ref.previousElementSibling.focus();
 		setNextIndex(index + 1);
 		setCursorMove(!cursorMove);
 		setIsUpdate(isUpdate + 1);
@@ -83,9 +80,7 @@ const Editor = (props: any) => {
 		const newBody = texts;
 		newBody.splice(index, 1);
 		await setTexts(newBody);
-		const previousText = document.querySelector<HTMLElement>(
-			`[data-position="${index - 1}"]`
-		);
+		const previousText = document.getElementById("text" + (index - 1));
 		if (previousText) previousText.focus();
 		setIsUpdate(isUpdate + 1);
 	};
@@ -123,7 +118,7 @@ const Editor = (props: any) => {
 			>
 				<div className="title-field">
 					<input
-						data-position={-1}
+						id="text-1"
 						className="title-input"
 						placeholder="Untitled"
 						autoFocus={true}
