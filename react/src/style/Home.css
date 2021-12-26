@@ -44,14 +44,23 @@
 .logout-style {
   display: flex;
   margin-left: 8px;
+  
+}
 
+.sidebar {
+  flex-shrink: 0;
+  background: rgb(247, 246, 243);
+  color: rgba(55, 53, 47, 0.6);
+  height: 100vh;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
 }
 
 .category{
   display: flex;
   height: 27px;
   margin-top: 10px;
-  color: rgba(55, 53, 47, 0.4);
   margin-bottom: 20px;
 }
 
@@ -76,12 +85,6 @@
 }
 
 
-.sidebar {
-  flex-shrink: 0;
-  background: rgb(247, 246, 243);
-  height: 100vh;
-  font-size: 14px;
-}
 /* .true {
   width: 240px; 
 }
@@ -105,9 +108,14 @@
   white-space: nowrap;
   overflow: hidden;
   width: 200px;
-  margin-left: 5px;
+  margin-left: 7px;
   
 }
+
+.add-a-page {
+  height: 27px;
+}
+
 .list-block:hover {
   /* background-color: rgba(45, 170, 219, 0.3); */
   background-color: #D3D1CB;
@@ -127,6 +135,36 @@
   color: white;
   font-weight: bold;
   /* border: none; */
+}
+
+.sidebar-bottom {
+
+  /* display: flex; */
+  width: 240px;
+  height: 45px;
+  /* align-items: flex-end; */
+  cursor: pointer;
+  margin-top: auto;
+  margin-bottom: 5px;
+  box-shadow: rgb(55 53 47 / 9%) 0px -1px 0px;
+  
+}
+
+.sidebar-bottom-new-page {
+  background: rgb(247, 246, 243);
+  align-items: center;
+  height: 45px;
+  display: flex;
+  padding-right: 14px;
+  padding-left: 17px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  color: rgba(55, 53, 47, 0.6);
+  /* position: absolute;  */
+  bottom: 0px;
+  /* border: none; */
+  /* border-top: 1px solid black; */
 }
 
 .note {
@@ -345,21 +383,6 @@
   font-size: 10px;
 }
 
-.sidebar-bottom-new-page {
-  background: rgb(247, 246, 243);
-  width: 240px;
-  height: 40px;
-  font-weight: bold;
-  text-align: center;
-  padding-right: 100px;
-  color: rgba(55, 53, 47, 0.6);
-  position: absolute; 
-  bottom: 0px;
-  border: none;
-  cursor: pointer;
-  /* border-top: 1px solid black; */
-  box-shadow: rgb(55 53 47 / 9%) 0px -1px 0px;
-}
 
 .turn_into {
   margin-left: 155px;
@@ -397,3 +420,4 @@
 @media screen and (max-width: 1000px) {
   
 } */
+/* } */

@@ -43,7 +43,7 @@ const Editor = (props: any) => {
 			const nextText = document.getElementById("text" + nextIndex);
 			if (nextText) {
 				nextText.focus();
-				nextText.innerHTML += "";
+				// nextText.innerHTML += "";
 			}
 		}
 	}, [cursorMove]);

@@ -4,15 +4,15 @@ import { Route, Switch, useHistory, useLocation } from "react-router-dom";
 import { auth } from "./auth/firebase";
 import Content from "./Content";
 import Editor from "./Editor";
-import CreateNote from "./components/CreateNote";
 import {
 	getNotes,
 	_updateEditor,
 	_deleteNote,
 	createNote,
 } from "./fetch/Fetch";
-import { GrMenu } from "react-icons/gr";
 import { LogoutMenu } from "./components/MenuContent";
+import { GrMenu } from "react-icons/gr";
+import { BsPlusLg } from "react-icons/bs";
 var classNames = require("classnames");
 
 const Home = (props: any) => {
@@ -191,14 +191,25 @@ const Home = (props: any) => {
 									}
 								</>
 							))}
-							{<CreateNote newNote={newNote} />}
+							<div
+								className="list-block add-a-page"
+								onClick={HandleOnclick}
+							>
+								<BsPlusLg />
+								<div className="list">Add a page</div>
+							</div>
 						</div>
-						<button
-							className="sidebar-bottom-new-page hover-gray"
+						<div
+							className="sidebar-bottom hover-gray"
 							onClick={HandleOnclick}
 						>
-							+ New page
-						</button>
+							<div className="sidebar-bottom-new-page hover-gray">
+								<BsPlusLg />
+								<div style={{ marginLeft: "15px" }}>
+									New page
+								</div>
+							</div>
+						</div>
 					</div>
 					<Switch>
 						{notes.map((array, index) => (
