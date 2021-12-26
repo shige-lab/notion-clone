@@ -43,5 +43,6 @@ export const createNote = async (data: any) => {
 		// body: JSON.stringify({user: data})
 		body: JSON.stringify({ note: data }),
 	});
+	console.log("create note");
 	return response.json();
 };

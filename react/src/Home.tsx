@@ -54,7 +54,7 @@ const Home = (props: any) => {
 		if (isFirstRender.current) {
 			isFirstRender.current = false;
 		} else {
-			if (noteCount === 0) newNote("Untitled");
+			if (noteCount === 0) newNote("");
 			else if (location.pathname != "/notes/" + notes[selectIndex]._id) {
 				props.history.push("/notes/" + notes[selectIndex]._id);
 				console.log("page changed");
@@ -63,7 +63,7 @@ const Home = (props: any) => {
 	}, [notes]);
 
 	const HandleOnclick = () => {
-		newNote("Untitled");
+		newNote("");
 	};
 
 	const setSidebarDisplay = () => {
@@ -75,13 +75,13 @@ const Home = (props: any) => {
 	const newNote = async (title: string) => {
 		const content = { text: "", class: "divText" };
 		// const newBody = new Array(20).fill(text);
-		// console.log(newBody);
 		const note = {
 			title,
 			body: content,
 			userId: userId,
 		};
 		console.log("try newNote");
+		console.log(note);
 		await createNote(note).then((newNote: any) => {
 			const newNotes = notes.slice(0, notes.length);
 			newNotes.push(newNote);

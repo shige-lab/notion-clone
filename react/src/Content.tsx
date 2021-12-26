@@ -30,7 +30,7 @@ const Content = (props: any) => {
 				<GrNotes />
 			</div>
 			<div className="list" onClick={Handle_test}>
-				{title}
+				{title ? title : "Untitled"}
 			</div>
 			<SelectButton
 				delete={deleteNote}

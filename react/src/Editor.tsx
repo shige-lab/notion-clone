@@ -19,6 +19,10 @@ const Editor = (props: any) => {
 
 	useEffect(() => {
 		isFirstRender.current = true;
+		if (!title) {
+			const titleFocus = document.getElementById("text-1");
+			if (titleFocus) titleFocus.focus();
+		}
 	}, []);
 
 	useEffect(() => {
@@ -88,13 +92,11 @@ const Editor = (props: any) => {
 	const focusDown = (e: any) => {
 		if (e.key === "Enter" && !e.shiftKey) {
 			e.preventDefault();
-			if (!texts[0]) {
-				addText(-1, "");
-				console.log("test");
-			} else {
-				setNextIndex(0);
-				setCursorMove(!cursorMove);
-			}
+			addText(-1, "");
+			// } else {
+			// 	setNextIndex(0);
+			// 	setCursorMove(!cursorMove);
+			// }
 		}
 	};
 
@@ -121,7 +123,6 @@ const Editor = (props: any) => {
 						id="text-1"
 						className="title-input"
 						placeholder="Untitled"
-						autoFocus={true}
 						value={title_ ? title_ : ""}
 						onChange={(e) => updateTitle(e.target.value)}
 						onKeyDown={(e) => focusDown(e)}

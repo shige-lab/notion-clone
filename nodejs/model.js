@@ -5,7 +5,7 @@ const pageSchema = new Schema({
 	note: {
 		title: {
 			type: String,
-			required: true,
+			required: false,
 		},
 		id: {
 			type: String,
