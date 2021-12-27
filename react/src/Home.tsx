@@ -218,11 +218,13 @@ const Home = (props: any) => {
 										<Content
 											index={index}
 											key={index}
+											note={note}
 											title={note.note.title}
 											selectNote={select}
 											deleteNote={deleteNote}
 											duplicateNote={duplicateNote}
 											renameTitle={renameTitle}
+											url={location.pathname}
 										/>
 									}
 								</>

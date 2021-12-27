@@ -8,6 +8,7 @@ const Content = (props: any) => {
 	const title = props.title;
 	const [_title, setTitle] = useState(title);
 	const [nonDisplay, setNonDisplay] = useState(true);
+	const [isSelect, setIsSelect] = useState(false);
 	const isFirstRender = useRef(false);
 	const [update] = useDebounce(_title, 1000);
 	const [input, setInput] = useState(false);
@@ -15,10 +16,21 @@ const Content = (props: any) => {
 		menu_block: true,
 		nonDisplay: nonDisplay,
 	});
+	const selectedClass = classNames({
+		selected: isSelect,
+	});
 
 	useEffect(() => {
 		isFirstRender.current = true;
 	}, []);
+
+	useEffect(() => {
+		if (props.note._id && props.url.includes(props.note._id)) {
+			setIsSelect(props.url);
+			setIsSelect(true);
+			console.log(true);
+		} else setIsSelect(false);
+	}, [props.url]);
 
 	useEffect(() => {
 		if (isFirstRender.current) {
@@ -58,7 +70,7 @@ const Content = (props: any) => {
 	};
 	return (
 		<div
-			className="list-block"
+			className={"list-block " + selectedClass}
 			onMouseEnter={() => setNonDisplay(false)}
 			onMouseLeave={() => setNonDisplay(true)}
 		>

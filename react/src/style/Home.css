@@ -408,6 +408,10 @@
   visibility: hidden;
 }
 
+.selected {
+  background-color: #D3D1CB;
+}
+
 .hover-gray:hover {
   background-color: #D3D1CB;
 }
