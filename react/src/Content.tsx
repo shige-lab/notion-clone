@@ -12,6 +12,7 @@ const Content = (props: any) => {
 	const isFirstRender = useRef(false);
 	const [update] = useDebounce(_title, 1000);
 	const [input, setInput] = useState(false);
+	const notesURL = "http://localhost:3000/notes/";
 	const isMouseOver = classNames({
 		nonDisplay: nonDisplay,
 	});
@@ -46,6 +47,7 @@ const Content = (props: any) => {
 
 	const deleteNote = () => {
 		props.deleteNote(props.index);
+		copyUrl();
 	};
 
 	const renameTitle = (title: string) => {
@@ -61,6 +63,14 @@ const Content = (props: any) => {
 		props.duplicateNote(props.index);
 	};
 
+	const copyUrl = () => {
+		const element = document.createElement("input");
+		element.value = notesURL + props.note._id;
+		document.body.appendChild(element);
+		element.select();
+		document.execCommand("copy");
+		document.body.removeChild(element);
+	};
 	const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		if (e.key === "Enter" && !e.shiftKey) {
 			e.preventDefault();
@@ -83,6 +93,7 @@ const Content = (props: any) => {
 				delete={deleteNote}
 				duplicate={duplicateNote}
 				renameTitle={openInput}
+				copyUrl={copyUrl}
 				buttonClass="menu_block"
 				isMouseOver={isMouseOver}
 				// buttonClass={buttonClass}

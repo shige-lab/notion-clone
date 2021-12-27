@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { IoEllipsisHorizontalSharp } from "react-icons/io5";
-import { DeleteMenu, RenameMenu, Duplicate } from "./MenuContent";
+import { DeleteMenu, RenameMenu, Duplicate, CopyUrl } from "./MenuContent";
 
 const SelectButton = (props: any) => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -33,10 +33,11 @@ const SelectButton = (props: any) => {
 					tabIndex={1}
 				>
 					<DeleteMenu delete={deleteNote} />
+					<Duplicate duplicate={props.duplicate} />
+					<CopyUrl copyUrl={props.copyUrl} />
 					{props.isRename && (
 						<RenameMenu renameTitle={props.renameTitle} />
 					)}
-					<Duplicate duplicate={props.duplicate} />
 				</div>
 			)}
 		</div>

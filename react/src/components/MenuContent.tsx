@@ -7,6 +7,7 @@ import { MdPlayArrow } from "react-icons/md";
 import { FaRegClone } from "react-icons/fa";
 import { HiPencilAlt } from "react-icons/hi";
 import { BsFillRecordFill } from "react-icons/bs";
+import { VscLink } from "react-icons/vsc";
 var classNames = require("classnames");
 
 export const LogoutMenu = () => {
@@ -27,6 +28,14 @@ export const DeleteMenu = (props: any) => {
 	);
 };
 
+export const CopyUrl = (props: any) => {
+	return (
+		<div className="menu-content hover-gray" onClick={props.copyUrl}>
+			<VscLink className="menu-content-icon" />
+			<div className="menu-content-text">Copy link</div>
+		</div>
+	);
+};
 export const DuplicateMenu = (props: any) => {
 	return (
 		<div className="menu-content hover-gray" onClick={props.duplicateText}>
