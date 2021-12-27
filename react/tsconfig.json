@@ -23,7 +23,7 @@
 		"node_modules/firebase.tsx",
 		"GetHtml.tsx",
 		"../nouse/old/Editor.tsx",
-		"src/Home.tsx",
+		"src/No.tsx",
 		"../nouse/old/Home1.tsx",
 		"../nouse/App.test.tsx",
 		"../nouse/react-app-env.d.ts",

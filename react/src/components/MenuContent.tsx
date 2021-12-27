@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { IoTrashOutline, IoPencilSharp } from "react-icons/io5";
+import { IoTrashOutline } from "react-icons/io5";
 import { GrLogout, GrPowerCycle } from "react-icons/gr";
 import { BiText, BiHeading } from "react-icons/bi";
 import { FcTodoList } from "react-icons/fc";
 import { MdPlayArrow } from "react-icons/md";
 import { FaRegClone } from "react-icons/fa";
+import { HiPencilAlt } from "react-icons/hi";
 var classNames = require("classnames");
 
 export const LogoutMenu = () => {
@@ -31,7 +32,7 @@ export const RenameMenu = (props: any) => {
 				className="menu-content hover-gray"
 				onClick={() => props.renameTitle(true)}
 			>
-				<IoPencilSharp className="menu-content-icon" />
+				<HiPencilAlt className="menu-content-icon" />
 				<div className="menu-content-text">Rename</div>
 			</div>
 		</>
