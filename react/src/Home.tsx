@@ -48,10 +48,9 @@ const Home = (props: any) => {
 				console.log("notesLength", docs.length);
 			});
 		});
-	}, []);
+	}, [userId]);
 
 	useEffect(() => {
-		console.log("1");
 		if (isFirstRender.current) {
 			isFirstRender.current = false;
 		} else {
@@ -103,7 +102,7 @@ const Home = (props: any) => {
 		// getNotes(userId).then((docs: any) => {
 		// 	const last = docs.slice(-1)[0];
 		// 	console.log(last);
-		// 	setNote(last);
+		// 	setNote(last)
 		// });
 	};
 
