@@ -28,6 +28,28 @@ const SignUp = (props: any) => {
 		});
 	}, [props.history]);
 
+	const toNext = (e: React.KeyboardEvent<HTMLInputElement>) => {
+		if (e.key === "Enter" && !e.shiftKey) {
+			const toNext = document.getElementById("password");
+			if (toNext) toNext.focus();
+		}
+	};
+
+	const submit = (e: React.KeyboardEvent<HTMLInputElement>) => {
+		if (e.key === "Enter" && !e.shiftKey) {
+			pushForm();
+		}
+	};
+
+	const pushForm = async () => {
+		try {
+			await auth.signInWithEmailAndPassword(email, password);
+			props.history.push("/notes");
+		} catch (error) {
+			alert(error);
+		}
+	};
+
 	return (
 		<Fragment>
 			<Container>
@@ -41,10 +63,14 @@ const SignUp = (props: any) => {
 									marginBottom: "0.5em",
 								}}
 								name="email"
+								id="email"
 								label="E-mail"
 								fullWidth
 								variant="outlined"
 								value={email}
+								onKeyDown={(
+									e: React.KeyboardEvent<HTMLInputElement>
+								) => toNext(e)}
 								onChange={(
 									event: React.ChangeEvent<HTMLInputElement>
 								) => {
@@ -60,10 +86,14 @@ const SignUp = (props: any) => {
 								}}
 								name="password"
 								label="Password"
+								id="password"
 								fullWidth
 								variant="outlined"
 								type="password"
 								value={password}
+								onKeyDown={(
+									e: React.KeyboardEvent<HTMLInputElement>
+								) => submit(e)}
 								onChange={(
 									event: React.ChangeEvent<HTMLInputElement>
 								) => {
@@ -74,20 +104,7 @@ const SignUp = (props: any) => {
 						<FormControl fullWidth>
 							<Button
 								fullWidth
-								onClick={async () => {
-									try {
-										// Firebaseにユーザーを作成する
-										await auth.createUserWithEmailAndPassword(
-											email,
-											password
-										);
-										// sendSignInLinkToEmail() を利用すると、メールアドレス認証のためのメールを送信することも可能
-										props.history.push("/notes");
-									} catch (error) {
-										// ユーザー作成が失敗するとその内容をアラート表示
-										alert(error);
-									}
-								}}
+								onClick={pushForm}
 								style={{
 									marginTop: "0.5em",
 									marginBottom: "0.5em",
