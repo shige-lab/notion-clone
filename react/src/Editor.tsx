@@ -116,6 +116,7 @@ const Editor = (props: any) => {
 				<SelectButton
 					delete={_deleteNote}
 					duplicate={duplicateNote}
+					isRename={false}
 					// renameTitle={openInput}
 					buttonClass="button-note-bar"
 					menuClass="menu-note-bar"

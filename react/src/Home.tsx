@@ -184,57 +184,65 @@ const Home = (props: any) => {
 						onMouseLeave={() => setNonDisplay(true)}
 					>
 						<div className="sidebar-flame">
-							<div className="hover-gray">
-								<div
-									className="logout"
-									onClick={async (event) => {
-										try {
-											await auth.signOut();
-											props.history.push("/login");
-										} catch (error) {
-											alert(error);
+							<div className="sidebar-before-list">
+								<div className="hover-gray">
+									<div
+										className="logout"
+										onClick={async (event) => {
+											try {
+												await auth.signOut();
+												props.history.push("/login");
+											} catch (error) {
+												alert(error);
+											}
+										}}
+										style={{
+											marginTop: "0.5em",
+											marginBottom: "0.5em",
+										}}
+									>
+										<LogoutMenu />
+									</div>
+									<div
+										className={
+											sidebar_buttonClass + " hover-gray"
 										}
-									}}
-									style={{
-										marginTop: "0.5em",
-										marginBottom: "0.5em",
-									}}
-								>
-									<LogoutMenu />
+										onClick={setSidebarDisplay}
+									>
+										<GrMenu />
+									</div>
 								</div>
-								<div
-									className={
-										sidebar_buttonClass + " hover-gray"
-									}
-									onClick={setSidebarDisplay}
-								>
-									<GrMenu />
-								</div>
+								<div className="category">PRIVATE</div>
 							</div>
-							<div className="category">PRIVATE</div>
-							{notes.map((note, index) => (
-								<>
-									{
-										<Content
-											index={index}
-											key={index}
-											note={note}
-											title={note.note.title}
-											selectNote={select}
-											deleteNote={deleteNote}
-											duplicateNote={duplicateNote}
-											renameTitle={renameTitle}
-											url={location.pathname}
-										/>
-									}
-								</>
-							))}
-							<div
-								className="list-block add-a-page"
-								onClick={HandleOnclick}
-							>
-								<BsPlusLg />
-								<div className="list">Add a page</div>
+							<div className="list-flame">
+								<div className="list-filed">
+									{notes.map((note, index) => (
+										<>
+											{
+												<Content
+													index={index}
+													key={index}
+													note={note}
+													title={note.note.title}
+													selectNote={select}
+													deleteNote={deleteNote}
+													duplicateNote={
+														duplicateNote
+													}
+													renameTitle={renameTitle}
+													url={location.pathname}
+												/>
+											}
+										</>
+									))}
+									<div
+										className="list-block add-a-page"
+										onClick={HandleOnclick}
+									>
+										<BsPlusLg />
+										<div className="list">Add a page</div>
+									</div>
+								</div>
 							</div>
 						</div>
 						<div

@@ -85,6 +85,7 @@ const Content = (props: any) => {
 				duplicate={duplicateNote}
 				renameTitle={openInput}
 				buttonClass={buttonClass}
+				isRename={true}
 				menuClass="menu-sidebar"
 			/>
 			{input && (

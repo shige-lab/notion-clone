@@ -17,6 +17,7 @@
   /* flex-grow: 0; */
   /* text-align: center; */
 }
+
 .home-header {
   text-align: center;
   font-size: 50px;
@@ -26,7 +27,6 @@
   /* line-height: 30%; */
   /* margin-top: 10px; */
 }
-
 
 .logout {
   /* margin-left: auto; */
@@ -73,7 +73,7 @@
 }
 
 .sidebar_button_open {
-  left: 200px
+  left: 200px;
 }
 
 /* .sidebar_button_open:hover {
@@ -95,21 +95,39 @@
 
 .sidebar-flame {
   margin-left: 10px;
+  display: flex;
+  flex-direction: column;
 }
+
+.sidebar-before-list {
+  height: 105px;
+}
+
+.list-flame {
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  height: calc(100vh - 150px);
+}
+
+.list-field {
+}
+
 .list-block {
   display: flex;
-  margin-top: 10px;
+  margin-top: 7px;
+  width: 230px;
   align-items: center;
   cursor: pointer;
   font-size: 16px;
 }
+
 .list {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  width: 200px;
+  width: 190px;
   margin-left: 7px;
-  
 }
 
 .add-a-page {
@@ -138,7 +156,6 @@
 }
 
 .sidebar-bottom {
-
   /* display: flex; */
   width: 240px;
   height: 45px;
@@ -147,7 +164,6 @@
   margin-top: auto;
   margin-bottom: 5px;
   box-shadow: rgb(55 53 47 / 9%) 0px -1px 0px;
-  
 }
 
 .sidebar-bottom-new-page {
@@ -295,10 +311,9 @@
   width: 20px;
 }
 
-.menu-block {
+.menu_block {
   margin-left: auto;
-  margin-right: 0px;
-  /* background: rgb(247, 246, 243); */
+  margin-right: 10px;
 }
 
 .button {
@@ -374,9 +389,6 @@
   /* position: absolute; */
   position: fixed;
 }
-
-
-
 
 .header{
   font-size: 10px;
