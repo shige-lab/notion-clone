@@ -21,7 +21,9 @@ const SelectButton = (props: any) => {
 				className={"button button-sidebar"}
 				onClick={() => setIsOpen(isOpen ? false : true)}
 			>
-				<IoEllipsisHorizontalSharp />
+				<div className={props.isMouseOver}>
+					<IoEllipsisHorizontalSharp />
+				</div>
 			</button>
 			{isOpen && (
 				<div

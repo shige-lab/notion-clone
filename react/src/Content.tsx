@@ -12,8 +12,7 @@ const Content = (props: any) => {
 	const isFirstRender = useRef(false);
 	const [update] = useDebounce(_title, 1000);
 	const [input, setInput] = useState(false);
-	const buttonClass = classNames({
-		menu_block: true,
+	const isMouseOver = classNames({
 		nonDisplay: nonDisplay,
 	});
 	const selectedClass = classNames({
@@ -84,7 +83,9 @@ const Content = (props: any) => {
 				delete={deleteNote}
 				duplicate={duplicateNote}
 				renameTitle={openInput}
-				buttonClass={buttonClass}
+				buttonClass="menu_block"
+				isMouseOver={isMouseOver}
+				// buttonClass={buttonClass}
 				isRename={true}
 				menuClass="menu-sidebar"
 			/>
