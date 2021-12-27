@@ -77,6 +77,7 @@ const Content = (props: any) => {
 			setInput(false);
 		}
 	};
+
 	return (
 		<div
 			className={"list-block " + selectedClass}

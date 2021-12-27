@@ -32,7 +32,7 @@ export const CopyUrl = (props: any) => {
 	return (
 		<div className="menu-content hover-gray" onClick={props.copyUrl}>
 			<VscLink className="menu-content-icon" />
-			<div className="menu-content-text">Copy link</div>
+			<div className="menu-content-text">Copy link to block</div>
 		</div>
 	);
 };
@@ -84,7 +84,7 @@ export const TurnIntoMenu = (props: any) => {
 			>
 				<GrPowerCycle className="menu-content-icon" />
 				<div className="menu-content-text">Turn into</div>
-				<MdPlayArrow style={{ color: "rgba(55, 53, 47, 0.6)" }} />
+				<MdPlayArrow className="arrow" />
 				<div className={"menu " + turnIntoClass}>
 					<div
 						className="menu-content hover-gray"
