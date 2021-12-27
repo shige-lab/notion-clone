@@ -6,6 +6,7 @@ import { FcTodoList } from "react-icons/fc";
 import { MdPlayArrow } from "react-icons/md";
 import { FaRegClone } from "react-icons/fa";
 import { HiPencilAlt } from "react-icons/hi";
+import { BsFillRecordFill } from "react-icons/bs";
 var classNames = require("classnames");
 
 export const LogoutMenu = () => {
@@ -100,6 +101,13 @@ export const TurnIntoMenu = (props: any) => {
 					>
 						<FcTodoList className="menu-content-icon" />
 						<div className="menu-content-text">To-do list</div>
+					</div>
+					<div
+						className="menu-content hover-gray"
+						onClick={props.toBullet}
+					>
+						<BsFillRecordFill className="menu-content-icon" />
+						<div className="menu-content-text">Bulleted list</div>
 					</div>
 				</div>
 			</div>

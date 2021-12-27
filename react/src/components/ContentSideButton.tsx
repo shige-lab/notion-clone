@@ -42,6 +42,10 @@ const ContentSideButton = (props: any) => {
 		setIsOpen(false);
 		props.toTodo();
 	};
+	const toBullet = () => {
+		setIsOpen(false);
+		props.toBullet();
+	};
 
 	return (
 		<>
@@ -68,6 +72,7 @@ const ContentSideButton = (props: any) => {
 						toHeader1={toHeader1}
 						toHeader2={toHeader2}
 						toHeader3={toHeader3}
+						toBullet={toBullet}
 						toTodo={toTodo}
 					/>
 				</div>

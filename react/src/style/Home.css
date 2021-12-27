@@ -254,17 +254,18 @@
   margin-left: -20px;
   margin-right: 13px;
   margin-top: 3px;
-  color: rgba(55, 53, 47, 0.6);;
+  color: rgba(55, 53, 4
+  7, 0.6);;
 }
 
 .menu-for-header1Text {
-  margin-top: 11px;
+  margin-top: 43px;
 }
 .menu-for-header2Text {
-  margin-top: 9px;
+  margin-top: 31px;
 }
 .menu-for-header3Text {
-  margin-top: 6px;
+  margin-top: 22px;
 }
 
 .text-input {
@@ -278,16 +279,22 @@
 .header1Text {
   font-size: 30px;
   font-weight: bold;
+  margin-top: 32px;
+  margin-bottom: 4px;
 }
 
 .header2Text {
   font-size: 25px;
   font-weight: bold;
+  margin-top: 22px;
+  margin-bottom: 1px;
 }
 
 .header3Text {
   font-size: 20px;
   font-weight: bold;
+  margin-top: 16px;
+  margin-bottom: 1px;
 }
 
 .divText {
@@ -295,6 +302,10 @@
 }
 
 .todo {
+  font-size: 17px;
+}
+
+.bullet {
   font-size: 17px;
 }
 
@@ -403,13 +414,14 @@
 
 .turn_into {
   margin-left: 155px;
+  height: 230px;
   position: fixed;
 }
 
 
 .not-found {
   /* margin-right: auto; */;
-  margin-top: 40%;
+  margin-top: 30%;
   text-align: center;
   font-size: 30px;
   font-weight: bold;

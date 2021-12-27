@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, createRef } from "react";
 import ContentEditable from "react-contenteditable";
 import ContentSideButton from "./components/ContentSideButton";
 import { TurnInto } from "./components/MenuContent";
+import { BsFillRecordFill } from "react-icons/bs";
 // import { TextButton } from "./components/TextButton";
 var classNames = require("classnames");
 
@@ -16,6 +17,7 @@ const EditorContent = (props: any) => {
 	const classTag = props.html.class;
 	const [textClass, setTextClass] = useState(classTag);
 	const [todo, setTodo] = useState(false);
+	const [bullet, setBullet] = useState(false);
 	const [openMenu, setOpenMenu] = useState(false);
 	const isFirstRender = useRef(false);
 	// console.log(props.index);
@@ -29,12 +31,14 @@ const EditorContent = (props: any) => {
 			isFirstRender.current = false;
 		} else {
 			console.log("useEffect for class");
+			setBullet(false);
 			props.onChange(props.html.text, props.index, textClass);
 		}
 	}, [textClass]);
 
 	useEffect(() => {
 		setTextClass(classTag);
+		if (classTag === "bullet") setBullet(true);
 		if (classTag.includes("todo")) setTodo(true);
 		else setTodo(false);
 	}, [classTag]);
@@ -47,17 +51,21 @@ const EditorContent = (props: any) => {
 	const focusDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		if (e.key === "Enter" && !e.shiftKey) {
 			e.preventDefault();
-			props.addText(props.index, textClass);
+			if (classTag != "divText" && !props.html.text) {
+				toText();
+			} else props.addText(props.index, textClass);
 		}
 		if (e.key === "Backspace" && !props.html.text) {
 			console.log("delete text");
 			e.preventDefault();
-			props.deleteText(props.index);
+			if (classTag != "divText") toText();
+			else props.deleteText(props.index);
 		}
 		if (e.key === "/") setOpenMenu(true);
 	};
 
 	const toText = () => {
+		// setBullet(false);
 		setTextClass("divText");
 	};
 	const toHeader1 = () => {
@@ -69,9 +77,11 @@ const EditorContent = (props: any) => {
 	const toHeader3 = () => {
 		setTextClass("header3Text");
 	};
-
 	const toTodo = () => {
 		setTextClass("todo");
+	};
+	const toBullet = () => {
+		setTextClass("bullet");
 	};
 
 	const deleteText = () => {
@@ -98,6 +108,7 @@ const EditorContent = (props: any) => {
 					toHeader2={toHeader2}
 					toHeader3={toHeader3}
 					toTodo={toTodo}
+					toBullet={toBullet}
 					deleteText={deleteText}
 				/>
 				{todo && (
@@ -107,6 +118,11 @@ const EditorContent = (props: any) => {
 						className="todo-checkbox"
 						type="checkbox"
 						checked={textClass == "todo" ? false : true}
+					/>
+				)}
+				{bullet && (
+					<BsFillRecordFill
+						style={{ marginTop: "3px", marginRight: "5px" }}
 					/>
 				)}
 				<ContentEditable

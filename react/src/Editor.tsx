@@ -76,6 +76,7 @@ const Editor = (props: any) => {
 	const addText = async (index: number, textClass: string) => {
 		let className = "divText";
 		if (textClass.includes("todo")) className = "todo";
+		if (textClass === "bullet") className = "bullet";
 		const newBody = texts;
 		await newBody.splice(index + 1, 0, { text: "", class: className });
 		setTexts(newBody);
