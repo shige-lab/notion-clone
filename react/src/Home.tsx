@@ -59,17 +59,16 @@ const Home = (props: any) => {
 			else {
 				var isExist = false;
 				notes.map((note: any) => {
-					if (location.pathname == "/notes/" + note._id)
+					if (location.pathname === "/notes/" + note._id)
 						isExist = true;
 				});
-				if (!isExist) {
+				if (!isExist || selectIndex) {
 					props.history.push("/notes/" + notes[selectIndex]._id);
 					console.log("page changed");
 				}
 			}
 		}
 	}, [notes]);
-
 	const HandleOnclick = () => {
 		newNote("");
 	};
@@ -221,7 +220,7 @@ const Home = (props: any) => {
 											{
 												<Content
 													index={index}
-													key={index}
+													key={note._id}
 													note={note}
 													title={note.note.title}
 													selectNote={select}
@@ -258,12 +257,12 @@ const Home = (props: any) => {
 						</div>
 					</div>
 					<Switch>
-						{notes.map((array, index) => (
-							<Route exact path={"/notes/" + array._id}>
+						{notes.map((note, index) => (
+							<Route exact path={"/notes/" + note._id}>
 								<Editor
 									index={index}
-									key={index}
-									note={array}
+									key={note._id}
+									note={note}
 									noteUpdate={updateEditor}
 									deleteNote={deleteNote}
 									duplicateNote={duplicateNote}

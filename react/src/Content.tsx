@@ -29,7 +29,7 @@ const Content = (props: any) => {
 			setIsSelect(true);
 			console.log(true);
 		} else setIsSelect(false);
-	}, [props.url]);
+	}, [props.url, props.note._id]);
 
 	useEffect(() => {
 		if (isFirstRender.current) {

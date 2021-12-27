@@ -51,14 +51,14 @@ const EditorContent = (props: any) => {
 	const focusDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		if (e.key === "Enter" && !e.shiftKey) {
 			e.preventDefault();
-			if (classTag != "divText" && !props.html.text) {
+			if (classTag !== "divText" && !props.html.text) {
 				toText();
 			} else props.addText(props.index, textClass);
 		}
 		if (e.key === "Backspace" && !props.html.text) {
 			console.log("delete text");
 			e.preventDefault();
-			if (classTag != "divText") toText();
+			if (classTag !== "divText") toText();
 			else props.deleteText(props.index);
 		}
 		if (e.key === "/") setOpenMenu(true);
@@ -117,7 +117,7 @@ const EditorContent = (props: any) => {
 						// onClick={handleTodo}
 						className="todo-checkbox"
 						type="checkbox"
-						checked={textClass == "todo" ? false : true}
+						checked={textClass === "todo" ? false : true}
 					/>
 				)}
 				{bullet && (

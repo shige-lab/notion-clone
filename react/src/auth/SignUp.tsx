@@ -26,7 +26,7 @@ const SignUp = (props: any) => {
 			// ログインしている場合、ホームへリダイレクト
 			user && props.history.push("/notes");
 		});
-	}, []);
+	}, [props.history]);
 
 	return (
 		<Fragment>

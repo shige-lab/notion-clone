@@ -20,7 +20,7 @@ const Login = (props: any) => {
 		auth.onAuthStateChanged((user) => {
 			user && props.history.push("/notes");
 		});
-	}, []);
+	}, [props.history]);
 
 	return (
 		<Fragment>
