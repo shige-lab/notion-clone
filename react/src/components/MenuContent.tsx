@@ -26,6 +26,16 @@ export const DeleteMenu = (props: any) => {
 		</div>
 	);
 };
+
+export const DuplicateMenu = (props: any) => {
+	return (
+		<div className="menu-content hover-gray" onClick={props.duplicateText}>
+			<FaRegClone className="menu-content-icon" />
+			<div className="menu-content-text">Duplicate</div>
+		</div>
+	);
+};
+
 export const RenameMenu = (props: any) => {
 	return (
 		<>

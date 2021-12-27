@@ -1,5 +1,10 @@
 import { useEffect, useState, useRef } from "react";
-import { DeleteMenu, TurnIntoMenu } from "./MenuContent";
+import {
+	DeleteMenu,
+	Duplicate,
+	DuplicateMenu,
+	TurnIntoMenu,
+} from "./MenuContent";
 import { IoApps } from "react-icons/io5";
 
 const ContentSideButton = (props: any) => {
@@ -19,6 +24,11 @@ const ContentSideButton = (props: any) => {
 	const deleteText = () => {
 		setIsOpen(false);
 		props.deleteText();
+	};
+
+	const duplicateText = () => {
+		setIsOpen(false);
+		props.duplicateText();
 	};
 
 	const toText = () => {
@@ -66,6 +76,7 @@ const ContentSideButton = (props: any) => {
 						// change={handleChange}
 						delete={deleteText}
 					/>
+					<DuplicateMenu duplicateText={duplicateText} />
 					<TurnIntoMenu
 						// change={handleChange}
 						toText={toText}

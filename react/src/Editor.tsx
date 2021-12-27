@@ -73,12 +73,12 @@ const Editor = (props: any) => {
 		props.deleteNote(props.index);
 	};
 
-	const addText = async (index: number, textClass: string) => {
+	const addText = (index: number, textClass: string) => {
 		let className = "divText";
 		if (textClass.includes("todo")) className = "todo";
 		if (textClass === "bullet") className = "bullet";
 		const newBody = texts;
-		await newBody.splice(index + 1, 0, { text: "", class: className });
+		newBody.splice(index + 1, 0, { text: "", class: className });
 		setTexts(newBody);
 		console.log("add text");
 		setNextIndex(index + 1);
@@ -86,12 +86,20 @@ const Editor = (props: any) => {
 		setIsUpdate(isUpdate + 1);
 	};
 
-	const deleteText = async (index: number) => {
+	const deleteText = (index: number) => {
 		const newBody = texts;
 		newBody.splice(index, 1);
-		await setTexts(newBody);
+		setTexts(newBody);
 		const previousText = document.getElementById("text" + (index - 1));
 		if (previousText) previousText.focus();
+		setIsUpdate(isUpdate + 1);
+	};
+
+	const duplicateText = (text: string, index: number, textClass: string) => {
+		const newBody = texts;
+		newBody.splice(index + 1, 0, { text: text, class: textClass });
+		setTexts(newBody);
+		console.log("add text");
 		setIsUpdate(isUpdate + 1);
 	};
 
@@ -155,6 +163,7 @@ const Editor = (props: any) => {
 									html={text}
 									addText={addText}
 									deleteText={deleteText}
+									duplicateText={duplicateText}
 								/>
 							)
 						);

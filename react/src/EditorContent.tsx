@@ -88,6 +88,10 @@ const EditorContent = (props: any) => {
 		props.deleteText(ref.current, props.index);
 	};
 
+	const duplicateText = () => {
+		props.duplicateText(props.html.text, props.index, textClass);
+	};
+
 	const handleTodo = () => {
 		if (classTag === "todo") setTextClass("todo-done");
 		else if (classTag === "todo-done") setTextClass("todo");
@@ -110,6 +114,7 @@ const EditorContent = (props: any) => {
 					toTodo={toTodo}
 					toBullet={toBullet}
 					deleteText={deleteText}
+					duplicateText={duplicateText}
 				/>
 				{todo && (
 					<input
