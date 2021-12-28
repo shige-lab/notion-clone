@@ -97,15 +97,15 @@ const Home = (props: any) => {
 	};
 
 	const updateEditor = async (_title: string, contents: any, id: string) => {
+		console.log("try update");
 		_updateEditor(_title, contents, id).then((note: any) => {
 			console.log(note);
+			const newNotes = notes.slice();
+			newNotes[selectIndex].note.title = _title;
+			newNotes[selectIndex].note.body = contents;
+			setNotes(newNotes);
+			console.log("finish update");
 		});
-		const newNotes = notes.slice();
-		newNotes[selectIndex].note.title = _title;
-		newNotes[selectIndex].note.body = contents;
-		console.log("try update");
-		setNotes(newNotes);
-		console.log("finish update");
 	};
 
 	const deleteNote = async (index: number) => {
@@ -121,15 +121,15 @@ const Home = (props: any) => {
 		setNotes(newNotes);
 	};
 	const renameTitle = async (index: number, title: string) => {
-		const note = notes[index];
-		console.log("rename");
-		await _updateEditor(title, note.note.body, note._id);
-		const newNotes = notes.slice();
-		newNotes[index].note.title = title;
-		newNotes[index].note.body = note.note.body;
 		console.log("try rename");
-		setNotes(newNotes);
-		console.log("finish rename");
+		const note = notes[index];
+		_updateEditor(title, note.note.body, note._id).then((note: any) => {
+			const newNotes = notes.slice();
+			newNotes[index].note.title = title;
+			newNotes[index].note.body = note.note.body;
+			setNotes(newNotes);
+			console.log("finish rename");
+		});
 	};
 
 	const duplicateNote = async (index: number) => {
@@ -139,12 +139,14 @@ const Home = (props: any) => {
 			body: note.note.body,
 			userId: userId,
 		};
-		await createNote(duplicate).then((duplicate: any) => {
+		createNote(duplicate).then((duplicate: any) => {
+			console.log("try create");
 			const newNotes = notes.slice(0, notes.length);
 			newNotes.push(duplicate);
 			setSelectIndex(noteCount);
 			setNoteCount(noteCount + 1);
 			setNotes(newNotes);
+			console.log("finish create");
 		});
 	};
 
