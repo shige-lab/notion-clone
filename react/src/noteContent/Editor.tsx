@@ -2,8 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import EditorContent from "./EditorContent";
 import SelectButton from "../components/SelectButton";
 import { useDebounce } from "use-debounce";
-// import { TextButton } from "../components/TextButton";
-// import ContentEditable from "react-contenteditable";
 
 const Editor = (props: any) => {
 	const noteUpdate = props.noteUpdate;
@@ -53,11 +51,9 @@ const Editor = (props: any) => {
 		}
 	}, [cursorMove]);
 
-	const updateTitle = async (t: string) => {
-		await setTitle_(t);
+	const updateTitle = (t: string) => {
+		setTitle_(t);
 		setIsUpdate(isUpdate + 1);
-		// update(t, texts);
-		// console.log(title_);
 	};
 	const updateBody = (content: string, index: number, tag: string) => {
 		const newBody = texts;
@@ -65,8 +61,6 @@ const Editor = (props: any) => {
 		newBody[index].class = tag;
 		setTexts(newBody);
 		setIsUpdate(isUpdate + 1);
-		// console.log(texts);
-		// update(title, content);
 	};
 
 	const _deleteNote = () => {
@@ -107,10 +101,6 @@ const Editor = (props: any) => {
 		if (e.key === "Enter" && !e.shiftKey) {
 			e.preventDefault();
 			addText(-1, "");
-			// } else {
-			// 	setNextIndex(0);
-			// 	setCursorMove(!cursorMove);
-			// }
 		}
 	};
 
@@ -126,7 +116,6 @@ const Editor = (props: any) => {
 					delete={_deleteNote}
 					duplicate={duplicateNote}
 					isRename={false}
-					// renameTitle={openInput}
 					buttonClass="button-note-bar"
 					menuClass="menu-note-bar"
 				/>
@@ -155,7 +144,6 @@ const Editor = (props: any) => {
 						return (
 							text && (
 								<EditorContent
-									// ref={ref}
 									index={index}
 									key={index}
 									onChange={updateBody}

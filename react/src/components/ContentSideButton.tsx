@@ -1,15 +1,8 @@
 import { useEffect, useState, useRef } from "react";
-import {
-	DeleteMenu,
-	Duplicate,
-	DuplicateMenu,
-	TurnIntoMenu,
-} from "./MenuContent";
+import { DeleteMenu, DuplicateMenu, TurnIntoMenu } from "./MenuContent";
 import { IoApps } from "react-icons/io5";
 
 const ContentSideButton = (props: any) => {
-	// 	const deleteNote = props.delete;
-
 	const [isOpen, setIsOpen] = useState(false);
 	const menuRef: any = useRef();
 
@@ -72,13 +65,9 @@ const ContentSideButton = (props: any) => {
 					ref={menuRef}
 					tabIndex={1}
 				>
-					<DeleteMenu
-						// change={handleChange}
-						delete={deleteText}
-					/>
+					<DeleteMenu delete={deleteText} />
 					<DuplicateMenu duplicateText={duplicateText} />
 					<TurnIntoMenu
-						// change={handleChange}
 						toText={toText}
 						toHeader1={toHeader1}
 						toHeader2={toHeader2}
@@ -88,7 +77,6 @@ const ContentSideButton = (props: any) => {
 					/>
 				</div>
 			)}
-			{/* </SplitButton> */}
 		</>
 	);
 };

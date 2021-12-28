@@ -3,12 +3,10 @@ import ContentEditable from "react-contenteditable";
 import ContentSideButton from "../components/ContentSideButton";
 import { TurnInto } from "../components/MenuContent";
 import { BsFillRecordFill } from "react-icons/bs";
-// import { TextButton } from "./components/TextButton";
 var classNames = require("classnames");
 
 const EditorContent = (props: any) => {
 	let ref = createRef<HTMLDivElement>();
-	// let ref = useRef(null);
 	const [nonDisplay, setNonDisplay] = useState(true);
 	const contentButtonClass = classNames({
 		text_button: true,
@@ -20,7 +18,6 @@ const EditorContent = (props: any) => {
 	const [bullet, setBullet] = useState(false);
 	const [openMenu, setOpenMenu] = useState(false);
 	const isFirstRender = useRef(false);
-	// console.log(props.index);
 
 	useEffect(() => {
 		isFirstRender.current = true;
@@ -65,7 +62,6 @@ const EditorContent = (props: any) => {
 	};
 
 	const toText = () => {
-		// setBullet(false);
 		setTextClass("divText");
 	};
 	const toHeader1 = () => {
@@ -119,7 +115,6 @@ const EditorContent = (props: any) => {
 				{todo && (
 					<input
 						onChange={handleTodo}
-						// onClick={handleTodo}
 						className="todo-checkbox"
 						type="checkbox"
 						checked={textClass === "todo" ? false : true}
@@ -133,7 +128,6 @@ const EditorContent = (props: any) => {
 				<ContentEditable
 					className={"text-input " + textClass}
 					innerRef={ref}
-					// innerRef={props.value}
 					html={props.html.text}
 					disabled={false}
 					tagName="div"

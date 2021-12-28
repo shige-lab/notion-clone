@@ -24,7 +24,6 @@ const CreateNote = (props: any) => {
 				<div>
 					<input
 						type="text"
-						//   className={newNoteInput}
 						placeholder="note title"
 						value={title}
 						onChange={(
