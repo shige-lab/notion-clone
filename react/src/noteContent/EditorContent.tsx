@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, createRef } from "react";
 import ContentEditable from "react-contenteditable";
-import ContentSideButton from "./components/ContentSideButton";
-import { TurnInto } from "./components/MenuContent";
+import ContentSideButton from "../components/ContentSideButton";
+import { TurnInto } from "../components/MenuContent";
 import { BsFillRecordFill } from "react-icons/bs";
 // import { TextButton } from "./components/TextButton";
 var classNames = require("classnames");

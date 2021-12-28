@@ -110,4 +110,6 @@ yarn-debug.log*
 yarn-error.log*
 
 .vscode
+react-app-env.d.ts
+reportWebVitals.ts
 

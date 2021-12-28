@@ -1,10 +1,10 @@
-import SelectButton from "./components/SelectButton";
+import SelectButton from "../components/SelectButton";
 import { useState, useRef, useEffect } from "react";
 import { GrNotes } from "react-icons/gr";
 import { useDebounce } from "use-debounce";
 var classNames = require("classnames");
 
-const Content = (props: any) => {
+const NoteList = (props: any) => {
 	const title = props.title;
 	const [_title, setTitle] = useState(title);
 	const [nonDisplay, setNonDisplay] = useState(true);
@@ -115,4 +115,4 @@ const Content = (props: any) => {
 	);
 };
 
-export default Content;
+export default NoteList;

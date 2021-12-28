@@ -2,8 +2,8 @@ import "./style/Home.css";
 import { Fragment, useEffect, useState, useRef } from "react";
 import { Route, Switch, useHistory, useLocation } from "react-router-dom";
 import { auth } from "./auth/firebase";
-import Content from "./Content";
-import Editor from "./Editor";
+import NoteList from "./sidebar/NoteList";
+import Editor from "./noteContent/Editor";
 import {
 	getNotes,
 	_updateEditor,
@@ -203,7 +203,7 @@ const Home = (props: any) => {
 									{notes.map((note, index) => (
 										<>
 											{
-												<Content
+												<NoteList
 													index={index}
 													key={note._id}
 													note={note}
@@ -256,7 +256,6 @@ const Home = (props: any) => {
 								/>
 							</Route>
 						))}
-						{/* <Route>{props.history.push("/a")}</Route> */}
 					</Switch>
 				</div>
 			</div>

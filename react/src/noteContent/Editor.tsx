@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import EditorContent from "./EditorContent";
-import SelectButton from "./components/SelectButton";
+import SelectButton from "../components/SelectButton";
 import { useDebounce } from "use-debounce";
 // import { TextButton } from "../components/TextButton";
 // import ContentEditable from "react-contenteditable";
