@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 dotenv.config();
 
-const Page = require("./model");
+// const Page = require("./model");
 const Route = require("./route");
 
 app.use((req, res, next) => {
@@ -24,7 +24,6 @@ app.use(bodyParser.json());
 app.use("/", Route);
 
 const PORT = process.env.PORT || 3000;
-// const PORT = 8080;
 
 mongoose.connect(process.env.MONGO_URI, {
 	useNewUrlParser: true,

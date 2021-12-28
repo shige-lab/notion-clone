@@ -48,7 +48,7 @@ const Home = (props: any) => {
 				console.log("notesLength", docs.length);
 			});
 		});
-	}, [userId]);
+	}, [userId, props.history]);
 
 	useEffect(() => {
 		if (isFirstRender.current) {
@@ -172,7 +172,7 @@ const Home = (props: any) => {
 								<div className="hover-gray">
 									<div
 										className="logout"
-										onClick={async (event) => {
+										onClick={async () => {
 											try {
 												await auth.signOut();
 												props.history.push("/login");
