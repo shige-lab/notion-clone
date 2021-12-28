@@ -150,7 +150,7 @@
   display: flex;
   background: white;
   flex-direction:column;
-  width: 100%;
+  /* width: calc(100vw - 240px); */
   height: 100%;
   overflow: hidden;
 }
@@ -163,21 +163,27 @@
   align-items: center;
   
 }
-.note-field {
-  overflow: auto;
-  display: flex;
-  max-height: 100%;
-  height:  calc(100vh - 45px);
-  max-width: 100%;
-  flex-direction: column;
-}
 
 .bar-title {
   margin-left: 5%;
-  width: 240px;
+  width: 40%;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+}
+
+.note-field {
+  /* overflow: auto; */
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  max-height: 100%;
+  height:  calc(100vh - 45px);
+  /* max-width: 100%; */
+  flex-direction: column;
+  margin-left: 50px;
+  /* padding-left: 50px; */
+  margin-right: 90px;
 }
 
 .title-field {
@@ -191,7 +197,7 @@
   font-size: 40px;
   margin-top: 60px;
   font-weight: bold;
-  margin-left: 10%;
+    margin-left: 10%;
 }
 
 .text-block {

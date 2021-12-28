@@ -124,8 +124,9 @@ const Editor = (props: any) => {
 				className="note-field"
 				style={{
 					width: props.sidebar
-						? "calc(100vw - 300px)"
-						: "calc(100vw - 60px)",
+						? "calc(100vw - 380px)"
+						: //  : "100vw",
+						  "calc(100vw - 140px)",
 				}}
 			>
 				<div className="title-field">
