@@ -80,7 +80,6 @@ const Home = (props: any) => {
 
 	const newNote = async (title: string) => {
 		const content = { text: "", class: "divText" };
-		// const newBody = new Array(20).fill(text);
 		const note = {
 			title,
 			body: content,
@@ -91,22 +90,16 @@ const Home = (props: any) => {
 			const newNotes = notes.slice(0, notes.length);
 			newNotes.push(newNote);
 			setSelectIndex(noteCount);
-			// history.push("/notes/" + notes[0]._id);
 			setNoteCount(noteCount + 1);
 			setNotes(newNotes);
 			console.log("finish newNote");
 		});
-		// setSelectIndex(selectIndex + 1);
-		// setListUpdate(!listUpdate);
-		// getNotes(userId).then((docs: any) => {
-		// 	const last = docs.slice(-1)[0];
-		// 	console.log(last);
-		// 	setNote(last)
-		// });
 	};
 
 	const updateEditor = async (_title: string, contents: any, id: string) => {
-		await _updateEditor(_title, contents, id);
+		_updateEditor(_title, contents, id).then((note: any) => {
+			console.log(note);
+		});
 		const newNotes = notes.slice();
 		newNotes[selectIndex].note.title = _title;
 		newNotes[selectIndex].note.body = contents;
@@ -118,15 +111,14 @@ const Home = (props: any) => {
 	const deleteNote = async (index: number) => {
 		console.log("try delete");
 		_deleteNote(notes[index]).then((note: any) => {
+			console.log(note);
 			console.log("finish delete");
-			console.log(note.Message);
 		});
 		const newNotes = notes.slice(0, notes.length);
 		newNotes.splice(index, 1);
 		setNoteCount(noteCount - 1);
 		setSelectIndex(0);
 		setNotes(newNotes);
-		console.log("finish delete");
 	};
 	const renameTitle = async (index: number, title: string) => {
 		const note = notes[index];
@@ -157,15 +149,9 @@ const Home = (props: any) => {
 	};
 
 	const select = (index: number) => {
-		console.log("redirect");
 		setSelectIndex(index);
 		history.push("/notes/" + notes[index]._id);
-		// window.location.href = "/notes/" + notes[selectIndex]._id;
-		// history.push("/notes/" + notes[index]._id);
-		// setListUpdate(!listUpdate);
-		// window.location.reload();
-		// return <Redirect to={"/notes/" + notes[index]._id} />;
-		// window.location.href={"/notes/" + notes[index]._id};
+		console.log("redirect");
 	};
 
 	return (

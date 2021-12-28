@@ -24,51 +24,42 @@ const saveNote = async (req, res) => {
 };
 
 const updateNote = async (req, res) => {
-	const note = await Page.findById(req.body.id, function (err, docs) {
-		if (err) {
-			console.log(err);
-		} else {
-			console.log(docs._id);
-			docs.note.title = req.body.title;
-			docs.note.body = req.body.body;
-			console.log(docs.note.title);
-			docs.save();
-		}
-	});
+	// const note = await Page.findById(req.body.id, function (err, docs) {
+	// 	if (err) {
+	// 		console.log(err);
+	// 	} else {
+	// 		console.log(docs._id);
+	// 		docs.note.title = req.body.title;
+	// 		docs.note.body = req.body.body;
+	// 		console.log(docs.note.title);
+	// 		docs.save();
+	// 	}
+	// });
+	const note = await Page.findById(req.body.id);
+	if (note) {
+		note.note.title = req.body.title;
+		note.note.body = req.body.body;
+		note.save();
+	}
 	console.log(note);
 	res.json(note);
 };
 
 const deleteNote = async (req, res) => {
-	// Page.find({_id: req.body.id}, function (err, docs) {
-	// const note = Page.findById(req.body.id);
-	// console.log(note.note.title);
-	await Page.findByIdAndDelete(req.body.id, function (err) {
-		if (err) {
-			console.log(err);
-		}
-		console.log("delete");
-	});
-	// res.json("complete deleting");
-	res.status(200).json({
-		message: "Deleted page successfully.",
-	});
+	const response = await Page.findByIdAndDelete(req.body.id);
+	// const response = await Page.findByIdAndDelete(req.body.id, function (err) {
+	// 	if (err) {
+	// 		console.log(err);
+	// 	}
+	// 	console.log("delete");
+	// });
+	res.json(response);
+	// res.status(200).json({
+	// 	message: "Deleted page successfully.",
+	// });
 };
-
-// const duplicateNote = async (req, res) => {
-// 	console.log(req.body.note);
-// 	const duplicate = new Page({
-// 		note: req.body.note,
-// 	});
-
-// 	console.log(duplicate);
-// 	// const savedDuplicate = await duplicate.save();
-// 	console.log("complete duplicate");
-// 	// res.json(savedDuplicate);
-// };
 
 exports.getNotes = getNotes;
 exports.saveNote = saveNote;
 exports.updateNote = updateNote;
 exports.deleteNote = deleteNote;
-// exports.duplicateNote = duplicateNote;
