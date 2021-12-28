@@ -87,7 +87,6 @@ const Home = (props: any) => {
 			userId: userId,
 		};
 		console.log("try newNote");
-		console.log(note);
 		await createNote(note).then((newNote: any) => {
 			const newNotes = notes.slice(0, notes.length);
 			newNotes.push(newNote);
@@ -95,8 +94,8 @@ const Home = (props: any) => {
 			// history.push("/notes/" + notes[0]._id);
 			setNoteCount(noteCount + 1);
 			setNotes(newNotes);
+			console.log("finish newNote");
 		});
-		console.log("finish newNote");
 		// setSelectIndex(selectIndex + 1);
 		// setListUpdate(!listUpdate);
 		// getNotes(userId).then((docs: any) => {
@@ -119,7 +118,8 @@ const Home = (props: any) => {
 	const deleteNote = async (index: number) => {
 		console.log("try delete");
 		_deleteNote(notes[index]).then((note: any) => {
-			console.log(note);
+			console.log("finish delete");
+			console.log(note.Message);
 		});
 		const newNotes = notes.slice(0, notes.length);
 		newNotes.splice(index, 1);
@@ -127,8 +127,6 @@ const Home = (props: any) => {
 		setSelectIndex(0);
 		setNotes(newNotes);
 		console.log("finish delete");
-
-		// setListUpdate(!listUpdate);
 	};
 	const renameTitle = async (index: number, title: string) => {
 		const note = notes[index];

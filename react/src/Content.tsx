@@ -28,7 +28,6 @@ const Content = (props: any) => {
 		if (props.note._id && props.url.includes(props.note._id)) {
 			setIsSelect(props.url);
 			setIsSelect(true);
-			console.log(true);
 		} else setIsSelect(false);
 	}, [props.url, props.note._id]);
 
@@ -47,7 +46,6 @@ const Content = (props: any) => {
 
 	const deleteNote = () => {
 		props.deleteNote(props.index);
-		copyUrl();
 	};
 
 	const renameTitle = (title: string) => {

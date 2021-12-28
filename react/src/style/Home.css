@@ -31,7 +31,6 @@
 .logout-style {
   display: flex;
   margin-left: 8px;
-  
 }
 
 .sidebar {
@@ -82,9 +81,6 @@
   overflow-x: hidden;
   display: flex;
   height: calc(100vh - 150px);
-}
-
-.list-field {
 }
 
 .list-block {
