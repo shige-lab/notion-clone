@@ -95,7 +95,7 @@ const EditorContent = (props: any) => {
 
 	return (
 		<div
-			className="textField"
+			className="text-field"
 			onMouseEnter={() => setNonDisplay(false)}
 			onMouseLeave={() => setNonDisplay(true)}
 		>
@@ -122,7 +122,11 @@ const EditorContent = (props: any) => {
 				)}
 				{bullet && (
 					<BsFillRecordFill
-						style={{ marginTop: "3px", marginRight: "5px" }}
+						style={{
+							marginTop: "3px",
+							marginRight: "5px",
+							flexShrink: 0,
+						}}
 					/>
 				)}
 				<ContentEditable

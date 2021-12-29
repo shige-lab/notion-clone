@@ -112,13 +112,13 @@ const Home = (props: any) => {
 		console.log("try delete");
 		_deleteNote(notes[index]).then((note: any) => {
 			console.log(note);
+			const newNotes = notes.slice(0, notes.length);
+			newNotes.splice(index, 1);
+			setNoteCount(noteCount - 1);
+			setSelectIndex(0);
+			setNotes(newNotes);
 			console.log("finish delete");
 		});
-		const newNotes = notes.slice(0, notes.length);
-		newNotes.splice(index, 1);
-		setNoteCount(noteCount - 1);
-		setSelectIndex(0);
-		setNotes(newNotes);
 	};
 	const renameTitle = async (index: number, title: string) => {
 		console.log("try rename");
