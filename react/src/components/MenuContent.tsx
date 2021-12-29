@@ -86,67 +86,43 @@ export const TurnIntoMenu = (props: any) => {
 				<div className="menu-content-text">Turn into</div>
 				<MdPlayArrow className="arrow" />
 				<div className={"menu " + turnIntoClass}>
-					<div
-						className="menu-content hover-gray"
-						onClick={props.toText}
-					>
-						<BiText className="menu-content-icon" />
-						<div className="menu-content-text">Text</div>
-					</div>
-					<div
-						className="menu-content hover-gray"
-						onClick={props.toHeader1}
-					>
-						<BiHeading className="menu-content-icon" />
-						<div className="menu-content-text">Heading 1</div>
-					</div>
-					<div
-						className="menu-content hover-gray"
-						onClick={props.toHeader2}
-					>
-						<BiHeading className="menu-content-icon" />
-						<div className="menu-content-text">Heading 2</div>
-					</div>
-					<div
-						className="menu-content hover-gray"
-						onClick={props.toHeader3}
-					>
-						<BiHeading className="menu-content-icon" />
-						<div className="menu-content-text">Heading 3</div>
-					</div>
-					<div
-						className="menu-content hover-gray"
-						onClick={props.toTodo}
-					>
-						<FcTodoList className="menu-content-icon" />
-						<div className="menu-content-text">To-do list</div>
-					</div>
-					<div
-						className="menu-content hover-gray"
-						onClick={props.toBullet}
-					>
-						<BsFillRecordFill className="menu-content-icon" />
-						<div className="menu-content-text">Bulleted list</div>
-					</div>
+					<ChangeStyle
+						toText={props.toText}
+						toHeader1={props.toHeader1}
+						toHeader2={props.toHeader2}
+						toHeader3={props.toHeader3}
+						toBullet={props.toBullet}
+						toTodo={props.toTodo}
+					/>
 				</div>
 			</div>
 		</>
 	);
 };
 
-export const TurnInto = (props: any) => {
-	const [nonDisplay, setNonDisplay] = useState(!props.isOpen);
-	const turnIntoClass = classNames({
-		turn_into: true,
-		nonDisplay: nonDisplay,
+export const SelectStyle = (props: any) => {
+	const SelectStyleClass = classNames({
+		select_style: true,
+		nonDisplay: props.nonDisplay,
 	});
 
 	return (
-		<div
-			className={"menu " + turnIntoClass}
-			onFocus={() => setNonDisplay(false)}
-			onBlur={() => setNonDisplay(true)}
-		>
+		<div className={"menu " + SelectStyleClass}>
+			<ChangeStyle
+				toText={props.toText}
+				toHeader1={props.toHeader1}
+				toHeader2={props.toHeader2}
+				toHeader3={props.toHeader3}
+				toBullet={props.toBullet}
+				toTodo={props.toTodo}
+			/>
+		</div>
+	);
+};
+
+export const ChangeStyle = (props: any) => {
+	return (
+		<>
 			<div className="menu-content hover-gray" onClick={props.toText}>
 				<BiText className="menu-content-icon" />
 				<div className="menu-content-text">Text</div>
@@ -167,6 +143,10 @@ export const TurnInto = (props: any) => {
 				<FcTodoList className="menu-content-icon" />
 				<div className="menu-content-text">To-do list</div>
 			</div>
-		</div>
+			<div className="menu-content hover-gray" onClick={props.toBullet}>
+				<BsFillRecordFill className="menu-content-icon" />
+				<div className="menu-content-text">Bulleted list</div>
+			</div>
+		</>
 	);
 };

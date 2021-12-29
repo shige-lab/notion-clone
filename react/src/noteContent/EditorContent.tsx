@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, createRef } from "react";
 import ContentEditable from "react-contenteditable";
-import ContentSideButton from "../components/ContentSideButton";
-import { TurnInto } from "../components/MenuContent";
+import ContentSideButton from "./ContentSideButton";
+// import { TurnInto } from "../components/MenuContent";
 import { BsFillRecordFill } from "react-icons/bs";
 var classNames = require("classnames");
 
@@ -142,7 +142,7 @@ const EditorContent = (props: any) => {
 						focusDown(e)
 					}
 				/>
-				<TurnInto isOpen={openMenu} />
+				{/* <TurnInto isOpen={openMenu} /> */}
 			</div>
 		</div>
 	);

@@ -1,5 +1,9 @@
 import { useEffect, useState, useRef } from "react";
-import { DeleteMenu, DuplicateMenu, TurnIntoMenu } from "./MenuContent";
+import {
+	DeleteMenu,
+	DuplicateMenu,
+	TurnIntoMenu,
+} from "../components/MenuContent";
 import { IoApps } from "react-icons/io5";
 
 const ContentSideButton = (props: any) => {

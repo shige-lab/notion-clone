@@ -71,6 +71,10 @@ const Editor = (props: any) => {
 		let className = "divText";
 		if (textClass.includes("todo")) className = "todo";
 		if (textClass === "bullet") className = "bullet";
+		addTextWithStyle(index, className);
+	};
+
+	const addTextWithStyle = (index: number, className: string) => {
 		const newBody = texts;
 		newBody.splice(index + 1, 0, { text: "", class: className });
 		setTexts(newBody);
@@ -123,11 +127,7 @@ const Editor = (props: any) => {
 			<div
 				className="note-field"
 				style={{
-					width: props.sidebar
-						? // ? "calc(100vw - 420px)"
-						  "calc(100vw - 240px)"
-						: "100vw",
-					//   "calc(100vw - 180px)",
+					width: props.sidebar ? "calc(100vw - 240px)" : "100vw",
 				}}
 			>
 				<div className="title-field">
