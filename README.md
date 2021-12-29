@@ -2,13 +2,13 @@
 
 # アプリの使用のための準備
 
-・ファイルインストール
+・ファイルインストール  
 git clone https://github.com/shige-lab/notion-clone.git
 
-・npm インストール
+・npm インストール  
 react, nodejs ディレクトリで, npm install
 
-・env ファイルの設定(firebase と mongodb のアカウントを作成し以下に則ってアカウント情報を env ファイルに記入する必要あり。)
+・env ファイルの設定(firebase と mongodb のアカウントを作成し以下に則ってアカウント情報を env ファイルに記入する必要あり。)  
 react ディレクトリで.env.local ファイルを作成し、以下のコードを記入。
 
 REACT_APP_FIREBASE_API_KEY=""  
