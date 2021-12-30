@@ -18,6 +18,8 @@ const EditorContent = (props: any) => {
 	const [bullet, setBullet] = useState(false);
 	const [openMenu, setOpenMenu] = useState(false);
 	const isFirstRender = useRef(false);
+	const [placeHolder, setPlaceHolder] = useState("");
+	// const [openPlaceHolder, setOpenPlaceHolder] = useState(false);
 
 	useEffect(() => {
 		isFirstRender.current = true;
@@ -47,6 +49,7 @@ const EditorContent = (props: any) => {
 		else setBullet(false);
 		if (classTag.includes("todo")) setTodo(true);
 		else setTodo(false);
+		SetPlaceHolder();
 	}, [classTag]);
 
 	const handleInput = (e: any) => {
@@ -110,11 +113,27 @@ const EditorContent = (props: any) => {
 		props.addTextWithStyle(index, className);
 	};
 
+	const SetPlaceHolder = () => {
+		if (classTag.includes("header"))
+			setPlaceHolder("Heading " + classTag.charAt(6));
+		if (classTag.includes("todo")) setPlaceHolder("To-do");
+		if (classTag === "bullet") setPlaceHolder("List");
+	};
+
+	const ifDisplayPlaceHolder = () => {
+		if (!placeHolder) setPlaceHolder("Type '/' for commands");
+	};
+	const ifNonDisplayPlaceHolder = () => {
+		if (placeHolder === "Type '/' for commands") setPlaceHolder("");
+	};
+
 	return (
 		<div
 			className="text-field"
 			onMouseEnter={() => setNonDisplay(false)}
 			onMouseLeave={() => setNonDisplay(true)}
+			onFocus={ifDisplayPlaceHolder}
+			onBlur={ifNonDisplayPlaceHolder}
 		>
 			<div
 				className="text-block"
@@ -156,7 +175,7 @@ const EditorContent = (props: any) => {
 					disabled={false}
 					tagName="div"
 					id={"text" + props.index}
-					// placeholder="content"
+					data-placeholder={placeHolder}
 					onChange={handleInput}
 					onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) =>
 						focusDown(e)

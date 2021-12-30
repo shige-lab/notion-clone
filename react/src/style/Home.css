@@ -219,8 +219,7 @@
   margin-right: 10px;
   margin-top: 3px;
   /* position: fixed; */
-  color: rgba(55, 53, 4
-  7, 0.6);;
+  color: rgba(55, 53, 47, 0.6);;
 }
 
 .menu-for-header1Text {
@@ -242,6 +241,11 @@
   overflow-wrap: break-word;
   outline: none;
   border: none;
+}
+
+.text-input:empty:before {
+  content: attr(data-placeholder);
+  color: rgba(55, 53, 47, 0.6);;
 }
 
 .header1Text {
