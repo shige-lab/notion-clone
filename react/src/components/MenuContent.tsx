@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { IoTrashOutline } from "react-icons/io5";
 import { GrLogout, GrPowerCycle } from "react-icons/gr";
 import { BiText, BiHeading } from "react-icons/bi";
@@ -101,22 +101,40 @@ export const TurnIntoMenu = (props: any) => {
 };
 
 export const SelectStyle = (props: any) => {
+	const [idOpen, setIdOpen] = useState(true);
+	const menuRef: any = useRef();
 	const SelectStyleClass = classNames({
 		select_style: true,
-		nonDisplay: props.nonDisplay,
+		// nonDisplay: nonDisplay,
 	});
 
+	useEffect(() => {
+		setIdOpen(props.nonDisplay);
+		// if (props.nonDisplay) {
+		// 	menuRef.current.focus();
+		// }
+	}, [props.nonDisplay]);
+
 	return (
-		<div className={"menu " + SelectStyleClass}>
-			<ChangeStyle
-				toText={props.toText}
-				toHeader1={props.toHeader1}
-				toHeader2={props.toHeader2}
-				toHeader3={props.toHeader3}
-				toBullet={props.toBullet}
-				toTodo={props.toTodo}
-			/>
-		</div>
+		<>
+			{props.nonDisplay && (
+				<div
+					className={"menu " + SelectStyleClass}
+					ref={menuRef}
+					tabIndex={1}
+					onBlur={props.onBlur}
+				>
+					<ChangeStyle
+						toText={props.toText}
+						toHeader1={props.toHeader1}
+						toHeader2={props.toHeader2}
+						toHeader3={props.toHeader3}
+						toBullet={props.toBullet}
+						toTodo={props.toTodo}
+					/>
+				</div>
+			)}
+		</>
 	);
 };
 

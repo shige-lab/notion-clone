@@ -373,6 +373,11 @@
   height: 230px;
   position: fixed;
 }
+.select_style {
+  margin-left: 155px;
+  height: 230px;
+  position: fixed;
+}
 
 .not-found {
   margin-top: 30%;

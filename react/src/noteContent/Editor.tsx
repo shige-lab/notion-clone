@@ -46,7 +46,6 @@ const Editor = (props: any) => {
 			const nextText = document.getElementById("text" + nextIndex);
 			if (nextText) {
 				nextText.focus();
-				// nextText.innerHTML += "";
 			}
 		}
 	}, [cursorMove]);
@@ -152,6 +151,7 @@ const Editor = (props: any) => {
 									id={id}
 									html={text}
 									addText={addText}
+									addTextWithStyle={addTextWithStyle}
 									deleteText={deleteText}
 									duplicateText={duplicateText}
 								/>

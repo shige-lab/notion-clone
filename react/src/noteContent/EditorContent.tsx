@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, createRef } from "react";
 import ContentEditable from "react-contenteditable";
-import ContentSideButton from "./ContentSideButton";
-// import { TurnInto } from "../components/MenuContent";
+import ContentSideButton from "../components/ContentSideButton";
+import BackSlashCommand from "./BackSlashCommand";
 import { BsFillRecordFill } from "react-icons/bs";
 var classNames = require("classnames");
 
@@ -29,7 +29,14 @@ const EditorContent = (props: any) => {
 		} else {
 			console.log("useEffect for class");
 			setBullet(false);
-			props.onChange(props.html.text, props.index, textClass);
+			if (openMenu) {
+				const deleteBackSlash = props.html.text.slice(0, -1);
+				props.onChange(deleteBackSlash, props.index, textClass);
+				const currentText = document.getElementById(
+					"text" + props.index
+				);
+				if (currentText) currentText.focus();
+			} else props.onChange(props.html.text, props.index, textClass);
 		}
 	}, [textClass]);
 
@@ -58,7 +65,9 @@ const EditorContent = (props: any) => {
 			if (classTag !== "divText") toText();
 			else props.deleteText(props.index);
 		}
-		if (e.key === "/") setOpenMenu(true);
+		if (e.key === "/") {
+			setOpenMenu(true);
+		}
 	};
 
 	const toText = () => {
@@ -93,13 +102,22 @@ const EditorContent = (props: any) => {
 		else if (classTag === "todo-done") setTextClass("todo");
 	};
 
+	const addTextWithStyle = (index: number, className: string) => {
+		const deleteBackSlash = props.html.text.slice(0, -1);
+		props.onChange(deleteBackSlash, props.index, textClass);
+		props.addTextWithStyle(index, className);
+	};
+
 	return (
 		<div
 			className="text-field"
 			onMouseEnter={() => setNonDisplay(false)}
 			onMouseLeave={() => setNonDisplay(true)}
 		>
-			<div className="text-block">
+			<div
+				className="text-block"
+				onBlur={() => setTimeout(() => setOpenMenu(false), 1000)}
+			>
 				<ContentSideButton
 					className={contentButtonClass}
 					textClass={textClass}
@@ -142,7 +160,19 @@ const EditorContent = (props: any) => {
 						focusDown(e)
 					}
 				/>
-				{/* <TurnInto isOpen={openMenu} /> */}
+				<BackSlashCommand
+					index={props.index}
+					text={props.html.text}
+					addTextWithStyle={addTextWithStyle}
+					isBackSlash={openMenu}
+					onBlur={() => setOpenMenu(false)}
+					toText={toText}
+					toHeader1={toHeader1}
+					toHeader2={toHeader2}
+					toHeader3={toHeader3}
+					toTodo={toTodo}
+					toBullet={toBullet}
+				/>
 			</div>
 		</div>
 	);
