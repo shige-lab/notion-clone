@@ -1,7 +1,10 @@
 # notion-clone
 
-notion の機能をできる限り再現しました。  
-まだ対応しきれていない部分を多いですが、細かな挙動の再現も可能な限り実装しています。
+react, typescript, node.js, firebase を使い、notion の機能をできる限り再現しました。  
+まだ対応しきれていない部分を多いですが、細かな挙動の再現も可能な限り実装しています。  
+C 言語以外にまともに扱ったことがなかったので、誤用やコード規則を無視してしまっていることがあるかもしれませんがご容赦下さい。  
+firebase を扱う経験もしたかったので今回は認証部分を node.js ではなくて、firebase を使いました。  
+私の現在通っている、42tokyo ではコード内にコメントを書くことを禁止されているため、今回はコメントを書いていません。なので読みにくい部分が多くあるかもしれませんがご了承下さい。
 
 # アプリの使用のための準備
 
@@ -11,7 +14,7 @@ git clone https://github.com/shige-lab/notion-clone.git
 ・npm インストール  
 react, nodejs ディレクトリで, npm install
 
-・env ファイルの設定(firebase と mongodb のアカウントを作成し以下に則ってアカウント情報を env ファイルに記入する必要あり。)  
+・env ファイルの設定(firebase と mongodb のアカウントを作成し以下に則ってアカウント情報を env ファイルに記入する必要あり)。  
 react ディレクトリで.env.local ファイルを作成し、以下のコードを記入。
 
 REACT_APP_FIREBASE_API_KEY=""  
