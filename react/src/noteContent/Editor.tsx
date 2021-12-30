@@ -67,9 +67,11 @@ const Editor = (props: any) => {
 	};
 
 	const addText = (index: number, textClass: string) => {
+		console.log(textClass);
 		let className = "divText";
 		if (textClass.includes("todo")) className = "todo";
 		if (textClass === "bullet") className = "bullet";
+		console.log(className);
 		addTextWithStyle(index, className);
 	};
 

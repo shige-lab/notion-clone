@@ -4,8 +4,10 @@ import { useState, useEffect } from "react";
 const BackSlashCommand = (props: any) => {
 	const [className, setClassName] = useState("");
 	useEffect(() => {
-		console.log("change class name");
-		if (className) props.addTextWithStyle(props.index, className);
+		if (className) {
+			console.log("change class name");
+			props.addTextWithStyle(props.index, className);
+		}
 	}, [className]);
 
 	const toText = () => {

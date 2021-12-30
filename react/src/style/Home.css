@@ -215,9 +215,10 @@
 }
 
 .text_button {
-  margin-left: -30px;
+  margin-left: -20px;
+  margin-right: 10px;
   margin-top: 3px;
-  position: fixed;
+  /* position: fixed; */
   color: rgba(55, 53, 4
   7, 0.6);;
 }

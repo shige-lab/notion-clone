@@ -21,6 +21,7 @@ const EditorContent = (props: any) => {
 
 	useEffect(() => {
 		isFirstRender.current = true;
+		console.log("aaaaaaaaaaaaaaaaaaa");
 	}, []);
 
 	useEffect(() => {
@@ -28,7 +29,6 @@ const EditorContent = (props: any) => {
 			isFirstRender.current = false;
 		} else {
 			console.log("useEffect for class");
-			setBullet(false);
 			if (openMenu) {
 				const deleteBackSlash = props.html.text.slice(0, -1);
 				props.onChange(deleteBackSlash, props.index, textClass);
@@ -42,7 +42,9 @@ const EditorContent = (props: any) => {
 
 	useEffect(() => {
 		setTextClass(classTag);
+		console.log(classTag, props.index);
 		if (classTag === "bullet") setBullet(true);
+		else setBullet(false);
 		if (classTag.includes("todo")) setTodo(true);
 		else setTodo(false);
 	}, [classTag]);
