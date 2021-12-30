@@ -116,8 +116,15 @@ const EditorContent = (props: any) => {
 	const SetPlaceHolder = () => {
 		if (classTag.includes("header"))
 			setPlaceHolder("Heading " + classTag.charAt(6));
-		if (classTag.includes("todo")) setPlaceHolder("To-do");
-		if (classTag === "bullet") setPlaceHolder("List");
+		else if (classTag.includes("todo")) setPlaceHolder("To-do");
+		else if (classTag === "bullet") setPlaceHolder("List");
+		else if (
+			classTag === "divText" &&
+			document.getElementById("text" + props.index) ==
+				document.activeElement
+		)
+			setPlaceHolder("Type '/' for commands");
+		else setPlaceHolder("");
 	};
 
 	const ifDisplayPlaceHolder = () => {
