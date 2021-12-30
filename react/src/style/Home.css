@@ -234,9 +234,7 @@
 
 .text-input {
   
-  /* padding-left: 13px; */
   width: 100% ;
-  /* width: inherit ; */
   word-break:break-word;
   overflow-wrap: break-word;
   outline: none;

@@ -127,7 +127,8 @@ const EditorContent = (props: any) => {
 	};
 
 	const ifDisplayPlaceHolder = () => {
-		if (!placeHolder) setPlaceHolder("Type '/' for commands");
+		if (!placeHolder && classTag === "divText")
+			setPlaceHolder("Type '/' for commands");
 	};
 	const ifNonDisplayPlaceHolder = () => {
 		if (placeHolder === "Type '/' for commands") setPlaceHolder("");
