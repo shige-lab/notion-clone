@@ -19,7 +19,6 @@ const EditorContent = (props: any) => {
 	const [openMenu, setOpenMenu] = useState(false);
 	const isFirstRender = useRef(false);
 	const [placeHolder, setPlaceHolder] = useState("");
-	// const [openPlaceHolder, setOpenPlaceHolder] = useState(false);
 
 	useEffect(() => {
 		isFirstRender.current = true;

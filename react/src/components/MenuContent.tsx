@@ -101,29 +101,10 @@ export const TurnIntoMenu = (props: any) => {
 };
 
 export const SelectStyle = (props: any) => {
-	const [idOpen, setIdOpen] = useState(true);
-	const menuRef: any = useRef();
-	const SelectStyleClass = classNames({
-		select_style: true,
-		// nonDisplay: nonDisplay,
-	});
-
-	useEffect(() => {
-		setIdOpen(props.nonDisplay);
-		// if (props.nonDisplay) {
-		// 	menuRef.current.focus();
-		// }
-	}, [props.nonDisplay]);
-
 	return (
 		<>
 			{props.nonDisplay && (
-				<div
-					className={"menu " + SelectStyleClass}
-					ref={menuRef}
-					tabIndex={1}
-					onBlur={props.onBlur}
-				>
+				<div className="menu select_style">
 					<ChangeStyle
 						toText={props.toText}
 						toHeader1={props.toHeader1}

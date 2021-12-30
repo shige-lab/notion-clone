@@ -47,7 +47,6 @@ const BackSlashCommand = (props: any) => {
 				toHeader3={toHeader3}
 				toTodo={toTodo}
 				toBullet={toBullet}
-				onBlur={props.onBlur}
 			/>
 		</>
 	);
