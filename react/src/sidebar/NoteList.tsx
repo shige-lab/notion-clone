@@ -76,6 +76,11 @@ const NoteList = (props: any) => {
 		}
 	};
 
+	const selectStatus = () => {
+		const renameBar = document.getElementById("rename")!;
+		(renameBar as HTMLInputElement).select();
+	};
+
 	return (
 		<div
 			className={"list-block " + selectedClass}
@@ -102,7 +107,9 @@ const NoteList = (props: any) => {
 			{input && (
 				<input
 					className="rename"
+					id="rename"
 					autoFocus
+					onFocus={selectStatus}
 					value={_title}
 					onBlur={() => setInput(false)}
 					onChange={(e) => setTitle(e.target.value)}
