@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import EditorContent from "./EditorContent";
 import SelectButton from "../components/SelectButton";
-import { useDebounce } from "use-debounce";
+import _ from "lodash";
 
 const Editor = (props: any) => {
 	const noteUpdate = props.noteUpdate;
@@ -10,8 +10,6 @@ const Editor = (props: any) => {
 	const [texts, setTexts] = useState(body);
 	const [title_, setTitle_] = useState(title);
 	const isFirstRender = useRef(false);
-	const [isUpdate, setIsUpdate] = useState(0);
-	const [update] = useDebounce(isUpdate, 1000);
 	const [nextIndex, setNextIndex] = useState(-1);
 	const [cursorMove, setCursorMove] = useState(false);
 
@@ -29,16 +27,7 @@ const Editor = (props: any) => {
 	}, [title, body]);
 
 	useEffect(() => {
-		if (isFirstRender.current) {
-			isFirstRender.current = true;
-		} else {
-			console.log("debounce");
-			noteUpdate(title_, texts, id);
-			console.log(isUpdate);
-		}
-	}, [update]);
-
-	useEffect(() => {
+		console.log("first");
 		if (isFirstRender.current) {
 			isFirstRender.current = false;
 		} else {
@@ -50,16 +39,22 @@ const Editor = (props: any) => {
 		}
 	}, [cursorMove]);
 
+	const updateNote = _.debounce(() => {
+		noteUpdate(title_, texts, id);
+		console.log("debounce");
+	}, 1000);
+
 	const updateTitle = (t: string) => {
 		setTitle_(t);
-		setIsUpdate(isUpdate + 1);
+		updateNote();
 	};
+
 	const updateBody = (content: string, index: number, tag: string) => {
 		const newBody = texts;
 		newBody[index].text = content;
 		newBody[index].class = tag;
 		setTexts(newBody);
-		setIsUpdate(isUpdate + 1);
+		updateNote();
 	};
 
 	const _deleteNote = () => {
@@ -67,11 +62,9 @@ const Editor = (props: any) => {
 	};
 
 	const addText = (index: number, textClass: string) => {
-		console.log(textClass);
 		let className = "divText";
 		if (textClass.includes("todo")) className = "todo";
 		if (textClass === "bullet") className = "bullet";
-		console.log(className);
 		addTextWithStyle(index, className);
 	};
 
@@ -79,10 +72,10 @@ const Editor = (props: any) => {
 		const newBody = texts;
 		newBody.splice(index + 1, 0, { text: "", class: className });
 		setTexts(newBody);
-		console.log("add text");
 		setNextIndex(index + 1);
 		setCursorMove(!cursorMove);
-		setIsUpdate(isUpdate + 1);
+		updateNote();
+		console.log("add text");
 	};
 
 	const deleteText = (index: number) => {
@@ -91,7 +84,7 @@ const Editor = (props: any) => {
 		setTexts(newBody);
 		const previousText = document.getElementById("text" + (index - 1));
 		if (previousText) previousText.focus();
-		setIsUpdate(isUpdate + 1);
+		updateNote();
 	};
 
 	const duplicateText = (text: string, index: number, textClass: string) => {
@@ -99,7 +92,7 @@ const Editor = (props: any) => {
 		newBody.splice(index + 1, 0, { text: text, class: textClass });
 		setTexts(newBody);
 		console.log("add text");
-		setIsUpdate(isUpdate + 1);
+		updateNote();
 	};
 
 	const focusDown = (e: any) => {

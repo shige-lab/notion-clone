@@ -6,6 +6,7 @@ import { BsFillRecordFill } from "react-icons/bs";
 var classNames = require("classnames");
 
 const EditorContent = (props: any) => {
+	let ref = createRef<HTMLDivElement>();
 	const [nonDisplay, setNonDisplay] = useState(true);
 	const contentButtonClass = classNames({
 		text_button: true,
@@ -21,7 +22,6 @@ const EditorContent = (props: any) => {
 
 	useEffect(() => {
 		isFirstRender.current = true;
-		console.log("aaaaaaaaaaaaaaaaaaa");
 	}, []);
 
 	useEffect(() => {
@@ -42,7 +42,6 @@ const EditorContent = (props: any) => {
 
 	useEffect(() => {
 		setTextClass(classTag);
-		console.log(classTag, props.index);
 		if (classTag === "bullet") setBullet(true);
 		else setBullet(false);
 		if (classTag.includes("todo")) setTodo(true);
@@ -51,6 +50,7 @@ const EditorContent = (props: any) => {
 	}, [classTag]);
 
 	const handleInput = (e: any) => {
+		console.log("handleInput");
 		props.onChange(e.target.value, props.index, textClass);
 	};
 
@@ -60,16 +60,14 @@ const EditorContent = (props: any) => {
 			if (classTag !== "divText" && !props.html.text) {
 				toText();
 			} else props.addText(props.index, textClass);
-		}
-		if (e.key === "Backspace" && !props.html.text) {
+		} else if (e.key === "Backspace" && !props.html.text) {
 			console.log("delete text");
 			e.preventDefault();
 			if (classTag !== "divText") toText();
 			else props.deleteText(props.index);
-		}
-		if (e.key === "/") {
+		} else if (e.keyCode === 191) {
 			setOpenMenu(true);
-		}
+		} else setOpenMenu(false);
 	};
 
 	const toText = () => {
@@ -175,6 +173,7 @@ const EditorContent = (props: any) => {
 				)}
 				<ContentEditable
 					className={"text-input " + textClass}
+					innerRef={ref}
 					html={props.html.text}
 					disabled={false}
 					tagName="div"

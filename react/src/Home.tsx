@@ -100,10 +100,12 @@ const Home = (props: any) => {
 		console.log("try update");
 		_updateEditor(_title, contents, id).then((note: any) => {
 			console.log(note);
-			const newNotes = notes.slice();
-			newNotes[selectIndex].note.title = _title;
-			newNotes[selectIndex].note.body = contents;
-			setNotes(newNotes);
+			if (notes[selectIndex].note.title != _title) {
+				const newNotes = notes.slice();
+				newNotes[selectIndex].note.title = _title;
+				newNotes[selectIndex].note.body = contents;
+				setNotes(newNotes);
+			}
 			console.log("finish update");
 		});
 	};
