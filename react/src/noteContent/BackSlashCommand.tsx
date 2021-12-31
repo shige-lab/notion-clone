@@ -40,7 +40,7 @@ const BackSlashCommand = (props: any) => {
 	return (
 		<>
 			<SelectStyle
-				nonDisplay={props.isBackSlash}
+				isBackSlash={props.isBackSlash}
 				toText={toText}
 				toHeader1={toHeader1}
 				toHeader2={toHeader2}

@@ -44,6 +44,7 @@ delete, duplicate, turn into(text, heading1, heading2, heading3, to-do, bullet p
 
 最低限の notion 機能。  
 ログイン機能。  
+ログイン、サインイン画面で enter key でファーカスが次に行き、submit も可能。  
 サイドバーの開閉機能。  
 マウスオーバー機能の再現。  
 テキスト入力時に表示されていたテキスト横のメニューアイコンを非表示に変更。  

@@ -149,7 +149,7 @@ const Editor = (props: any) => {
 								<EditorContent
 									index={index}
 									key={index}
-									onChange={updateBody}
+									updateBody={updateBody}
 									id={id}
 									html={text}
 									addText={addText}

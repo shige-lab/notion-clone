@@ -32,12 +32,12 @@ const EditorContent = (props: any) => {
 			console.log("useEffect for class");
 			if (openMenu) {
 				const deleteBackSlash = props.html.text.slice(0, -1);
-				props.onChange(deleteBackSlash, props.index, textClass);
+				props.updateBody(deleteBackSlash, props.index, textClass);
 				const currentText = document.getElementById(
 					"text" + props.index
 				);
 				if (currentText) currentText.focus();
-			} else props.onChange(props.html.text, props.index, textClass);
+			} else props.updateBody(props.html.text, props.index, textClass);
 		}
 	}, [textClass]);
 
@@ -52,7 +52,7 @@ const EditorContent = (props: any) => {
 
 	const handleInput = (e: any) => {
 		console.log("handleInput");
-		props.onChange(e.target.value, props.index, textClass);
+		props.updateBody(e.target.value, props.index, textClass);
 	};
 
 	const focusDown = (e: any) => {
@@ -111,7 +111,7 @@ const EditorContent = (props: any) => {
 
 	const addTextWithStyle = (index: number, className: string) => {
 		const deleteBackSlash = props.html.text.slice(0, -1);
-		props.onChange(deleteBackSlash, props.index, textClass);
+		props.updateBody(deleteBackSlash, props.index, textClass);
 		props.addTextWithStyle(index, className);
 	};
 
@@ -122,7 +122,7 @@ const EditorContent = (props: any) => {
 		else if (classTag === "bullet") setPlaceHolder("List");
 		else if (
 			classTag === "divText" &&
-			document.getElementById("text" + props.index) ==
+			document.getElementById("text" + props.index) ===
 				document.activeElement
 		)
 			setPlaceHolder("Type '/' for commands");
@@ -142,8 +142,6 @@ const EditorContent = (props: any) => {
 			className="text-field"
 			onMouseMove={() => setNonDisplay(false)}
 			onMouseOut={() => setNonDisplay(true)}
-			// onMouseEnter={() => setNonDisplay(false)}
-			// onMouseLeave={() => setNonDisplay(true)}
 			onFocus={ifDisplayPlaceHolder}
 			onBlur={ifNonDisplayPlaceHolder}
 		>

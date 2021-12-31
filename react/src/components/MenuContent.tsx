@@ -1,5 +1,5 @@
 import "../style/menu.css";
-import { useEffect, useState, useRef } from "react";
+import { useState } from "react";
 import { IoTrashOutline } from "react-icons/io5";
 import { GrLogout, GrPowerCycle } from "react-icons/gr";
 import { BiText, BiHeading } from "react-icons/bi";
@@ -104,7 +104,7 @@ export const TurnIntoMenu = (props: any) => {
 export const SelectStyle = (props: any) => {
 	return (
 		<>
-			{props.nonDisplay && (
+			{props.isBackSlash && (
 				<div
 					className="menu select_style"
 					style={{ top: props.ifDropUp }}

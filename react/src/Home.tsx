@@ -38,7 +38,6 @@ const Home = (props: any) => {
 	});
 
 	useEffect(() => {
-		console.log(window.innerHeight);
 		console.log("home useEffect");
 		isFirstRender.current = true;
 		auth.onAuthStateChanged((user) => {
@@ -61,6 +60,7 @@ const Home = (props: any) => {
 				notes.map((note: any) => {
 					if (location.pathname === "/notes/" + note._id)
 						isExist = true;
+					return 0;
 				});
 				if (!isExist || selectIndex) {
 					props.history.push("/notes/" + notes[selectIndex]._id);
@@ -69,7 +69,7 @@ const Home = (props: any) => {
 			}
 		}
 	}, [notes]);
-	const HandleOnclick = () => {
+	const newPageButton = () => {
 		newNote("");
 	};
 
@@ -203,28 +203,24 @@ const Home = (props: any) => {
 							</div>
 							<div className="list-flame">
 								<div className="list-filed">
-									{notes.map((note, index) => (
-										<>
-											{
-												<NoteList
-													index={index}
-													key={note._id}
-													note={note}
-													title={note.note.title}
-													selectNote={select}
-													deleteNote={deleteNote}
-													duplicateNote={
-														duplicateNote
-													}
-													renameTitle={renameTitle}
-													url={location.pathname}
-												/>
-											}
-										</>
-									))}
+									{notes.map((note, index) => {
+										return (
+											<NoteList
+												index={index}
+												key={note._id}
+												note={note}
+												title={note.note.title}
+												selectNote={select}
+												deleteNote={deleteNote}
+												duplicateNote={duplicateNote}
+												renameTitle={renameTitle}
+												url={location.pathname}
+											/>
+										);
+									})}
 									<div
 										className="list-block add-a-page"
-										onClick={HandleOnclick}
+										onClick={newPageButton}
 									>
 										<BsPlusLg />
 										<div className="list">Add a page</div>
@@ -234,7 +230,7 @@ const Home = (props: any) => {
 						</div>
 						<div
 							className="sidebar-bottom hover-gray"
-							onClick={HandleOnclick}
+							onClick={newPageButton}
 						>
 							<div className="sidebar-bottom-new-page hover-gray">
 								<BsPlusLg />
@@ -245,20 +241,22 @@ const Home = (props: any) => {
 						</div>
 					</div>
 					<Switch>
-						{notes.map((note, index) => (
-							<Route exact path={"/notes/" + note._id}>
-								<Editor
-									index={index}
-									key={note._id}
-									note={note}
-									noteUpdate={updateEditor}
-									deleteNote={deleteNote}
-									duplicateNote={duplicateNote}
-									renameTitle={renameTitle}
-									sidebar={sidebar}
-								/>
-							</Route>
-						))}
+						{notes.map((note, index) => {
+							return (
+								<Route exact path={"/notes/" + note._id}>
+									<Editor
+										index={index}
+										key={note._id}
+										note={note}
+										noteUpdate={updateEditor}
+										deleteNote={deleteNote}
+										duplicateNote={duplicateNote}
+										renameTitle={renameTitle}
+										sidebar={sidebar}
+									/>
+								</Route>
+							);
+						})}
 					</Switch>
 				</div>
 			</div>
