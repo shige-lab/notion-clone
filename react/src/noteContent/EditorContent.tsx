@@ -6,7 +6,6 @@ import { BsFillRecordFill } from "react-icons/bs";
 var classNames = require("classnames");
 
 const EditorContent = (props: any) => {
-	let ref = createRef<HTMLDivElement>();
 	const [nonDisplay, setNonDisplay] = useState(true);
 	const contentButtonClass = classNames({
 		text_button: true,
@@ -52,12 +51,11 @@ const EditorContent = (props: any) => {
 	}, [classTag]);
 
 	const handleInput = (e: any) => {
-		console.log("handleInput");
 		props.onChange(e.target.value, props.index, textClass);
 	};
 
 	const focusDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-		if (e.key === "Enter" && !e.shiftKey) {
+		if (e.keyCode === 13 && !e.shiftKey) {
 			e.preventDefault();
 			if (classTag !== "divText" && !props.html.text) {
 				toText();
@@ -94,7 +92,7 @@ const EditorContent = (props: any) => {
 	};
 
 	const deleteText = () => {
-		props.deleteText(ref.current, props.index);
+		props.deleteText(props.index);
 	};
 
 	const duplicateText = () => {
@@ -177,7 +175,6 @@ const EditorContent = (props: any) => {
 				)}
 				<ContentEditable
 					className={"text-input " + textClass}
-					innerRef={ref}
 					html={props.html.text}
 					disabled={false}
 					tagName="div"
