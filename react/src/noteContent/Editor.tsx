@@ -39,22 +39,28 @@ const Editor = (props: any) => {
 		}
 	}, [cursorMove]);
 
-	const updateNote = _.debounce(() => {
-		noteUpdate(title_, texts, id);
+	const updateNote = _.debounce((title: string) => {
+		noteUpdate(title, texts, id);
 		console.log("debounce");
 	}, 1000);
 
 	const updateTitle = (t: string) => {
+		console.log(t);
 		setTitle_(t);
-		updateNote();
+		updateNote(t);
 	};
 
 	const updateBody = (content: string, index: number, tag: string) => {
-		const newBody = texts;
+		var newBody;
+		if (texts[index].class !== tag) {
+			newBody = texts.slice(0, texts.length);
+			newBody[index].class = tag;
+		} else {
+			newBody = texts;
+		}
 		newBody[index].text = content;
-		newBody[index].class = tag;
 		setTexts(newBody);
-		updateNote();
+		updateNote(title_);
 	};
 
 	const _deleteNote = () => {
@@ -69,30 +75,30 @@ const Editor = (props: any) => {
 	};
 
 	const addTextWithStyle = (index: number, className: string) => {
-		const newBody = texts;
+		const newBody = texts.slice(0, texts.length);
 		newBody.splice(index + 1, 0, { text: "", class: className });
 		setTexts(newBody);
 		setNextIndex(index + 1);
 		setCursorMove(!cursorMove);
-		updateNote();
+		updateNote(title_);
 		console.log("add text");
 	};
 
 	const deleteText = (index: number) => {
-		const newBody = texts;
+		const newBody = texts.slice(0, texts.length);
 		newBody.splice(index, 1);
 		setTexts(newBody);
 		const previousText = document.getElementById("text" + (index - 1));
 		if (previousText) previousText.focus();
-		updateNote();
+		updateNote(title_);
 	};
 
 	const duplicateText = (text: string, index: number, textClass: string) => {
-		const newBody = texts;
+		const newBody = texts.slice(0, texts.length);
 		newBody.splice(index + 1, 0, { text: text, class: textClass });
 		setTexts(newBody);
 		console.log("add text");
-		updateNote();
+		updateNote(title_);
 	};
 
 	const focusDown = (e: any) => {

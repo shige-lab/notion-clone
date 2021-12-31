@@ -100,13 +100,13 @@ const Home = (props: any) => {
 	const updateEditor = async (_title: string, contents: any, id: string) => {
 		console.log("try update");
 		_updateEditor(_title, contents, id).then((note: any) => {
-			console.log(note);
-			if (notes[selectIndex].note.title != _title) {
-				// const newNotes = notes.slice();
-				// newNotes[selectIndex].note.title = _title;
-				// newNotes[selectIndex].note.body = contents;
+			if (notes[selectIndex].note.title !== _title) {
+				console.log(_title);
+				const newNotes = notes.slice();
+				newNotes[selectIndex].note.title = _title;
+				newNotes[selectIndex].note.body = contents;
+				setNotes(newNotes);
 			}
-			// setNotes(newNotes);
 			console.log("finish update");
 		});
 	};
