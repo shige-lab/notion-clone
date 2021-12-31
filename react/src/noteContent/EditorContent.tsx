@@ -56,11 +56,14 @@ const EditorContent = (props: any) => {
 	};
 
 	const focusDown = (e: any) => {
+		setNonDisplay(true);
 		if (e.keyCode === 13 && !e.shiftKey) {
 			e.preventDefault();
 			if (classTag !== "divText" && !props.html.text) {
 				toText();
-			} else props.addText(props.index, textClass);
+			} else {
+				props.addText(props.index, textClass);
+			}
 		} else if (e.key === "Backspace" && !props.html.text) {
 			console.log("delete text");
 			e.preventDefault();
@@ -137,8 +140,10 @@ const EditorContent = (props: any) => {
 	return (
 		<div
 			className="text-field"
-			onMouseEnter={() => setNonDisplay(false)}
-			onMouseLeave={() => setNonDisplay(true)}
+			onMouseMove={() => setNonDisplay(false)}
+			onMouseOut={() => setNonDisplay(true)}
+			// onMouseEnter={() => setNonDisplay(false)}
+			// onMouseLeave={() => setNonDisplay(true)}
 			onFocus={ifDisplayPlaceHolder}
 			onBlur={ifNonDisplayPlaceHolder}
 		>
