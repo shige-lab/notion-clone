@@ -1,3 +1,4 @@
+import "../style/menu.css";
 import { useEffect, useState, useRef } from "react";
 import { IoTrashOutline } from "react-icons/io5";
 import { GrLogout, GrPowerCycle } from "react-icons/gr";

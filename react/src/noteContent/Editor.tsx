@@ -1,3 +1,4 @@
+import "../style/noteContent.css";
 import { useState, useEffect, useRef } from "react";
 import EditorContent from "./EditorContent";
 import SelectButton from "../components/SelectButton";

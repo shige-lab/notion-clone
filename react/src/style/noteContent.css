@@ -1,0 +1,147 @@
+.note {
+	display: flex;
+	background: white;
+	flex-direction:column;
+	height: 100%;
+	overflow: hidden;
+  }
+  
+  .note-bar {
+	height: 35px;
+	margin-top: 5px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	
+  }
+  
+  .bar-title {
+	margin-left: 5%;
+	width: 40%;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+  }
+  
+  .note-field {
+	overflow-y: auto;
+	overflow-x: hidden;
+	display: flex;
+	max-height: 100%;
+	height:  calc(100vh - 45px);
+	flex-direction: column;
+  }
+  
+  .title-field {
+	height: 100px;
+	margin-bottom: 10px;
+	box-sizing: border-box;
+	padding-left: 90px;
+	padding-right: 90px;
+	
+  }
+  
+  .title-input {
+	outline: none;
+	border: none;
+	width: 100%;
+	font-size: 40px;
+	margin-top: 60px;
+	font-weight: bold;
+  }
+  
+  .text-field {
+	box-sizing: border-box;
+	padding-left: 90px;
+	padding-right: 90px;
+  }
+  
+  .text-block {
+	width: 100% ;
+	display: flex;
+	margin-top: 10px;
+  }
+  
+  .text_button {
+	margin-left: -20px;
+	margin-right: 10px;
+	margin-top: 3px;
+	color: rgba(55, 53, 47, 0.6);;
+  }
+  
+  .menu-for-header1Text {
+	margin-top: 41px;
+  }
+  .menu-for-header2Text {
+	margin-top: 26px;
+  }
+  .menu-for-header3Text {
+	margin-top: 17px;
+  }
+  
+  .text-input {
+	width: 100% ;
+	word-break:break-word;
+	overflow-wrap: break-word;
+	outline: none;
+	border: none;
+  }
+  
+  .text-input:empty:before {
+	content: attr(data-placeholder);
+	color: rgba(55, 53, 47, 0.6);;
+  }
+  
+  .header1Text {
+	font-size: 30px;
+	font-weight: bold;
+	margin-top: 27px;
+	margin-bottom: 4px;
+  }
+  
+  .header2Text {
+	font-size: 25px;
+	font-weight: bold;
+	margin-top: 17px;
+	margin-bottom: 1px;
+  }
+  
+  .header3Text {
+	font-size: 20px;
+	font-weight: bold;
+	margin-top: 11px;
+	margin-bottom: 1px;
+  }
+  
+  .divText {
+	font-size: 17px;
+  }
+  
+  .todo {
+	font-size: 17px;
+  }
+  
+  .bullet {
+	font-size: 17px;
+  }
+  
+  .todo-done {
+	font-size: 17px;
+	text-decoration: line-through;
+	color: rgb(75, 72, 64);
+  }
+  
+  .todo-checkbox {
+	margin-top: 5px;
+	margin-right: 5px;
+	margin-left: -5px;
+	width: 20px;
+	flex-shrink: 0;
+  }
+  
+  .menu_block {
+	margin-left: auto;
+	margin-right: 10px;
+  }
+  
+  

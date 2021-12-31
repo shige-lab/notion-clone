@@ -1,0 +1,20 @@
+.button {
+	outline: none;
+	cursor: pointer;
+	border: none;
+	background-color: transparent;
+}
+  
+.button-sidebar {
+	margin-right: 5px;
+	margin-top: 2px;
+	font-size: 18px;
+}
+  
+.button-note-bar {
+	font-size: 25px;
+	margin-top: 0px;
+	margin-left: auto;
+}
+
+  

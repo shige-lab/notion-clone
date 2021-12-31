@@ -1,5 +1,6 @@
 import SelectButton from "../components/SelectButton";
 import { useState, useRef, useEffect } from "react";
+import "../style/sidebar.css";
 import { GrNotes } from "react-icons/gr";
 import { useDebounce } from "use-debounce";
 var classNames = require("classnames");

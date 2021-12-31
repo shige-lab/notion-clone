@@ -1,3 +1,4 @@
+import "../style/button.css";
 import { useEffect, useState, useRef } from "react";
 import { IoEllipsisHorizontalSharp } from "react-icons/io5";
 import { DeleteMenu, RenameMenu, Duplicate, CopyUrl } from "./MenuContent";
@@ -20,7 +21,7 @@ const SelectButton = (props: any) => {
 		if (e.target.getBoundingClientRect().top + 170 > window.innerHeight)
 			setTopPosition(e.target.getBoundingClientRect().top - 150);
 		else setTopPosition(e.target.getBoundingClientRect().top + 20);
-		setIsOpen(isOpen ? false : true);
+		setIsOpen(!isOpen);
 	};
 
 	return (
