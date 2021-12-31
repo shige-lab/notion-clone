@@ -104,7 +104,10 @@ export const SelectStyle = (props: any) => {
 	return (
 		<>
 			{props.nonDisplay && (
-				<div className="menu select_style">
+				<div
+					className="menu select_style"
+					style={{ top: props.ifDropUp }}
+				>
 					<ChangeStyle
 						toText={props.toText}
 						toHeader1={props.toHeader1}

@@ -4,6 +4,7 @@ import { IoApps } from "react-icons/io5";
 
 const ContentSideButton = (props: any) => {
 	const [isOpen, setIsOpen] = useState(false);
+	const [topPosition, setTopPosition] = useState(0);
 	const menuRef: any = useRef();
 
 	useEffect(() => {
@@ -13,6 +14,13 @@ const ContentSideButton = (props: any) => {
 	useEffect(() => {
 		setIsOpen(false);
 	}, []);
+
+	const handleOnClick = (e: any) => {
+		if (e.target.getBoundingClientRect().top + 130 > window.innerHeight)
+			setTopPosition(e.target.getBoundingClientRect().top - 130);
+		else setTopPosition(e.target.getBoundingClientRect().top - 65);
+		setIsOpen(isOpen ? false : true);
+	};
 
 	const deleteText = () => {
 		setIsOpen(false);
@@ -54,19 +62,19 @@ const ContentSideButton = (props: any) => {
 		<>
 			<div
 				className={props.className + " menu-for-" + props.textClass}
-				onClick={() => setIsOpen(isOpen ? false : true)}
+				onClick={(e) => handleOnClick(e)}
 			>
 				<IoApps />
 			</div>
 			{isOpen && (
 				<div
 					className={"menu content-side-menu"}
+					style={{ top: topPosition }}
 					onBlur={() => setTimeout(() => setIsOpen(false), 100)}
 					ref={menuRef}
 					tabIndex={1}
 				>
 					<DeleteMenu delete={deleteText} />
-					<DuplicateMenu duplicateText={duplicateText} />
 					<TurnIntoMenu
 						toText={toText}
 						toHeader1={toHeader1}
@@ -75,6 +83,7 @@ const ContentSideButton = (props: any) => {
 						toBullet={toBullet}
 						toTodo={toTodo}
 					/>
+					<DuplicateMenu duplicateText={duplicateText} />
 				</div>
 			)}
 		</>

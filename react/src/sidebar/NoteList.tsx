@@ -100,7 +100,6 @@ const NoteList = (props: any) => {
 				copyUrl={copyUrl}
 				buttonClass="menu_block"
 				isMouseOver={isMouseOver}
-				// buttonClass={buttonClass}
 				isRename={true}
 				menuClass="menu-sidebar"
 			/>

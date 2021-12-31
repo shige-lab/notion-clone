@@ -4,6 +4,7 @@ import { DeleteMenu, RenameMenu, Duplicate, CopyUrl } from "./MenuContent";
 
 const SelectButton = (props: any) => {
 	const [isOpen, setIsOpen] = useState(false);
+	const [topPosition, setTopPosition] = useState(0);
 	const menuRef: any = useRef();
 
 	useEffect(() => {
@@ -15,11 +16,18 @@ const SelectButton = (props: any) => {
 		props.delete();
 	};
 
+	const handleOnClick = (e: any) => {
+		if (e.target.getBoundingClientRect().top + 170 > window.innerHeight)
+			setTopPosition(e.target.getBoundingClientRect().top - 150);
+		else setTopPosition(e.target.getBoundingClientRect().top + 20);
+		setIsOpen(isOpen ? false : true);
+	};
+
 	return (
 		<div className={"hover-gray " + props.buttonClass}>
 			<button
 				className={"button button-sidebar"}
-				onClick={() => setIsOpen(isOpen ? false : true)}
+				onClick={(e) => handleOnClick(e)}
 			>
 				<div className={props.isMouseOver}>
 					<IoEllipsisHorizontalSharp />
@@ -28,6 +36,7 @@ const SelectButton = (props: any) => {
 			{isOpen && (
 				<div
 					className={"menu " + props.menuClass}
+					style={{ top: topPosition }}
 					onBlur={() => setTimeout(() => setIsOpen(false), 100)}
 					ref={menuRef}
 					tabIndex={1}

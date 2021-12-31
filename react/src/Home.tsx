@@ -38,6 +38,7 @@ const Home = (props: any) => {
 	});
 
 	useEffect(() => {
+		console.log(window.innerHeight);
 		console.log("home useEffect");
 		isFirstRender.current = true;
 		auth.onAuthStateChanged((user) => {
@@ -101,11 +102,11 @@ const Home = (props: any) => {
 		_updateEditor(_title, contents, id).then((note: any) => {
 			console.log(note);
 			if (notes[selectIndex].note.title != _title) {
-				const newNotes = notes.slice();
-				newNotes[selectIndex].note.title = _title;
-				newNotes[selectIndex].note.body = contents;
-				setNotes(newNotes);
+				// const newNotes = notes.slice();
+				// newNotes[selectIndex].note.title = _title;
+				// newNotes[selectIndex].note.body = contents;
 			}
+			// setNotes(newNotes);
 			console.log("finish update");
 		});
 	};

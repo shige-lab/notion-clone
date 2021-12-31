@@ -359,6 +359,7 @@
 
 .content-side-menu {
   height: 130px;
+  left: 125px;
   position: fixed;
 }
 
@@ -373,11 +374,11 @@
 
 .turn_into {
   margin-left: 155px;
-  height: 230px;
+  height: 190px;
   position: fixed;
 }
 .select_style {
-  margin-left: 155px;
+  /* margin-left: 155px; */
   height: 230px;
   position: fixed;
 }
@@ -405,4 +406,8 @@
     color: rgba(55, 53, 47, 0.6);
     margin-left: auto;
     margin-right: 10px;
+}
+
+.drop-up {
+  margin-top: -150px;
 }

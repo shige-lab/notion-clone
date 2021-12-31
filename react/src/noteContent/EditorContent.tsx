@@ -17,6 +17,7 @@ const EditorContent = (props: any) => {
 	const [todo, setTodo] = useState(false);
 	const [bullet, setBullet] = useState(false);
 	const [openMenu, setOpenMenu] = useState(false);
+	const [ifDropUp, setIfDropUp] = useState(0);
 	const isFirstRender = useRef(false);
 	const [placeHolder, setPlaceHolder] = useState("");
 
@@ -54,7 +55,7 @@ const EditorContent = (props: any) => {
 		props.onChange(e.target.value, props.index, textClass);
 	};
 
-	const focusDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+	const focusDown = (e: any) => {
 		if (e.keyCode === 13 && !e.shiftKey) {
 			e.preventDefault();
 			if (classTag !== "divText" && !props.html.text) {
@@ -66,6 +67,9 @@ const EditorContent = (props: any) => {
 			if (classTag !== "divText") toText();
 			else props.deleteText(props.index);
 		} else if (e.keyCode === 191) {
+			if (e.target.getBoundingClientRect().top + 255 > window.innerHeight)
+				setIfDropUp(e.target.getBoundingClientRect().top - 230);
+			else setIfDropUp(e.target.getBoundingClientRect().top + 25);
 			setOpenMenu(true);
 		} else setOpenMenu(false);
 	};
@@ -140,7 +144,7 @@ const EditorContent = (props: any) => {
 		>
 			<div
 				className="text-block"
-				onBlur={() => setTimeout(() => setOpenMenu(false), 1000)}
+				onBlur={() => setTimeout(() => setOpenMenu(false), 300)}
 			>
 				<ContentSideButton
 					className={contentButtonClass}
@@ -180,14 +184,13 @@ const EditorContent = (props: any) => {
 					id={"text" + props.index}
 					data-placeholder={placeHolder}
 					onChange={handleInput}
-					onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) =>
-						focusDown(e)
-					}
+					onKeyDown={(e: any) => focusDown(e)}
 				/>
 				<BackSlashCommand
 					index={props.index}
 					text={props.html.text}
 					addTextWithStyle={addTextWithStyle}
+					ifDropUp={ifDropUp}
 					isBackSlash={openMenu}
 					onBlur={() => setOpenMenu(false)}
 					toText={toText}
