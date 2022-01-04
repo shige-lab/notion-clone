@@ -124,3 +124,9 @@
   bottom: 0px;
 }
 
+.rename {
+	position: sticky;
+  right: 60px;
+	outline: none;
+  }
+

@@ -43,11 +43,6 @@
 	font-size: 10px;
   }
   
-  .rename {
-	position: absolute;
-	outline: none;
-  }
-  
   .turn_into {
 	margin-left: 155px;
 	height: 190px;
@@ -57,4 +52,3 @@
 	height: 230px;
 	position: fixed;
   }
-  
