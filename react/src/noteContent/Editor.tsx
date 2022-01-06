@@ -23,9 +23,13 @@ const Editor = (props: any) => {
 	}, []);
 
 	useEffect(() => {
-		setTexts(body);
-		setTitle_(title);
-	}, [title, body]);
+		if (isFirstRender.current) {
+			isFirstRender.current = true;
+		} else {
+			console.log("77777777");
+			updateNote(title_);
+		}
+	}, [title_]);
 
 	useEffect(() => {
 		console.log("first");
@@ -48,7 +52,6 @@ const Editor = (props: any) => {
 	const updateTitle = (t: string) => {
 		console.log(t);
 		setTitle_(t);
-		updateNote(t);
 	};
 
 	const updateBody = (content: string, index: number, tag: string) => {
