@@ -13,42 +13,48 @@
   .menu-sidebar {
 	position: fixed; 
 	height: 150px;
-  }
+}
 
-  .menu-content {
+.menu-content {
 	margin-top: 12px;
 	margin-left: 10px;
 	display: flex;
 	align-items: center;
 	cursor: pointer;
 	color: black;
-  }
-  
-  .menu-content-icon {
+}
+
+.menu-content-icon {
 	font-size: 17px;
-  }
-  
-  .menu-content-text {
+}
+
+.menu-content-text {
 	margin-left: 8px;
 	padding-right: 25px;
-  }
-  
-  .content-side-menu {
+}
+
+.content-side-menu {
 	height: 130px;
 	left: 125px;
 	position: fixed;
-  }
-  
-  .header{
+}
+
+.header{
 	font-size: 10px;
-  }
-  
-  .turn_into {
+}
+
+.turn_into {
 	margin-left: 155px;
 	height: 190px;
 	position: fixed;
-  }
-  .select_style {
+}
+.select_style {
 	height: 230px;
 	position: fixed;
-  }
+}
+
+.menu-note-bar {
+	height: 100px;
+	position: fixed;
+	right: 0px;
+}
