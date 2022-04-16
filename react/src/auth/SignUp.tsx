@@ -37,7 +37,7 @@ const SignUp = (props: any) => {
 
 	const pushForm = async () => {
 		try {
-			await auth.signInWithEmailAndPassword(email, password);
+			await auth.createUserWithEmailAndPassword(email, password);
 			props.history.push("/notes");
 		} catch (error) {
 			alert(error);
